@@ -1,12 +1,12 @@
 <template>
 
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
     
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo03" aria-controls="navbarTogglerDemo03" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <a class="navbar-brand" href="#"><img src="../assets/logo.png" height="50" alt="logo"></a>
+    <a class="navbar-brand" :class="{'ml': pushRight}" href="#"><img class="img-fluid logo" src="../assets/logo.png" alt="logo"></a>
   
     <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
       <ul class="navbar-nav mr ml-auto mt-4">
@@ -22,23 +22,61 @@
       </ul>
     </div>
   </nav>
-
 </template>
 
 <script>
 export default {
   name: 'TheNavbar',
+  
+  data() {
+    return {
+      pushRight: true,
+      screenWidth: 0,
+    }
+  },
+  created() {
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize();
+  },
+  unmounted() {
+        window.removeEventListener('resize', this.handleResize);
+  },
+  methods: {
+    handleResize() {
+      this.screenWidth = window.innerWidth;
+    }    
+  },
+  watch: {
+    screenWidth(val){
+      if(val < 960){
+        this.pushRight = false;
+      }
+      else 
+        this.pushRight = true;
+    }
+  }
+  
 }
+
 </script>
 
 <style scoped>
+.navbar{
+  height: 90px;
+}
 .img{
   height: 20px;
 }
 .mr{
   margin-right: 150px;
 }
+.ml{ 
+  margin-left: 150px;
+}
 .nav-link{
   font-size: 95%;
+}
+.logo{
+  height: 60px;
 }
 </style>
