@@ -1,50 +1,49 @@
 <template>
-    <div class="container">
-        <div class="wrapper">
-            <img class="img-fluid" src="../assets/parts01.png" alt="part01">
-            <p class="plus-text">{{ welcomeTexts }}</p>
-        </div>
-    </div>
+    <normal :welcomeTexts="welcomeTexts" v-if="screenMode === 'normal'"></normal>
+    <tablet :welcomeTexts="welcomeTexts" v-else-if="screenMode === 'tablet'"></tablet>
+    <mobile :welcomeTexts="welcomeTexts" v-else></mobile>
 </template>
 
 <script>
+import Mobile from './douga-toggles/Mobile.vue';
+import Normal from './douga-toggles/Normal.vue';
+import Tablet from './douga-toggles/Tablet.vue';
+
 export default {
+  components: { Normal, Tablet, Mobile },
     data() {
         return {
-        welcomeTexts: 
-        `在宅で働くにあたり、色々と学べる動画をご用意しました！
-そしてなんと！
-動画に加えて、在宅で働いている現役ママにも相談できちゃいますよ！
-テキストテキストテキストテキストテキストテキストテキストテキストテキスト
-テキストテキストテキストテキストテキストテキストテキストテキストテキスト`,
+        screenMode: null,
+        screenWidth: 0,
+        }
+    },
+    created() {
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize();
+    },
+    unmounted() {
+        window.removeEventListener('resize', this.handleResize);
+    },
+    methods: {
+        handleResize() {
+            this.screenWidth = window.innerWidth;
+        }    
+    },
+    watch: {
+        screenWidth(val){
+        if(val > 960){
+            this.screenMode = 'normal';
+        }
+        else if(val > 500){
+            this.screenMode = 'tablet';
+        }
+        else
+            this.screenMode = 'mobile';
         }
     }
 }
 </script>
 
 <style scoped>
-.container{
-    border: 1.5px solid pink;
-    width: 67%;
-    height: 1000px;
-    margin-top: 6em;
-}
-.img-fluid{
-    width: 96%;
-    margin-top: -5em;
-    margin-left: 2em;
-}
-.wrapper{
-    position: relative;
-    display: block;
-}
-.plus-text{
-    left: 19%;
-    top: 30%;
-    position: absolute;
-    width: 60%;
-    font-size: 1em;
-    color: grey;
-    white-space: pre;
-}
-</style>
+
+</style>TabletMobile
