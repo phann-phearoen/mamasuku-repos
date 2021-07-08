@@ -1,7 +1,10 @@
 <template>
-    <normal :welcomeTexts="welcomeTexts" v-if="screenMode === 'normal'"></normal>
-    <tablet :welcomeTexts="welcomeTexts" v-else-if="screenMode === 'tablet'"></tablet>
-    <mobile :welcomeTexts="welcomeTexts" v-else></mobile>
+    <div class="row">
+        <normal :welcomeTexts="welcomeTexts" v-if="screenMode === 'normal'"></normal>
+        <tablet :welcomeTexts="welcomeTexts" v-else-if="screenMode === 'tablet'"></tablet>
+        <mobile :welcomeTexts="welcomeTexts" v-else></mobile>
+    </div>
+    
 </template>
 
 <script>
@@ -46,4 +49,4 @@ export default {
 
 <style scoped>
 
-</style>TabletMobile
+</style>

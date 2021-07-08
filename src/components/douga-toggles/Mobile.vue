@@ -1,25 +1,153 @@
 <template>
-    <div class="row">
-        <div class="container containerMobile">
+    <div class="container containerMobile">
+        <div class="row">
             <div class="wrapperMobile" >
                 <img class="img-fluidMobile" src="../../assets/parts02.png" alt="part02">
                 <p class="plus-textMobile">{{ welcomeTexts }}</p>
+            </div>
+        </div>
+        <div class="row lowerContainer q-mt-md q-mb-md">
+            <div class="col">
+                <div class="row">
+                    <div class="col column items-center">
+                        <h3 class="title">動画を視聴する</h3>
+                        <img src="../../assets/parts03.png" alt="parts03" class="img-fluid parts03">
+                    </div>
+                </div>
+
+                <div class="row clipGrid" v-if="moreClicked">
+                    <douga-card class="col-sm-12"
+                    v-for="(mama, index) in dougaMama"
+                    :key="index"
+                    :title="mama.title"
+                    :clip="mama.clip"
+                    :description="mama.description"
+                    ></douga-card><br>
+                </div>
+                <div class="row clipGrid" v-else>
+                    <douga-card class="col-sm-12"
+                    v-for="(mama, index) in shortDougaMamaList"
+                    :key="index"
+                    :title="mama.title"
+                    :clip="mama.clip"
+                    :description="mama.description"
+                    ></douga-card><br>
+                </div>
+        
+                <div class="row q-mt-md q-mb-md">
+                    <div class="col column items-center">
+                        <q-btn outline rounded color="grey" class="btnMore" @click="toggleMore">
+                            <div class="row items-center no-wrap" v-if="moreClicked === false">
+                                <div class="text-center viewMore">
+                                    もっと見る
+                                </div>
+                            </div>
+                            <div class="row items-center no-wrap" v-else>
+                                <div class="text-center viewMore">
+                                    表示を減らす
+                                </div>
+                            </div>
+                        </q-btn>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import DougaCard from './DougaCard.vue';
 export default {
+    components: { DougaCard },
+    data() {
+        return {
+            moreClicked: false,
+            dougaMama: [ 
+                {  
+                    title: 'タイトルタイトルタイトルタイトル', 
+                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
+                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
+                },
+                {  
+                    title: 'タイトルタイトルタイトルタイトル', 
+                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
+                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
+                },
+                {  
+                    title: 'タイトルタイトルタイトルタイトル', 
+                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
+                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
+                },
+                {  
+                    title: 'タイトルタイトルタイトルタイトル', 
+                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
+                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
+                },
+                {  
+                    title: 'タイトルタイトルタイトルタイトル', 
+                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
+                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
+                },
+                {  
+                    title: 'タイトルタイトルタイトルタイトル', 
+                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
+                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
+                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
+                },
+            ],
+        }
+    },
     computed: {
         welcomeTexts() {
             return this.$store.getters.welcomeTexts;
+        },
+        shortDougaMamaList() {
+            const mamaList = [];
+            for(let i = 0; i < 4; i++){
+                mamaList.push(this.dougaMama[i]);
+            }
+            return mamaList;
+        }
+    },
+    methods: {
+        toggleMore() {
+            this.moreClicked = !this.moreClicked
         }
     }
 }
 </script>
 
 <style scoped>
+.btnMore{
+    width: 13em;
+    height: 1em;
+}
+.viewMore{
+    color: grey;
+    font-size: 1em;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: 400;
+}
+
+.lowerContainer{
+    border: solid 1px pink;
+}
+.title{
+    color: grey;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: 600;
+    font-size: 1em;
+}
+.parts03{
+    width: 60%;
+    margin-top: -3em;
+}
+
 .containerMobile{
     margin-top: 2.5em;
     margin-left: .8em;
@@ -38,7 +166,7 @@ export default {
 }
 .plus-textMobile{
     left: 10%;
-    top: 20%;
+    top: 37%;
     position: absolute;
     width: 80%;
     font-size: .7em;

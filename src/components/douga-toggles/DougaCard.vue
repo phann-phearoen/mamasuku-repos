@@ -1,9 +1,17 @@
 <template>
-    <li class="col-lg-6">
-        <h4 class="title">{{ title }}</h4>
-        <img :src="clip" alt="" class="img-fluid clip">
-        <p class="description">{{ description }}</p>
-    </li>
+  <div class="q-pa-md">
+    <q-card class="my-card">
+      <q-card-section>
+        <div class="text-h6">{{ title }}</div>
+      </q-card-section>
+
+      <q-video :src="clip" alt="https://www.youtube.com/embed/k3_tw44QsZQ?rel=0" />
+
+      <q-card-section class="q-pt-none">
+        {{ description }}
+      </q-card-section>
+    </q-card>
+  </div>
 </template>
 
 <script>
@@ -13,16 +21,16 @@ export default {
 </script>
 
 <style scoped>
-.title{
+.text-h6{
    color: #eb7fa2;
    font-family: 'M PLUS Rounded 1c', sans-serif;
-   font-weight: 500;
-   font-size: 24px;
+   font-weight: 600;
+   font-size: 1.5em;
 }
-.description{
-    color: #787878;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-   font-weight: 400;
-   font-size: 18px;
+.q-pt-none{
+  color: #787878;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 400;
+  font-size: 1em;
 }
 </style>

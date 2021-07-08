@@ -17,7 +17,7 @@
           <a class="nav-link" href="#"><img src="../assets/icon02.png" class="img" alt="icon02">在宅で働くママに相談する</a>
         </li>
         <li class="nav-item">
-          <a class="nav-link disabled" href="#"><img src="../assets/icon03.png" class="img" alt="icon03">お問い合わせ</a>
+          <a class="nav-link" href="#"><img src="../assets/icon03.png" class="img" alt="icon03">お問い合わせ</a>
         </li>
       </ul>
     </div>
@@ -68,10 +68,10 @@ export default {
   height: 20px;
 }
 .mr{
-  margin-right: 150px;
+  margin-right: 9em;
 }
 .ml{ 
-  margin-left: 150px;
+  margin-left: 9em;
 }
 .nav-link{
   font-size: 95%;
