@@ -1,11 +1,12 @@
 <template>
-    <div class="q-pa-md items-start q-gutter-md">
-        <q-card class="my-card">
+    <div class="q-pa-md">
 
-            <q-avatar>
-                <img :src="src">
-            </q-avatar>
-            
+        <q-card class="my-card items-center">
+
+            <div class="col column items-center">
+                <q-img :src="src" style="width: 50%" ratio="1" class="q-mt-md"/>
+            </div>
+           
             <q-card-section>
                 <div class="text-h6 name">{{ name }}</div>
             </q-card-section>
@@ -24,6 +25,7 @@ export default {
 </script>
 
 <style scoped>
+
 .name{
    color: #eb7fa2;
    font-family: 'M PLUS Rounded 1c', sans-serif;
