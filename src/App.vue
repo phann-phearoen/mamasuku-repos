@@ -1,23 +1,25 @@
 <template>
   <the-navbar></the-navbar>
-  <top></top>
-  <douga></douga>
-  <soudan></soudan>
-  <toi-awase></toi-awase>
+
+  <router-view></router-view>
+
   <the-footer></the-footer>
+  
 </template>
 
 <script>
 import TheNavbar from './components/TheNavbar.vue';
-import Top from './components/Top.vue';
-import Douga from './components/Douga.vue';
-import Soudan from './components/Soudan.vue';
-import ToiAwase from './components/ToiAwase.vue';
+import TheFooter from './components/TheFooter.vue';
+
 
 export default {
   name: 'LayoutDefault',
   components: {
-    TheNavbar, Top, Douga, Soudan, ToiAwase,
+    TheNavbar, TheFooter,
   },
 }
 </script>
+
+<style scoped>
+
+</style>

@@ -14,6 +14,11 @@
             <q-card-section class="q-pt-none description">
                 {{ description }}
             </q-card-section>
+
+            <div class="column items-center">
+                <q-btn unelevated rounded class="button items-center" label="相談する" />
+            </div>
+            
         </q-card>
     </div>
 </template>
@@ -25,7 +30,12 @@ export default {
 </script>
 
 <style scoped>
-
+.button{
+    background-color: #eb7fa2;
+    color: white;
+    width: 50%;
+    margin-bottom: .5em;
+}
 .name{
    color: #eb7fa2;
    font-family: 'M PLUS Rounded 1c', sans-serif;

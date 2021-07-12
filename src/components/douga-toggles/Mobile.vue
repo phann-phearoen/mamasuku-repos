@@ -54,7 +54,7 @@
 
 <script>
 import DougaCard from './DougaCard.vue';
-import BaseTitle from '../BaseTitle.vue';
+import BaseTitle from '../base/BaseTitle.vue';
 
 export default {
     components: { DougaCard, BaseTitle },

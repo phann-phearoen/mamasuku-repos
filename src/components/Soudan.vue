@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import BaseCard from './BaseCard.vue';
+import BaseCard from './base/BaseCard.vue';
 
 export default {
   components: { BaseCard },

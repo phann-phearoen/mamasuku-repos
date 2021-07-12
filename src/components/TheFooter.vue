@@ -1,57 +1,51 @@
 <template>
-<!-- Footer -->
-<footer class="page-footer">
+<footer class="row footer" >
+  <!-- Grid container -->
+  <div class="container-fluid">
+      <!--Grid column-->
+      <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 ml-auto">
 
-    <!-- Grid row -->
-    <div class="row">
-
-      <!-- Grid column -->
-      <div class="col">
-
-        <ul class="list-unstyled">
-          <li>
-            <a href="#!">運営会社</a>
+        <ul class="list-unstyled mb-1">
+          <li class="mb-2 mt-1">
+            <a href="https://wannagrow.co.jp" >運営会社</a>
           </li>
-          <li>
-            <a href="#!">学べる動画一覧</a>
+          <li class="mb-2">
+            <a href="#!" >学べる動画一覧</a>
           </li>
-          <li>
-            <a href="#!">在宅で働くママへ相談する</a>
+          <li class="mb-2">
+            <a href="#!" >在宅で働くママに相当する</a>
           </li>
-          <li>
-            <a href="#!">お問い合わせ</a>
+          <li class="mb-2">
+            <a href="#!" >お問い合わせ</a>
           </li>
         </ul>
-
       </div>
-      
+      <!--Grid column-->
+
+      <!-- Copyright -->
+      <div class="text-center p-3 text-light copyright" >
+        Copyright © 2016 - 2020 WANNAGROW Inc. All Rights Reserved
+      </div>
+      <!-- Copyright -->
+
     </div>
-    <!-- Grid row -->
-
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">Copyright © 2016-2021 WANNAGROW Inc. All Rights Reserved</div>
-  <!-- Copyright -->
-
 </footer>
-<!-- Footer -->
 </template>
 
 <style scoped>
-.page-footer{
-    background-color: grey;
-    padding-top: 3em;
+.footer{
+  background-color: grey;
+  padding-top: 1em;
 }
 a{
-    color: white;
-    font-size: .8em;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-weight: 300;
+  color: white;
+  font-size: .8em;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 300;
 }
-.footer-copyright{
-    font-family: sans-serif;
-    font-size: .8em;
-    font-weight: 200;
-    color: white;
+.copyright{
+  font-size: .8em;
+  font-family: sans-serif;
+  font-weight: 300;
 }
-
 </style>

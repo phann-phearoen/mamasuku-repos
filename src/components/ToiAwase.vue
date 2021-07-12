@@ -1,6 +1,7 @@
 <template>
-<div class="mb-5">
+<div class="mb-5 mt-5">
     <base-title :title="title" class="q-mt-md"></base-title>
+    <div class="row mr-auto ml-auto"><div v-if="inputErrorMsg" class="col-12 text-center" style="color: red">{{ inputErrorMsg }}</div></div>
     <div class="row">
 
         <form class="form" @submit.prevent="sendEmail">
@@ -19,15 +20,14 @@
                 <textarea class="form-control" id="textarea" rows="3" v-model.trim="message" @blur="validateMessage"></textarea>
             </div>
             
-            <div class="row mt-5 form-group from-control">
-                <q-btn type="submit" outline rounded color="grey" class="btnMore">
-                    <div class="row items-center no-wrap" >
-                        <div class="text-center viewMore">送信</div>
-                    </div>
-                </q-btn>
+            <div class="container my-4">
+                <div class="column items-center">
+                    <q-btn type="submit" unelevated rounded class="button items-center" label="送信" />
+                </div>
             </div>
         </form>
     </div>
+    
 </div>
 </template>
 
@@ -40,7 +40,8 @@ export default {
             title: 'お問い合わせ',
             name: '', nameValid: true,
             email: '', emailValid: true,
-            message: '', messageValid: true
+            message: '', messageValid: true,
+            inputErrorMsg: ''
         }
     },
     methods: {
@@ -64,22 +65,27 @@ export default {
         },
 
         sendEmail (e)  {
-            emailjs.sendForm('service_0ogcavi', 'template_ocjzofy', e.target, 'user_ffqgAlHexE8z9VT8h4DXL',
-            {
-                name: this.name,
-                email: this.email,
-                message: this.message
-            })
-            .then((result) => {
-                console.log('SUCCESS!', result.status, result.text);
-                alert('Success!')
-            }, (error) => {
-                console.log('FAILED...', error);
-                alert('Failed!')
-            });
-            this.name = '';
-            this.email = '';
-            this.message = '';
+            if(this.name !== '' || this.email !== '' || this.message !== ''){
+                emailjs.sendForm('service_0ogcavi', 'template_ocjzofy', e.target, 'user_ffqgAlHexE8z9VT8h4DXL',
+                {
+                    name: this.name,
+                    email: this.email,
+                    message: this.message
+                })
+                .then((result) => {
+                    console.log('SUCCESS!', result.status, result.text);
+                    alert('Success!')
+                }, (error) => {
+                    console.log('FAILED...', error);
+                    alert('Failed!')
+                });
+                this.name = '';
+                this.email = '';
+                this.message = '';
+            }
+            else{
+                this.inputErrorMsg = 'Please input all the fields!';
+            }
         }
     }
 }
@@ -90,6 +96,12 @@ export default {
     width: 20em;
     height: 1.9em;
     margin: 0 auto;
+}
+.button{
+    border: solid 1px grey;
+    color: grey;
+    width: 40%;
+    font-size: 1.5vw;
 }
 .label{
   color: #787878;

@@ -4,7 +4,7 @@
             <div class="col column items-center">
                 <h6 class="title">{{ title }}</h6>
             </div>
-            <img src="../assets/parts03.png" alt="parts03" class="img-fluid parts03" />
+            <img src="../../assets/parts03.png" alt="parts03" class="img-fluid parts03" />
         </div>
     </div>
 </template>
