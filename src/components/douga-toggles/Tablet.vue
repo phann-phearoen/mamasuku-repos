@@ -29,22 +29,8 @@
                     ></douga-card>
                 </div>
             
-                <div class="row q-mt-xl q-mb-xl">
-                    <div class="col column items-center">
-                        <q-btn outline rounded color="grey" class="btnMore" @click="toggleMore">
-                            <div class="row items-center no-wrap" v-if="moreClicked === false">
-                                <div class="text-center viewMore">
-                                    もっと見る
-                                </div>
-                            </div>
-                            <div class="row items-center no-wrap" v-else>
-                                <div class="text-center viewMore">
-                                    表示を減らす
-                                </div>
-                            </div>
-                        </q-btn>
-                    </div>
-                </div>
+                <toggle-more @toggle-more="toggleMore" :moreClicked="moreClicked"></toggle-more>
+
             </div>
         </div>
     </div>

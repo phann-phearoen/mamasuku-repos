@@ -1,16 +1,21 @@
 <template>
-    <div class="row wrapper">
-        <img class="img-fluid" src="../assets/TOP.jpg" width="1440" alt="TOP">
-        <img src="../assets/TOP_caption.png" alt="TOP_caption" class="plus-image">
+<div class="container-fluid px-0">
+    <div class="row">
+        <div class="col-12 inner px-0">
+            <img src="../assets/TOP.jpg" class="img-fluid" alt="TOP">
+            <img src="../assets/TOP_caption.png" alt="TOP_caption" class="plus-image">
+        </div>  
     </div>
+</div>
 </template>
 
 <style scoped>
-.wrapper{
+
+.inner{
     margin-top: 90px;
     position: relative;
-    display: block;
 }
+
 .plus-image {
     left: 30%;
     top: 30%;

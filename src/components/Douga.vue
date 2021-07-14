@@ -1,9 +1,14 @@
 <template>
-    <div class="row">
-        <normal :welcomeTexts="welcomeTexts" v-if="screenMode === 'normal'"></normal>
-        <tablet :welcomeTexts="welcomeTexts" v-else-if="screenMode === 'tablet'"></tablet>
-        <mobile :welcomeTexts="welcomeTexts" v-else></mobile>
+    <div class="container-fluid px-0 my-5">
+        <div class="row">
+            <div class="col-12 px-0">
+            <normal :welcomeTexts="welcomeTexts" v-if="screenMode === 'normal'"></normal>
+            <tablet :welcomeTexts="welcomeTexts" v-else-if="screenMode === 'tablet'"></tablet>
+            <mobile :welcomeTexts="welcomeTexts" v-else></mobile>
+            </div>
+        </div>
     </div>
+    
     
 </template>
 
@@ -13,7 +18,7 @@ import Normal from './douga-toggles/Normal.vue';
 import Tablet from './douga-toggles/Tablet.vue';
 
 export default {
-  components: { Normal, Tablet, Mobile },
+    components: { Normal, Tablet, Mobile },
     data() {
         return {
         screenMode: null,

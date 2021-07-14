@@ -27,23 +27,9 @@
             :description="mama.description"
             ></douga-card>
         </div>
-        
-        <div class="row q-mt-xl q-mb-xl">
-            <div class="col column items-center">
-                <q-btn outline rounded color="grey" class="btnMore" @click="toggleMore">
-                    <div class="row items-center no-wrap" v-if="moreClicked === false">
-                        <div class="text-center viewMore">
-                            もっと見る
-                        </div>
-                    </div>
-                    <div class="row items-center no-wrap" v-else>
-                        <div class="text-center viewMore">
-                            表示を減らす
-                        </div>
-                    </div>
-                </q-btn>
-            </div>
-        </div>
+
+        <toggle-more @toggle-more="toggleMore" :moreClicked="moreClicked"></toggle-more>
+
     </div>
 </template>
 
@@ -106,13 +92,13 @@ export default {
                 mamaList.push(this.dougaMama[i]);
             }
             return mamaList;
-        }
+        },
     },
     methods: {
         toggleMore() {
             this.moreClicked = !this.moreClicked
-        }
-    }
+        },
+    },
 }
 </script>
 
@@ -168,5 +154,4 @@ export default {
     font-family: 'M PLUS Rounded 1c', sans-serif;
     font-weight: 600;
 }
-
 </style>

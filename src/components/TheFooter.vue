@@ -1,57 +1,61 @@
 <template>
-<!-- Footer -->
-<footer class="page-footer">
+  <div class="container-fluid px-0">
+    <div class="row footer">
+      <footer>
+          <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 ms-auto">
 
-    <!-- Grid row -->
-    <div class="row">
+            <ul class="list-unstyled ms-3">
+              <li class="mb-2 mt-1">
+                <a href="https://wannagrow.co.jp" >運営会社</a>
+              </li>
 
-      <!-- Grid column -->
-      <div class="col">
+              <ul class="list-unstyled" v-scroll-spy-active v-scroll-spy-link>
+                <li class="mb-2">
+                <a href="#!" >学べる動画一覧</a>
+                </li>
+                <li class="mb-2">
+                  <a href="#!" >在宅で働くママに相当する</a>
+                </li>
+                <li>
+                  <a href="#!" >お問い合わせ</a>
+                </li>
+              </ul>
 
-        <ul class="list-unstyled">
-          <li>
-            <a href="#!">運営会社</a>
-          </li>
-          <li>
-            <a href="#!">学べる動画一覧</a>
-          </li>
-          <li>
-            <a href="#!">在宅で働くママへ相談する</a>
-          </li>
-          <li>
-            <a href="#!">お問い合わせ</a>
-          </li>
-        </ul>
+            </ul>
+          </div>
+          
+          <div class="text-center p-3 text-light copyright" >
+            Copyright © 2016 - 2020 WANNAGROW Inc. All Rights Reserved
+          </div> 
 
-      </div>
-      
+      </footer>
     </div>
-    <!-- Grid row -->
-
-  <!-- Copyright -->
-  <div class="footer-copyright text-center py-3">Copyright © 2016-2021 WANNAGROW Inc. All Rights Reserved</div>
-  <!-- Copyright -->
-
-</footer>
-<!-- Footer -->
+  </div>
+    
+    
 </template>
 
 <style scoped>
-.page-footer{
-    background-color: grey;
-    padding-top: 3em;
+
+.footer{
+  background-color: grey;
+  padding-top: 1em;
+  height: 190px;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 a{
-    color: white;
-    font-size: .8em;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-weight: 300;
+  color: white;
+  font-size: .8em;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 300;
+  text-decoration: none;
 }
-.footer-copyright{
-    font-family: sans-serif;
-    font-size: .8em;
-    font-weight: 200;
-    color: white;
+.copyright{
+  font-size: .8em;
+  font-family: sans-serif;
+  font-weight: 300;
 }
-
 </style>
