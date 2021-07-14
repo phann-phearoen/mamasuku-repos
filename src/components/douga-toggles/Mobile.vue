@@ -9,10 +9,7 @@
         <div class="row lowerContainer q-mt-md q-mb-md">
             <div class="col">
                 <div class="row">
-                    <div class="col column items-center">
-                        <h3 class="title">動画を視聴する</h3>
-                        <img src="../../assets/parts03.png" alt="parts03" class="img-fluid parts03">
-                    </div>
+                    <base-title :title="title"></base-title>
                 </div>
 
                 <div class="row clipGrid" v-if="moreClicked">
@@ -57,10 +54,13 @@
 
 <script>
 import DougaCard from './DougaCard.vue';
+import BaseTitle from '../BaseTitle.vue';
+
 export default {
-    components: { DougaCard },
+    components: { DougaCard, BaseTitle },
     data() {
         return {
+            title: '動画を視聴する',
             moreClicked: false,
             dougaMama: [ 
                 {  
