@@ -15,9 +15,9 @@
                 {{ description }}
             </q-card-section>
 
-            <div class="column items-center">
-                <q-btn unelevated rounded class="button items-center" label="相談する" />
-            </div>
+            <router-link class="column items-center link" to="/vue-pages/contact">
+                    <q-btn unelevated rounded class="button items-center" label="相談する" />
+            </router-link>
             
         </q-card>
     </div>
@@ -30,6 +30,9 @@ export default {
 </script>
 
 <style scoped>
+.link{
+    text-decoration: none;
+}
 .button{
     background-color: #eb7fa2;
     color: white;
