@@ -46,6 +46,10 @@
   right: 0;
   bottom: 0;
 }
+a:hover{
+  font-weight: 400;
+  font-size: .83em;
+}
 a{
   color: white;
   font-size: .8em;

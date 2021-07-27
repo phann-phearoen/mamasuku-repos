@@ -9,12 +9,14 @@
             'button-tablet': screenMode === 'tablet', 'button-normal': screenMode === 'normal'}" label="表示を減らす" 
             @click="toggleMore" v-else/>
         </div>
+        
     </div>
 </template>
 
 <script>
 export default {
     props: ['moreClicked'],
+    //inject: ['screenMode'],
     data() {
         return {
             screenMode: null,
@@ -57,17 +59,23 @@ export default {
     color: grey;
     width: 150px;
     font-size: .8em;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: 400;
 }
 .button-tablet{
     border: solid 1px grey;
     color: grey;
     width: 250px;
     font-size: 1em;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: 400;
 }
 .button-normal{
     border: solid 1px grey;
     color: grey;
     width: 300px;
     font-size: 1.3em;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: 500;
 }
 </style>

@@ -1,6 +1,4 @@
-import { createStore } from "vuex";
-
-const douga = createStore({
+export default {
     namespaced: true,
     state() {
         return {
@@ -14,6 +12,10 @@ const douga = createStore({
             ],
         }
     },
-});
+    getters: {
+        dougaMama(state) {
+            return state.dougaMama;
+        }
+    }
+};
 
-export default douga;

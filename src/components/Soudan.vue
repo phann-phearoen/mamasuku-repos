@@ -128,7 +128,7 @@ export default {
 }
 .pink-wrapper{
   border: solid 1.5px pink;
-  margin: 2em auto;
+  margin: 1em auto;
   width: 96%;
 }
 

@@ -3,35 +3,74 @@
     <div class="row root">
         <div class="col-12 mb-5 mt-5">
             <base-title :title="title" class="my-3"></base-title>
-            <div class="row mr-auto ml-auto"><div v-if="formError" class="col-12 text-center" style="color: red">{{ inputErrorMsg }}</div></div>
             <div class="row">
 
                 <form class="form" @submit.prevent="sendEmail" :class="{'form-mobile': screenMode === 'mobile'}">
-                    <div class="form-group from-control mb-3">
-                        <label class="label" for="name">お名前</label><span class="required" v-if="!nameValid">（必須）</span>
-                        <input type="text" class="form-control field" 
-                        id="name" v-model.trim="name" 
-                        @blur="validateName"
-                        :class="{}"
-                        >
+                    <div class="mb-3">
+                        <label class="label" for="name">お名前</label><span style="color: red" v-if="name === ''">（必須）</span>
+                        
+                        <div class="q-ml-sm">
+                            <q-input
+                                id="name"
+                                name="user_name"
+                                outlined
+                                v-model.trim="name"
+                                no-error-icon
+                                bottom-slots
+                                @keyup="validateName"
+                                @blur="validateName"
+                                :error="!nameIsValid"
+                            >
+                                <template v-slot:error>
+                                    お名前を入力してください！
+                                </template>
+                            </q-input>
+                        </div>
+                        
                     </div>
 
-                    <div class="form-group from-control mb-3">
-                        <label class="label" for="email">アドレス</label><span class="required" v-if="!emailValid">（必須）</span>
-                        <input type="email" class="form-control field" 
-                        id="email" v-model.trim="email" 
-                        @blur="validateEmail"
-                        :class="{}"
-                        >
+                    <div class="mb-3">
+                        <label class="label" for="email">アドレス</label><span style="color: red" v-if="email === ''">（必須）</span>
+
+                        <div class="q-ml-sm">
+                            <q-input
+                                id="email"
+                                name="user_mail"
+                                outlined
+                                v-model.trim="email"
+                                no-error-icon
+                                bottom-slots
+                                @keyup="validateEmail"
+                                @blur="validateEmail"
+                                :error="!emailIsValid"
+                            >
+                                <template v-slot:error>
+                                    正しいアドレスを入力してください！
+                                </template>
+                            </q-input>
+                        </div>
                     </div>
                         
                     <div class="form-group from-control">
-                        <label class="label" for="textarea">お問い合わせ内容</label><span class="required" v-if="!messageValid">（必須）</span>
-                        <textarea class="form-control textarea" 
-                        id="textarea" rows="3" v-model.trim="message" 
-                        @blur="validateMessage"
-                        :class="{}"
-                        ></textarea>
+                        <label class="label" for="message">お問い合わせ内容</label><span style="color: red" v-if="message === ''">（必須）</span>
+                        <div class="q-ml-sm">
+                            <q-input
+                                type="textarea"
+                                name="message"
+                                id="message"
+                                outlined
+                                v-model.trim="message"
+                                no-error-icon
+                                bottom-slots
+                                @keyup="validateMessage"
+                                @blur="validateMessage"
+                                :error="!messageIsValid"
+                            >
+                                <template v-slot:error>
+                                    お問い合わせの内容を入力してください！
+                                </template>
+                            </q-input>
+                        </div>
                     </div>
 
                     <btn-send></btn-send>
@@ -41,75 +80,64 @@
         </div>
     </div>
 </div>
+
 </template>
 
 <script>
 import emailjs from 'emailjs-com';
 import BtnSend from './base/BtnSend.vue';
 
+import{ init } from 'emailjs-com';
+init("user_elZx1Ntipum7lqX2uA316");
+
 export default {
   components: { BtnSend },
     data() {
         return {
             title: 'お問い合わせ',
-            name: '', nameValid: true,
-            email: '', emailValid: true,
-            message: '', messageValid: true,
-            inputErrorMsg: '',
-            formError: false,
+            name: '', nameIsValid: 'pending',
+            email: '', emailIsValid: 'pending',
+            message: '', messageIsValid: 'pending',
             screenMode: null,
             screenWidth: 0,
         }
     },
+    
     methods: {
-        validateName () {
-            if(this.name === '')
-                this.nameValid = false;
+        validateName(){
+            if(this.name !== '')
+                this.nameIsValid = true;
             else
-                this.nameValid = true;
+                this.nameIsValid = false;
         },
-        validateEmail () {
-            if(this.email === '')
-                this.emailValid = false;
-            else 
-                this.emailValid = true; 
-        },
-        validateMessage () {
-            if(this.email === '')
-                this.messageValid = false;
+        validateEmail() {
+            if (/^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/.test(this.email))
+                this.emailIsValid = true;
             else
-                this.messageValid = true;
+                this.emailIsValid = false;
+        },
+        validateMessage(){
+            if(this.message !== '')
+                this.messageIsValid = true;
+            else
+                this.messageIsValid = false;
         },
 
-        sendEmail (e)  {
-            if(this.name !== '' || this.email !== '' || this.message !== ''){
-                this.formError = false;
-                emailjs.sendForm('service_0ogcavi', 'template_ocjzofy', e.target, 'user_ffqgAlHexE8z9VT8h4DXL',
-                {
-                    name: this.name,
-                    email: this.email,
-                    message: this.message
-                })
+        sendEmail (e) {
+            emailjs.sendForm('service_fGmail', 'template_lo25zih', e.target, 'user_elZx1Ntipum7lqX2uA316')
                 .then((result) => {
                     console.log('SUCCESS!', result.status, result.text);
-                    alert('Success!')
                 }, (error) => {
                     console.log('FAILED...', error);
-                    alert('Failed!')
-                });
-                this.name = '';
-                this.email = '';
-                this.message = '';
-            }
-            else{
-                this.inputErrorMsg = 'Please input all the fields!';
-                this.formError = true;
-            }
+            });
+            e.target.reset();
         },
+
         handleResize() {
             this.screenWidth = window.innerWidth;
         }   
     },
+    
     created() {
         window.addEventListener('resize', this.handleResize);
         this.handleResize();
@@ -117,22 +145,18 @@ export default {
     unmounted() {
         window.removeEventListener('resize', this.handleResize);
     },
-    watch: {
-        screenWidth(val){
-        if(val > 960){
-            this.screenMode = 'normal';
-        }
-        else if(val > 500){
-            this.screenMode = 'tablet';
-        }
-        else
-            this.screenMode = 'mobile';
-        }
-    }
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+.q-field__append.q-field__marginal.row.no-wrap.items-center.q-anchor--skip{
+display: none;
+}
+.text-center{
+    color: red;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: 300;
+}
 
 .btnMore{
     width: 20em;
@@ -166,11 +190,9 @@ export default {
 
 .field{
     height: 1.5em;
-    border: solid 1px black;
     border-radius: 2px;
 }
 .textarea{
-    border: solid 1px black;
     border-radius: 2px;
 }
 

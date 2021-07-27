@@ -10,7 +10,6 @@
 </template>
 
 <style scoped>
-
 .inner{
     margin-top: 90px;
     position: relative;

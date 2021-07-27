@@ -1,107 +1,80 @@
 <template>
 <div class="contact">
     <base-title :title="'ご予約フォーム'" class="mb-4"></base-title>
-    
+
     <form @submit.prevent="submitForm">
             <form-slot :label="'お名前'">
-                <template v-slot:required><span style="color: red" v-if="!nameIsValid">（必須）</span></template>
-                <input type="text" class="form-control field" v-model.trim="name" @blur="validateName">
+                <template v-slot:required><span style="color: red" v-if="!name.isValid">（必須）</span></template>
+                <input 
+                type="text" 
+                class="form-control"
+                :class="{'field-error': name.isValid===false}"
+                v-model.trim="name.value" 
+                @focus="nameValidation(null)" 
+                @blur="validateName"
+                >
+                <div v-if="name.isValid === false" class="error-state mt-1">{{ name.errMsg }}</div>
             </form-slot>
 
             <form-slot :label="'電話番号'">
-                <template v-slot:required><span style="color: red" v-if="!phoneIsValid">（必須）</span></template>
-                <input type="phone" class="form-control field" v-model.trim="phone" @blur="validatePhone">
+                <template v-slot:required><span style="color: red" v-if="!phone.isValid">（必須）</span></template>
+                <input 
+                type="phone" 
+                class="form-control"
+                :class="{'field-error': phone.isValid===false}"
+                v-model.trim="phone.value" 
+                @focus="phoneValidation(null)" 
+                @blur="validatePhone"
+                >
+                <div v-if="phone.isValid === false" class="error-state mt-1">{{ phone.errMsg }}</div>
             </form-slot>
 
             <form-slot :label="'メールアドレス'">
-                <template v-slot:required><span style="color: red" v-if="!emailIsValid">（必須）</span></template>
-                <input type="email" class="form-control field" v-model.trim="email" @blur="validateEmail">
+                <template v-slot:required><span style="color: red" v-if="!email.isValid">（必須）</span></template>
+                <input 
+                type="email" 
+                class="form-control" 
+                :class="{'field-error': email.isValid===false}"
+                v-model.trim="email.value" 
+                @focus="emailValidation(null)"
+                @blur="validateEmail"
+                >
+                <div v-if="email.isValid === false" class="error-state mt-1">{{ email.errMsg }}</div>
             </form-slot>
 
             <form-slot :label="'ご希望の日時'">
                 <template v-slot:required><span style="color: red" v-if="!apoIsValid">（必須）</span></template>
-                <div class="container overflow-hidden">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-2 d-flex align-items-center mx-0">
-                            <label class="label ">第一希望</label>
-                        </div>
-                        <div class="col-lg-3 col-md-3 mx-0 mb-1">
-                            <input type="text" class="form-control field " v-model.trim="apo.intend1.purpose" @blur="validateApo">
-                        </div>
-                        <div class="col-lg-2 col-md-2 mx-0">
-                            <input type="text" class="form-control field " v-model.trim="apo.intend1.timeStart" @blur="validateApo">
-                        </div>
-                        <div class="col-lg-1 col-md-1 d-flex align-items-center"><div class="">～</div></div>
-                        <div class="col-lg-2 col-md-2">
-                            <input type="text" class="form-control field " v-model.trim="apo.intend1.timeEnd" @blur="validateApo">
-                        </div>
-                        <div class="col-lg-2 col-md-2 d-flex align-items-center">
-                            <label class="label ">の間に開始</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="container overflow-hidden">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-2 d-flex align-items-center mx-0">
-                            <label class="label ">第二希望</label>
-                        </div>
-                        <div class="col-lg-3 col-md-3 mx-0 mb-1">
-                            <input type="text" class="form-control field">
-                        </div>
-                        <div class="col-lg-2 col-md-2 mx-0">
-                            <input type="text" class="form-control field">
-                        </div>
-                        <div class="col-lg-1 col-md-1 d-flex align-items-center"><div class="">～</div></div>
-                        <div class="col-lg-2 col-md-2">
-                            <input type="text" class="form-control field">
-                        </div>
-                        <div class="col-lg-2 col-md-2 d-flex align-items-center">
-                            <label class="label ">の間に開始</label>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="container overflow-hidden">
-                    <div class="row">
-                        <div class="col-lg-2 col-md-2 d-flex align-items-center mx-0">
-                            <label class="label ">第三希望</label>
-                        </div>
-                        <div class="col-lg-3 col-md-3 mx-0 mb-1">
-                            <input type="text" class="form-control field">
-                        </div>
-                        <div class="col-lg-2 col-md-2 mx-0">
-                            <input type="text" class="form-control field">
-                        </div>
-                        <div class="col-lg-1 col-md-1 d-flex align-items-center"><div class="">～</div></div>
-                        <div class="col-lg-2 col-md-2">
-                            <input type="text" class="form-control field">
-                        </div>
-                        <div class="col-lg-2 col-md-2 d-flex align-items-center">
-                            <label class="label ">の間に開始</label>
-                        </div>
-                    </div>
-                </div>
                 
+                <contact-row :title="'第一希望'"></contact-row>
+
+                <contact-row :title="'第二希望'"></contact-row>
+
+                <contact-row :title="'第三希望'"></contact-row>
+                
+                <div v-if="apoIsValid === false" class="error-state mt-1">{{ apoErrorMsg }}</div>
             </form-slot>
 
-            <form-slot :label="'その他ご質問等'">
-                <template v-slot:required><span style="color: red" v-if="!questionIsValid">（必須）</span></template>
-                <textarea name="" class="form-control textarea" rows="3" v-model.trim="question" @blur="validateQuestion"></textarea>
+            <form-slot :label="'その他ご質問等'" style="border-bottom: solid 1px grey">
+                <template v-slot:required></template>
+                <textarea 
+                class="form-control textarea" 
+                rows="3" 
+                v-model.trim="question" 
+                ></textarea>
             </form-slot>
-
+            
             <div class="container">
                 <div class="row my-4">
-                    <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 ms-auto">
-                        <div class="col-3 d-flex align-items-center badge rounded-pill py-2">
-                            <div class="mx-auto">ご注意ください！</div>
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5 ms-5">
+                        <div class="d-flex align-items-center badge rounded-pill py-2">
+                            <div class="mx-auto warn">ご注意ください！</div>
                         </div>
                     </div>
                 </div>
                 <div class="row">
                     <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 ms-auto">
-                        <div class="row warning" style="color: red">{{ formwarn1 }}</div>
-                        <div class="row warning">{{ formwarn2 }}</div>
+                        <div class="row warning" style="color: red">{{ warn1 }}</div>
+                        <div class="row warning">{{ warn2 }}</div>
                     </div>
                 </div>
             </div>
@@ -116,71 +89,94 @@
 <script>
 import BtnSend from './base/BtnSend.vue';
 import FormSlot from './base/FormSlot.vue';
-export default {
-    components: { FormSlot, BtnSend, },
+import ContactRow from './yoyaku-contact-row/ContactRow.vue';
 
-    data() {
-        return {
-            name: '', nameIsValid: true,
-            phone: '', phoneIsValid: true,
-            email: '', emailIsValid: true,
-            apo: {
-                intend1: { purpose: '', timeStart: '', timeEnd: ''}
-            }, apoIsValid: true,
-            question: '', questionIsValid: true,
-            formwarn1: 'フォームからのお申し込みだけでは、ご予約は成立しておりません。',
-            formwarn2: `弊社スタッフより日時の調整やご確認のために、必ずメールまたはお電話をさせていただきます。
-                最終的にこちらより確定メールを送らせていただいてから成立となります。
-                万が一 24 時間以上経っても連絡がない場合はテキストテキストテキストテキストテキストテキスト。`,
-        }
+export default {
+    components: { FormSlot, BtnSend, ContactRow},
+
+    computed: {
+        warn1(){
+            return this.$store.getters['yoyakuInfo/formwarn1'];
+        },
+        warn2(){
+            return this.$store.getters['yoyakuInfo/formwarn2'];
+        },
+        name: {
+            set(value) {
+                this.$store.commit('yoyakuInfo/setName', value);
+            },
+            get() {
+                return this.$store.getters['yoyakuInfo/getName'];
+            }
+        },
+        phone: {
+            set(value) {
+                this.$store.commit('yoyakuInfo/setPhone', value);
+            },
+            get() {
+                return this.$store.getters['yoyakuInfo/getPhone'];
+            }
+        },
+        email: {
+            set(value) {
+                this.$store.commit('yoyakuInfo/setEmail', value);
+            },
+            get() {
+                return this.$store.getters['yoyakuInfo/getEmail'];
+            }
+        },
+        question: {
+            set(value) {
+                this.$store.commit('yoyakuInfo/setQuestion', value);
+            },
+            get() {
+                return this.$store.getters['yoyakuInfo/getQuestion'];
+            }
+        },
+
     },
     
     methods: {
+
         validateName() {
-            if(this.name === '')
-                this.nameIsValid = false;
-            else
-                this.nameIsValid = true;
+            this.$store.commit('yoyakuInfo/validateName');
         },
+        nameValidation(val) {
+            this.$store.commit('yoyakuInfo/nameValidation', val);
+        },
+
         validatePhone() {
-            if(this.phone === '')
-                this.phoneIsValid = false;
-            else 
-                this.phoneIsValid = true;
+            this.$store.commit('yoyakuInfo/validatePhone');
         },
+        phoneValidation(val) {
+            this.$store.commit('yoyakuInfo/phoneValidation', val);
+        },
+
         validateEmail() {
-            if(this.email === '')
-                this.emailIsValid = false;
-            else 
-                this.emailIsValid = true;
+            this.$store.commit('yoyakuInfo/validateEmail');
         },
-        validateApo() {
-            if(this.apo.intend1.purpose === '' || this.apo.intend1.timeStart === '' || this.apo.intend1.timeEnd === '')
-                this.apoIsValid = false;
-            else 
-                this.apoIsValid = true;
-        },
-        validateQuestion() {
-            if(this.question === '')
-                this.questionIsValid = false;
-            else
-                this.questionIsValid = true;
+        emailValidation(val) {
+            this.$store.commit('yoyakuInfo/emailValidation', val);
         },
 
         submitForm() {
-            if(this.nameIsValid && this.phoneIsValid && this.emailIsValid && this.apoIsValid && this.questionIsValid){
+            if(this.nameIsValid && this.phoneIsValid && this.emailIsValid){
                 try{
                     /*some action*/
-                    console.log('success');
-                    this.name = ''; this.phone = ''; this.email = ''; this.apo.intend1.purpose = '';
-                    this.apo.intend1.timeStart = ''; this.apo.intend1.timeEnd = ''; this.question = '';
+                    alert('success');
+                    this.name = ''; this.phone = ''; this.email = '';
+                    this.question = '';
+                    console.log(this.apo);
                 }
                 catch{
                     /*some action*/
                 }
             }
             else{
-                /*some action*/
+                this.validateName();
+                this.validateEmail();
+                this.validatePhone();
+                this.validateApo();
             }
         }
     },
@@ -188,8 +184,18 @@ export default {
 </script>
 
 <style scoped>
+.field-error{
+    border: solid 2px red;
+}
+
+.error-state{
+    color: red;
+    font-size: .8em;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+}
+
 .contact{
-    margin-top: 100px;
+    margin-top: 125px;
 }
 .button{
     border: solid 1px grey;
@@ -204,26 +210,20 @@ export default {
     font-family: 'M PLUS Rounded 1c', sans-serif;
     font-weight: 400;
 }
-.label{
-    color: grey;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-weight: 400;
-    font-size: 1em;
-}
+
 .warning{
     color: grey;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     font-weight: 400;
     font-size: 1em;
 }
-
-.field{
-    height: 1.5em;
-    border: solid 1px black;
+.textarea{
     border-radius: 2px;
 }
-.textarea{
-    border: solid 1px black;
-    border-radius: 2px;
+.warn{
+    color: white;
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    font-weight: 400;
+    font-size: .9rem;
 }
 </style>

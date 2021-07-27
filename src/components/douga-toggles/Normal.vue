@@ -7,126 +7,19 @@
             </div>
         </div>
 
-        <base-title :title="title"></base-title>
-
-        <div class="row clipGrid" v-if="moreClicked">
-            <douga-card class="col-6"
-            v-for="(mama, index) in dougaMama"
-            :key="index"
-            :title="mama.title"
-            :clip="mama.clip"
-            :description="mama.description"
-            ></douga-card>
-        </div>
-        <div class="row clipGrid" v-else>
-            <douga-card class="col-6"
-            v-for="(mama, index) in shortDougaMamaList"
-            :key="index"
-            :title="mama.title"
-            :clip="mama.clip"
-            :description="mama.description"
-            ></douga-card>
-        </div>
-
-        <toggle-more @toggle-more="toggleMore" :moreClicked="moreClicked"></toggle-more>
-
+        <slot></slot>
+        
     </div>
 </template>
 
 <script>
-import DougaCard from './DougaCard.vue';
 
 export default {
-    components: { DougaCard, },
-    data() {
-        return {
-            title: '動画を視聴する',
-            moreClicked: false,
-            dougaMama: [ 
-                {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
-                },
-                {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
-                },
-                {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
-                },
-                {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
-                },
-                {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
-                },
-                {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
-                },
-            ],
-        }
-    },
-    computed: {
-        welcomeTexts() {
-            return this.$store.getters.welcomeTexts;
-        },
-        shortDougaMamaList() {
-            const mamaList = [];
-            for(let i = 0; i < 4; i++){
-                mamaList.push(this.dougaMama[i]);
-            }
-            return mamaList;
-        },
-    },
-    methods: {
-        toggleMore() {
-            this.moreClicked = !this.moreClicked
-        },
-    },
+    props: ['welcomeTexts']
 }
 </script>
 
 <style scoped>
-.btnMore{
-    width: 20em;
-    height: 1.9em;
-}
-.viewMore{
-    color: grey;
-    font-size: 20px;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-weight: 400;
-}
-
-.title{
-    color: grey;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-weight: 600;
-    font-size: 2em;
-}
-.parts03{
-    width: 60%;
-    margin-top: -4em;
-}
-.title-wrapper{
-    text-align: center;
-}
 
 .containerNormal{
     border: 1.5px solid pink;
@@ -136,7 +29,7 @@ export default {
 }
 .img-fluidNormal{
     width: 96%;
-    margin-top: -5em;
+    margin-top: -5.5em;
     margin-left: 2em;
 }
 .wrapper{
