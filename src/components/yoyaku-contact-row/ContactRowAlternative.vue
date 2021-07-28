@@ -5,13 +5,12 @@
     </div>
     <div class="col-lg-3 col-md-4">
 
-        <q-input outlined v-model="date1.day" mask="date" :rules="['date']" no-error-icon bottom-slots>
-        </q-input>
+        <q-input label="年月日" outlined v-model="date1.day" mask="date" :rules="['date']" no-error-icon bottom-slots></q-input>
     
     </div>
     <div class="col-lg-2 col-md-3">
 
-        <q-input outlined v-model="date1.timeStart" mask="time" :rules="['time']" no-error-icon>
+        <q-input label="始時間" outlined v-model="date1.timeStart" mask="time" :rules="['time']" no-error-icon>
         </q-input>
 
     </div>
@@ -20,7 +19,7 @@
     </div>
     <div class="col-lg-2 col-md-3 q-ml-xs">
 
-        <q-input outlined v-model="date1.timeEnd" mask="time" :rules="['time']" no-error-icon>
+        <q-input label="終時間" outlined v-model="date1.timeEnd" mask="time" :rules="['time']" no-error-icon>
         </q-input>
 
     </div>
@@ -35,12 +34,12 @@
     </div>
     <div class="col-lg-3 col-md-4">
 
-        <q-input outlined v-model="date2.day" mask="date" :rules="['date']" no-error-icon bottom-slots></q-input>
+        <q-input label="年月日" outlined v-model="date2.day" mask="date" :rules="['date']" no-error-icon bottom-slots></q-input>
 
     </div>
     <div class="col-lg-2 col-md-3">
 
-        <q-input outlined v-model="date2.timeStart" mask="time" :rules="['time']" no-error-icon></q-input>
+        <q-input label="始時間" outlined v-model="date2.timeStart" mask="time" :rules="['time']" no-error-icon></q-input>
 
     </div>
     <div class="col column justify-center">
@@ -48,7 +47,7 @@
     </div>
     <div class="col-lg-2 col-md-3 q-ml-xs">
 
-        <q-input outlined v-model="date2.timeEnd" mask="time" :rules="['time']" no-error-icon></q-input>
+        <q-input label="終時間" outlined v-model="date2.timeEnd" mask="time" :rules="['time']" no-error-icon></q-input>
 
     </div>
     <div class="col-lg-2 col-md-3 column justify-center">
@@ -62,12 +61,12 @@
     </div>
     <div class="col-lg-3 col-md-4">
 
-        <q-input outlined v-model="date3.day" mask="date" :rules="['date']" no-error-icon bottom-slots></q-input>
+        <q-input label="年月日" outlined v-model="date3.day" mask="date" :rules="['date']" no-error-icon bottom-slots></q-input>
 
     </div>
     <div class="col-lg-2 col-md-3">
 
-        <q-input outlined v-model="date3.timeStart" mask="time" :rules="['time']" no-error-icon></q-input>
+        <q-input label="始時間" outlined v-model="date3.timeStart" mask="time" :rules="['time']" no-error-icon></q-input>
 
     </div>
     <div class="col column justify-center">
@@ -75,7 +74,7 @@
     </div>
     <div class="col-lg-2 col-md-3 q-ml-xs">
 
-        <q-input outlined v-model="date3.timeEnd" mask="time" :rules="['time']" no-error-icon></q-input>
+        <q-input label="終時間" outlined v-model="date3.timeEnd" mask="time" :rules="['time']" no-error-icon></q-input>
 
     </div>
     <div class="col-lg-2 col-md-3 column justify-center">
@@ -87,13 +86,32 @@
 <script>
 
 export default {
-    data() {
-        return {
-            date1: {day: '', timeStart: '', timeEnd: ''},
-            date2: {day: '', timeStart: '', timeEnd: ''},
-            date3: {day: '', timeStart: '', timeEnd: ''},
-        }
+    computed: {
+    date1: {
+      set(value) {
+        this.$store.commit('yoyakuInfo/setDate1', value);
+      },
+      get() {
+        return this.$store.getters['yoyakuInfo/getDate1'];
+      }
     },
+    date2: {
+      set(value) {
+        this.$store.commit('yoyakuInfo/setDate2', value);
+      },
+      get() {
+        return this.$store.getters['yoyakuInfo/getDate2'];
+      }
+    },
+    date3: {
+      set(value) {
+        this.$store.commit('yoyakuInfo/setDate3', value);
+      },
+      get() {
+        return this.$store.getters['yoyakuInfo/getDate3'];
+      }
+    },
+  }
    
 }
 </script>

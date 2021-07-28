@@ -1,4 +1,5 @@
 <template>
+
 <div class="contact">
     <base-title :title="'ご予約フォーム'" class="q-mb-md"></base-title>
 
@@ -43,16 +44,9 @@
         </form-slot>
 
         <form-slot :label="'ご希望の日時'">
-            <template v-slot:required><span style="color: red" v-if="!apoIsValid">（必須）</span></template>
+            <template v-slot:required><span style="color: red" v-if="!dateIsValid">（必須）</span></template>
             
             <contact-row></contact-row>
-
-        </form-slot>
-
-        <form-slot :label="'ご希望の日時'">
-            <template v-slot:required><span style="color: red" v-if="!apoIsValid">（別）</span></template>
-            
-           <contact-alt></contact-alt>
 
         </form-slot>
 
@@ -92,10 +86,9 @@
 import BtnSend from './base/BtnSend.vue';
 import FormSlot from './base/FormSlot.vue';
 import ContactRow from './yoyaku-contact-row/ContactRow.vue';
-import ContactAlt from './yoyaku-contact-row/ContactRowAlternative.vue';
 
 export default {
-    components: { FormSlot, BtnSend, ContactRow, ContactAlt},
+    components: { FormSlot, BtnSend, ContactRow },
 
     computed: {
         warn1(){
@@ -136,6 +129,33 @@ export default {
                 return this.$store.getters['yoyakuInfo/getQuestion'];
             }
         },
+        date1: {
+            set(value) {
+                this.$store.commit('yoyakuInfo/setDate1', value);
+            },
+            get() {
+                return this.$store.getters['yoyakuInfo/getDate1'];
+            }
+        },
+        date2: {
+            set(value) {
+                this.$store.commit('yoyakuInfo/setDate2', value);
+            },
+            get() {
+                return this.$store.getters['yoyakuInfo/getDate2'];
+            }
+        },
+        date3: {
+            set(value) {
+                this.$store.commit('yoyakuInfo/setDate3', value);
+            },
+            get() {
+                return this.$store.getters['yoyakuInfo/getDate3'];
+            }
+        },
+        dateIsValid(){
+            return this.$store.getters['yoyakuInfo/getDateIsValid'];
+        }
 
     },
     
@@ -161,15 +181,15 @@ export default {
         emailValidation(val) {
             this.$store.commit('yoyakuInfo/emailValidation', val);
         },
+        validateDate(){
+            this.$store.dispatch('yoyakuInfo/validateDate');
+        },
 
         submitForm() {
-            if(this.nameIsValid && this.phoneIsValid && this.emailIsValid){
+            if(this.name.isValid && this.phone.isValid && this.email.isValid && this.date1){
                 try{
-                    /*some action*/
+                    /*form all fields as an object, ready to send*/
                     alert('success');
-                    this.name = ''; this.phone = ''; this.email = '';
-                    this.question = '';
-                    console.log(this.apo);
                 }
                 catch{
                     /*some action*/
@@ -179,7 +199,7 @@ export default {
                 this.validateName();
                 this.validateEmail();
                 this.validatePhone();
-                this.validateApo();
+                this.validateDate();
             }
         }
     },
@@ -187,6 +207,7 @@ export default {
 </script>
 
 <style scoped>
+
 .field-error{
     border: solid 2px red;
 }

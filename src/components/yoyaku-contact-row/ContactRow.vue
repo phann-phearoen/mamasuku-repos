@@ -1,212 +1,298 @@
 <template>
-<div class="row">
-    <div class="col-lg-2 col-md-3 column justify-center">
-        第一希望
-    </div>
-    <div class="col-lg-3 col-md-4">
+<div class="root">
+  <div class="row ms-auto">
+      <div class="col-lg-2 col-md-3 column justify-center">
+          第一希望
+      </div>
+      <div class="col-lg-3 col-md-4">
 
-        <q-input outlined v-model="date1.day" mask="date" :rules="['date']" no-error-icon bottom-slots>
-        <template v-slot:prepend v-if="date1.day===''">
-            <q-icon name="event" class="cursor-pointer">
-            <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-                <q-date v-model="date1.day">
-                <div class="row items-center justify-end">
+        <q-input outlined 
+        v-model="date1.day.value" mask="date" 
+        :rules="['date']" 
+        no-error-icon 
+        bottom-slots 
+        :error="date1.day.isValid===false"
+        @focus="validateDay"
+        >
+          <template v-slot:append>
+              <q-icon name="event" class="cursor-pointer">
+              <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
+                  <q-date v-model="date1.day.value">
+                  <div class="row items-center justify-end">
+                      <q-btn v-close-popup label="Close" color="primary" flat />
+                  </div>
+                  </q-date>
+              </q-popup-proxy>
+              </q-icon>
+          </template>
+        </q-input>
+        
+      </div>
+      <div class="col-lg-2 col-md-3">
+
+        <q-input outlined 
+        v-model="date1.timeStart.value" 
+        mask="time" 
+        :rules="['time']" 
+        no-error-icon 
+        :error="date1.timeStart.isValid===false"
+        @focus="validateTimeStart"
+        >
+          <template v-slot:append>
+            <q-icon name="access_time" class="cursor-pointer">
+              <q-popup-proxy transition-show="scale" transition-hide="scale">
+                <q-time v-model="date1.timeStart.value" >
+                  <div class="row items-center justify-end">
                     <q-btn v-close-popup label="Close" color="primary" flat />
-                </div>
-                </q-date>
-            </q-popup-proxy>
+                  </div>
+                </q-time>
+              </q-popup-proxy>
             </q-icon>
-        </template>
+          </template>
         </q-input>
 
-              
-    </div>
-    <div class="col-lg-2 col-md-3">
+      </div>
+      <div class="col column justify-center">
+        <div class="row wave">～</div>
+      </div>
+      <div class="col-lg-2 col-md-3 q-ml-xs">
 
-        <q-input outlined v-model="date1.timeStart" mask="time" :rules="['time']" no-error-icon>
-        <template v-slot:prepend v-if="date1.timeStart===''">
-          <q-icon name="access_time" class="cursor-pointer">
-            <q-popup-proxy transition-show="scale" transition-hide="scale">
-              <q-time v-model="date1.timeStart" >
-                <div class="row items-center justify-end">
-                  <q-btn v-close-popup label="Close" color="primary" flat />
-                </div>
-              </q-time>
-            </q-popup-proxy>
-          </q-icon>
-        </template>
-      </q-input>
+        <q-input outlined 
+        v-model="date1.timeEnd.value" 
+        mask="time" 
+        :rules="['time']" 
+        no-error-icon 
+        :error="date1.timeEnd.isValid===false"
+        @focus="validateTimeEnd"
+        >
+          <template v-slot:append>
+            <q-icon name="access_time" class="cursor-pointer">
+              <q-popup-proxy transition-show="scale" transition-hide="scale">
+                <q-time v-model="date1.timeEnd.value">
+                  <div class="row items-center justify-end">
+                    <q-btn v-close-popup label="Close" color="primary" flat />
+                  </div>
+                </q-time>
+              </q-popup-proxy>
+            </q-icon>
+          </template>
+        </q-input>
 
-    </div>
-    <div class="col column justify-center">
-        ～
-    </div>
-    <div class="col-lg-2 col-md-3 q-ml-xs">
+      </div>
+      <div class="col-lg-2 col-md-3 column justify-center">
+          の間に開始
+      </div>
+  </div>
 
-        <q-input outlined v-model="date1.timeEnd" mask="time" :rules="['time']" no-error-icon>
-        <template v-slot:prepend v-if="date1.timeEnd===''">
-          <q-icon name="access_time" class="cursor-pointer">
-            <q-popup-proxy transition-show="scale" transition-hide="scale">
-              <q-time v-model="date1.timeEnd">
-                <div class="row items-center justify-end">
-                  <q-btn v-close-popup label="Close" color="primary" flat />
-                </div>
-              </q-time>
-            </q-popup-proxy>
-          </q-icon>
-        </template>
-      </q-input>
-
-    </div>
-    <div class="col-lg-2 col-md-3 column justify-center">
-        の間に開始
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-2 col-md-3 column justify-center">
-        第二希望
-    </div>
-    <div class="col-lg-3 col-md-4">
+  <div class="row ms-auto">
+      <div class="col-lg-2 col-md-3 column justify-center">
+          第二希望
+      </div>
+      <div class="col-lg-3 col-md-4">
 
         <q-input outlined v-model="date2.day" mask="date" :rules="['date']" no-error-icon bottom-slots>
-        <template v-slot:prepend v-if="date2.day===''">
-            <q-icon name="event" class="cursor-pointer">
-            <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-                <q-date v-model="date2.day">
-                <div class="row items-center justify-end">
-                    <q-btn v-close-popup label="Close" color="primary" flat />
-                </div>
-                </q-date>
-            </q-popup-proxy>
-            </q-icon>
-        </template>
+          <template v-slot:append>
+              <q-icon name="event" class="cursor-pointer">
+              <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
+                  <q-date v-model="date2.day">
+                  <div class="row items-center justify-end">
+                      <q-btn v-close-popup label="Close" color="primary" flat />
+                  </div>
+                  </q-date>
+              </q-popup-proxy>
+              </q-icon>
+          </template>
         </q-input>
-
-              
-    </div>
-    <div class="col-lg-2 col-md-3">
+      
+      </div>
+      <div class="col-lg-2 col-md-3">
 
         <q-input outlined v-model="date2.timeStart" mask="time" :rules="['time']" no-error-icon>
-        <template v-slot:prepend v-if="date2.timeStart===''">
-          <q-icon name="access_time" class="cursor-pointer">
-            <q-popup-proxy transition-show="scale" transition-hide="scale">
-              <q-time v-model="date2.timeStart" >
-                <div class="row items-center justify-end">
-                  <q-btn v-close-popup label="Close" color="primary" flat />
-                </div>
-              </q-time>
-            </q-popup-proxy>
-          </q-icon>
-        </template>
-      </q-input>
-
-    </div>
-    <div class="col column justify-center">
-        ～
-    </div>
-    <div class="col-lg-2 col-md-3 q-ml-xs">
-
-        <q-input outlined v-model="date2.timeEnd" mask="time" :rules="['time']" no-error-icon>
-        <template v-slot:prepend v-if="date2.timeEnd===''">
-          <q-icon name="access_time" class="cursor-pointer">
-            <q-popup-proxy transition-show="scale" transition-hide="scale">
-              <q-time v-model="date2.timeEnd">
-                <div class="row items-center justify-end">
-                  <q-btn v-close-popup label="Close" color="primary" flat />
-                </div>
-              </q-time>
-            </q-popup-proxy>
-          </q-icon>
-        </template>
-      </q-input>
-
-    </div>
-    <div class="col-lg-2 col-md-3 column justify-center">
-        の間に開始
-    </div>
-</div>
-
-<div class="row">
-    <div class="col-lg-2 col-md-3 column justify-center">
-        第三希望
-    </div>
-    <div class="col-lg-3 col-md-4">
-
-        <q-input outlined v-model="date3.day" mask="date" :rules="['date']" no-error-icon bottom-slots>
-        <template v-slot:prepend v-if="date3.day===''">
-            <q-icon name="event" class="cursor-pointer">
-            <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-                <q-date v-model="date3.day">
-                <div class="row items-center justify-end">
+          <template v-slot:append>
+            <q-icon name="access_time" class="cursor-pointer">
+              <q-popup-proxy transition-show="scale" transition-hide="scale">
+                <q-time v-model="date2.timeStart" >
+                  <div class="row items-center justify-end">
                     <q-btn v-close-popup label="Close" color="primary" flat />
-                </div>
-                </q-date>
-            </q-popup-proxy>
+                  </div>
+                </q-time>
+              </q-popup-proxy>
             </q-icon>
-        </template>
+          </template>
         </q-input>
 
-              
-    </div>
-    <div class="col-lg-2 col-md-3">
+      </div>
+      <div class="col column justify-center">
+        <div class="row wave">～</div>
+      </div>
+      <div class="col-lg-2 col-md-3 q-ml-xs">
+
+        <q-input outlined v-model="date2.timeEnd" mask="time" :rules="['time']" no-error-icon>
+          <template v-slot:append>
+            <q-icon name="access_time" class="cursor-pointer">
+              <q-popup-proxy transition-show="scale" transition-hide="scale">
+                <q-time v-model="date2.timeEnd">
+                  <div class="row items-center justify-end">
+                    <q-btn v-close-popup label="Close" color="primary" flat />
+                  </div>
+                </q-time>
+              </q-popup-proxy>
+            </q-icon>
+          </template>
+        </q-input>
+
+      </div>
+      <div class="col-lg-2 col-md-3 column justify-center">
+          の間に開始
+      </div>
+  </div>
+
+  <div class="row ms-auto">
+      <div class="col-lg-2 col-md-3 column justify-center">
+          第三希望
+      </div>
+      <div class="col-lg-3 col-md-4">
+
+        <q-input outlined v-model="date3.day" mask="date" :rules="['date']" no-error-icon bottom-slots>
+          <template v-slot:append>
+              <q-icon name="event" class="cursor-pointer">
+              <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
+                  <q-date v-model="date3.day">
+                  <div class="row items-center justify-end">
+                      <q-btn v-close-popup label="Close" color="primary" flat />
+                  </div>
+                  </q-date>
+              </q-popup-proxy>
+              </q-icon>
+          </template>
+        </q-input>
+    
+      </div>
+      <div class="col-lg-2 col-md-3">
 
         <q-input outlined v-model="date3.timeStart" mask="time" :rules="['time']" no-error-icon>
-        <template v-slot:prepend v-if="date3.timeStart===''">
-          <q-icon name="access_time" class="cursor-pointer">
-            <q-popup-proxy transition-show="scale" transition-hide="scale">
-              <q-time v-model="date3.timeStart" >
-                <div class="row items-center justify-end">
-                  <q-btn v-close-popup label="Close" color="primary" flat />
-                </div>
-              </q-time>
-            </q-popup-proxy>
-          </q-icon>
-        </template>
-      </q-input>
+          <template v-slot:append>
+            <q-icon name="access_time" class="cursor-pointer">
+              <q-popup-proxy transition-show="scale" transition-hide="scale">
+                <q-time v-model="date3.timeStart" >
+                  <div class="row items-center justify-end">
+                    <q-btn v-close-popup label="Close" color="primary" flat />
+                  </div>
+                </q-time>
+              </q-popup-proxy>
+            </q-icon>
+          </template>
+        </q-input>
 
-    </div>
-    <div class="col column justify-center">
-        ～
-    </div>
-    <div class="col-lg-2 col-md-3 q-ml-xs">
+      </div>
+      <div class="col column justify-center">
+        <div class="row wave">～</div>
+      </div>
+      <div class="col-lg-2 col-md-3 q-ml-xs">
 
         <q-input outlined v-model="date3.timeEnd" mask="time" :rules="['time']" no-error-icon>
-        <template v-slot:prepend v-if="date3.timeEnd===''">
-          <q-icon name="access_time" class="cursor-pointer">
-            <q-popup-proxy transition-show="scale" transition-hide="scale">
-              <q-time v-model="date3.timeEnd">
-                <div class="row items-center justify-end">
-                  <q-btn v-close-popup label="Close" color="primary" flat />
-                </div>
-              </q-time>
-            </q-popup-proxy>
-          </q-icon>
-        </template>
-      </q-input>
+          <template v-slot:append>
+            <q-icon name="access_time" class="cursor-pointer">
+              <q-popup-proxy transition-show="scale" transition-hide="scale">
+                <q-time v-model="date3.timeEnd">
+                  <div class="row items-center justify-end">
+                    <q-btn v-close-popup label="Close" color="primary" flat />
+                  </div>
+                </q-time>
+              </q-popup-proxy>
+            </q-icon>
+          </template>
+        </q-input>
 
-    </div>
-    <div class="col-lg-2 col-md-3 column justify-center">
-        の間に開始
-    </div>
+      </div>
+      <div class="col-lg-2 col-md-3 column justify-center">
+          の間に開始
+      </div>
+  </div>
 </div>
 </template>
 
 <script>
 
 export default {
-    data() {
-        return {
-            date1: {day: '', timeStart: '', timeEnd: ''},
-            date2: {day: '', timeStart: '', timeEnd: ''},
-            date3: {day: '', timeStart: '', timeEnd: ''},
-        }
+  computed: {
+    date1: {
+      set(value) {
+        this.$store.commit('yoyakuInfo/setDate1', value);
+      },
+      get() {
+        return this.$store.getters['yoyakuInfo/getDate1'];
+      }
     },
-   
+    date2: {
+      set(value) {
+        this.$store.commit('yoyakuInfo/setDate2', value);
+      },
+      get() {
+        return this.$store.getters['yoyakuInfo/getDate2'];
+      }
+    },
+    date3: {
+      set(value) {
+        this.$store.commit('yoyakuInfo/setDate3', value);
+      },
+      get() {
+        return this.$store.getters['yoyakuInfo/getDate3'];
+      }
+    },
+    dateIsValid(){
+      return this.$store.getters['yoyakuInfo/getDateIsValid'];
+    },
+  },
+  methods: {
+    validateDay() {
+      this.$store.commit('yoyakuInfo/validateDay');
+    },
+    validateTimeStart() {
+      this.$store.commit('yoyakuInfo/validateTimeStart');
+    },
+    validateTimeEnd() {
+      this.$store.commit('yoyakuInfo/validateTimeEnd');
+    },
+  }
 }
 </script>
 
 <style scoped>
+.q-time{
+    width: 100px;
+}
+.q-time:deep().q-time__link{
+    padding-right: 0px;
+    padding-left: 0px;
+    margin-right: 10px;
+}
+.q-time:deep().q-time__header-label div{
+    width: 10px;
+}
+.q-time:deep().q-time__header-ampm{
+    margin-left: 50px;
+    width: 20px;
+}
+
+.q-date{
+  width: 100px;
+}
+.q-date:deep().q-date__navigation{
+    margin-left: 1em;
+    padding-right: 1em;
+    width: 95px; 
+}
+.wave{
+  margin-left: auto;
+  margin-right: 30px;
+}
+.q-input :deep().q-field__append{
+  padding: 0;
+  margin: 0;
+  width: 30px;
+}
+
 .ms-2{
     font-family: 'M PLUS Rounded 1c', sans-serif;
 }
