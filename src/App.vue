@@ -7,14 +7,14 @@
         </button>
 
       
-        <router-link class="navbar-brand" to="/" :class="{'ml': screenWidth > 1025}">
+        <router-link class="navbar-brand" to="/" :class="{'ml': screenMode === 'normal'}">
           <img class="img-fluid logo" 
           :class="{'logo-mobile': screenMode === 'mobile'}" 
           src="./assets/logo.png" alt="logo"
         ></router-link>
       
         <div class="collapse navbar-collapse" id="theNavbar">
-          <ul class="navbar-nav ms-auto mt-4" :class="{mr: screenWidth > 1250}" 
+          <ul class="navbar-nav ms-auto mt-4" :class="{mr: screenMode === 'normal'}" 
             v-scroll-spy-active="{selector: 'li.nav-item', class: 'custom-active'}" 
             v-scroll-spy-link>
             <li class="nav-item me-4">
@@ -31,11 +31,12 @@
 
       </div>
   </nav>
-
+  
   <router-view></router-view>
-
+  
   <the-footer></the-footer>
 </div>
+
 </template>
 
 <script>
@@ -43,36 +44,28 @@ import TheFooter from './components/TheFooter.vue';
 
 export default {
   components: { TheFooter, },
-  data() {
-      return {
-      screenMode: null,
-      screenWidth: 0,
-      }
+
+  computed: {
+    screenMode(){
+      return this.$store.getters['screenModes/getScreenMode'];
     },
-    created() {
-      window.addEventListener('resize', this.handleResize);
-      this.handleResize();
+  },
+
+  beforeCreate() {
+    this.$store.commit('screenModes/setScreenMode', window.innerWidth);
+  },
+
+  created() {
+    window.addEventListener('resize', this.handleResize);
+  },
+  unmounted() {
+    window.removeEventListener('resize', this.handleResize);
+  },
+  methods: {
+    handleResize() {
+      this.$store.commit('screenModes/setScreenMode', window.innerWidth);
     },
-    unmounted() {
-      window.removeEventListener('resize', this.handleResize);
-    },
-    methods: {
-      handleResize() {
-        this.screenWidth = window.innerWidth;
-      }    
-    },
-    watch: {
-      screenWidth(val){
-      if(val > 960){
-          this.screenMode = 'normal';
-      }
-      else if(val > 500){
-          this.screenMode = 'tablet';
-      }
-      else
-          this.screenMode = 'mobile';
-      }
-    }
+  },
 }
 </script>
 
@@ -105,10 +98,6 @@ font-weight: 600;
   font-size: 1em;
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-weight: 400;
-}
-.nav-link:hover{
-  font-size: .97em;
-  font-weight: 500;
 }
 .logo{
   height: 60px;

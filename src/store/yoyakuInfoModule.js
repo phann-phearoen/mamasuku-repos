@@ -6,9 +6,9 @@ export default {
             formwarn2: `弊社スタッフより日時の調整やご確認のために、必ずメールまたはお電話をさせていただきます。
                 最終的にこちらより確定メールを送らせていただいてから成立となります。
                 万が一 24 時間以上経っても連絡がない場合はテキストテキストテキストテキストテキストテキスト。`,
-            name: { value: '', isValid: null, errMsg: '' },
-            phone: { value: '', isValid: null, errMsg: '' },
-            email: { value: '', isValid: null, errMsg: '' },
+            name: { value: '', isValid: 'pending', errMsg: '' },
+            phone: { value: '', isValid: 'pending', errMsg: '' },
+            email: { value: '', isValid: 'pending', errMsg: '' },
 
             date1: {
                 day: { value: '', isValid: null}, 
@@ -17,8 +17,7 @@ export default {
             },
             date2: {day: '', timeStart: '', timeEnd: ''},
             date3: {day: '', timeStart: '', timeEnd: ''},
-            dateIsValid: null,
-
+            
             question: '',
         }
     },
@@ -96,7 +95,7 @@ export default {
         
     },
     actions:{
-        validateDate(context) {
+        validateDate(context,) {
             context.commit('validateDay');
             context.commit('validateTimeStart');
             context.commit('validateTimeEnd');
@@ -131,8 +130,5 @@ export default {
         getDate3(state) {
             return state.date3;
         },
-        getDateIsValid(state) {
-            return state.dateIsValid;
-        }
     }
 };

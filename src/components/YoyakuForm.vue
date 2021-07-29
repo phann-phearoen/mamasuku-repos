@@ -6,41 +6,61 @@
     <form @submit.prevent="submitForm">
         <form-slot :label="'お名前'">
             <template v-slot:required><span style="color: red" v-if="!name.isValid">（必須）</span></template>
-            <input 
-            type="text" 
-            class="form-control"
-            :class="{'field-error': name.isValid===false}"
-            v-model.trim="name.value" 
-            @focus="nameValidation(null)" 
-            @blur="validateName"
+            
+            <q-input class="q-ml-md"
+                outlined
+                v-model.trim="name.value"
+                no-error-icon
+                bottom-slots
+                @focus="nameValidation('pending')"
+                @keyup="validateName"
+                @blur="validateName"
+                :error="!name.isValid"
             >
-            <div v-if="name.isValid === false" class="error-state mt-1">{{ name.errMsg }}</div>
+                <template v-slot:error>
+                    お名前を入力してください！
+                </template>
+            </q-input>
+        
         </form-slot>
 
         <form-slot :label="'電話番号'">
             <template v-slot:required><span style="color: red" v-if="!phone.isValid">（必須）</span></template>
-            <input 
-            type="phone" 
-            class="form-control"
-            :class="{'field-error': phone.isValid===false}"
-            v-model.trim="phone.value" 
-            @focus="phoneValidation(null)" 
-            @blur="validatePhone"
+            
+            <q-input class="q-ml-md"
+                outlined
+                no-error-icon
+                bottom-slots
+                v-model.trim="phone.value" 
+                @focus="phoneValidation('pending')" 
+                @keyup="validatePhone"
+                @blur="validatePhone"
+                :error="!phone.isValid"
             >
-            <div v-if="phone.isValid === false" class="error-state mt-1">{{ phone.errMsg }}</div>
+                <template v-slot:error>
+                    正しい番号を入力してください！
+                </template>
+            </q-input>
+        
         </form-slot>
 
         <form-slot :label="'メールアドレス'">
             <template v-slot:required><span style="color: red" v-if="!email.isValid">（必須）</span></template>
-            <input 
-            type="email" 
-            class="form-control" 
-            :class="{'field-error': email.isValid===false}"
-            v-model.trim="email.value" 
-            @focus="emailValidation(null)"
-            @blur="validateEmail"
+            
+            <q-input class="q-ml-md"
+                outlined
+                no-error-icon
+                bottom-slots
+                v-model.trim="email.value" 
+                @focus="emailValidation('pending')"
+                @blur="validateEmail"
+                :error="!email.isValid"
             >
-            <div v-if="email.isValid === false" class="error-state mt-1">{{ email.errMsg }}</div>
+                <template v-slot:error>
+                    正しいアドレスを入力してください！
+                </template>
+            </q-input>
+
         </form-slot>
 
         <form-slot :label="'ご希望の日時'">
@@ -153,9 +173,13 @@ export default {
                 return this.$store.getters['yoyakuInfo/getDate3'];
             }
         },
-        dateIsValid(){
-            return this.$store.getters['yoyakuInfo/getDateIsValid'];
-        }
+        dateIsValid() {
+            if(this.date1.day.isValid===false || this.date1.timeStart.isValid===false || this.date1.timeEnd.isValid===false){
+                return false;
+            }
+            else
+                return true;
+        },
 
     },
     
@@ -184,9 +208,11 @@ export default {
         validateDate(){
             this.$store.dispatch('yoyakuInfo/validateDate');
         },
-
+        setDateValidation() {
+            this.$store.commit('yoyakuInfo/setDateIsValid');
+        },
         submitForm() {
-            if(this.name.isValid && this.phone.isValid && this.email.isValid && this.date1){
+            if(this.name.isValid===true && this.phone.isValid===true && this.email.isValid===true && this.date1){
                 try{
                     /*form all fields as an object, ready to send*/
                     alert('success');
