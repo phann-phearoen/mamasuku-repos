@@ -48,7 +48,8 @@ export default {
 <style scoped>
 .left{
     background-color: #f9f5ed;
-    border: solid 1px grey;
+    border-top: solid 1px grey;
+    border-left: solid 1px grey;
     justify-content: flex-end;
 }
 .left-sm{
@@ -67,7 +68,7 @@ export default {
     padding-bottom: 1em;
     border-top: solid 1px grey;
     border-right: solid 1px grey;
-    border-bottom: solid 1px grey;
+    border-left: solid 1px grey;
 }
 .right-sm{
     padding-top: 1em;

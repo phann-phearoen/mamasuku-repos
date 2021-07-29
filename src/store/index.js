@@ -1,9 +1,11 @@
 import { createStore } from "vuex";
-import douga from "./dougaModule";
+import dougaInfo from "./dougaModule";
+import yoyakuInfo from "./yoyakuInfoModule";
 
 const store = createStore({
     modules: { 
-        dougaModule: douga 
+        dougaInfo,
+        yoyakuInfo,
     },
     state() {
         return {
@@ -19,6 +21,7 @@ const store = createStore({
         welcomeTexts (state) {
             return state.welcomeTexts;
         }
+        
     }
 });
 

@@ -4,7 +4,7 @@
     <top></top>
   </div>
 
-  <div v-scroll-spy>
+  <div v-scroll-spy="{allowNoActive: true, offset: 50, time: 200, steps: 30}">
     <div id="douga">
         <douga></douga>
     </div>
@@ -30,7 +30,5 @@ export default {
 }
 </script>
 <style scoped>
-.root{
-  width: 100%
-}
+
 </style>

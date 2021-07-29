@@ -1,14 +1,14 @@
 <template>
     <div class="row mt-3">
         <div class="col column items-center">
-            <div class="col column items-center">
+            <div class="col column items-center me-3">
                 <h6 
                 :class="{'title-mobile': screenMode === 'mobile', 
                 'title-tablet': screenMode === 'tablet',
                 'title-normal': screenMode === 'normal',
                 }">{{ title }}</h6>
             </div>
-            <img src="../../assets/parts03.png" alt="parts03" class="img-fluid" 
+            <img src="../../assets/parts03.png" alt="parts03" class="img-fluid ms-3" 
                 :class="{'parts03-mobile': screenMode === 'mobile',
                 'parts03-tablet': screenMode === 'tablet',
                 'parts03-normal': screenMode === 'normal',
@@ -60,7 +60,7 @@ export default {
     color: grey;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     font-weight: 600;
-    font-size: .85em;
+    font-size: 1em;
 }
 .parts03-mobile{
     width: 300px;

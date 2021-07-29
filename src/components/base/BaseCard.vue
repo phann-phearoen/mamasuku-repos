@@ -8,10 +8,10 @@
             </div>
            
             <q-card-section>
-                <div class="text-h6 name">{{ name }}</div>
+                <div class="text-h6 name" :class="{'name-mobile': screenWidth < 500}">{{ name }}</div>
             </q-card-section>
 
-            <q-card-section class="q-pt-none description">
+            <q-card-section class="q-pt-none description" :class="{'description-mobile': screenWidth < 500}">
                 {{ description }}
             </q-card-section>
 
@@ -26,6 +26,24 @@
 <script>
 export default {
     props: ['src', 'name', 'description'],
+    data() {
+        return {
+            screenMode: null,
+            screenWidth: 0,
+        }
+    },
+    created() {
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize();
+    },
+    unmounted() {
+        window.removeEventListener('resize', this.handleResize);
+    },
+    methods: {
+        handleResize() {
+            this.screenWidth = window.innerWidth;
+        }    
+    },
 }
 </script>
 
@@ -50,5 +68,17 @@ export default {
   font-family: 'M PLUS Rounded 1c', sans-serif;
   font-weight: 400;
   font-size: 1em;
+}
+.name-mobile{
+   color: #eb7fa2;
+   font-family: 'M PLUS Rounded 1c', sans-serif;
+   font-weight: 600;
+   font-size: 1em;
+}
+.description-mobile{
+  color: #787878;
+  font-family: 'M PLUS Rounded 1c', sans-serif;
+  font-weight: 400;
+  font-size: .75em;
 }
 </style>

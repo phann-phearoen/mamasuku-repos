@@ -8,130 +8,24 @@
         </div>
         <div class="row lowerContainer q-mt-md q-mb-md">
             <div class="col">
-                <div class="row">
-                    <base-title :title="title"></base-title>
-                </div>
 
-                <div class="row clipGrid" v-if="moreClicked">
-                    <douga-card class="col-sm-12"
-                    v-for="(mama, index) in dougaMama"
-                    :key="index"
-                    :title="mama.title"
-                    :clip="mama.clip"
-                    :description="mama.description"
-                    ></douga-card><br>
-                </div>
-                <div class="row clipGrid" v-else>
-                    <douga-card class="col-sm-12"
-                    v-for="(mama, index) in shortDougaMamaList"
-                    :key="index"
-                    :title="mama.title"
-                    :clip="mama.clip"
-                    :description="mama.description"
-                    ></douga-card><br>
-                </div>
-                
-                <toggle-more @toggle-more="toggleMore" :moreClicked="moreClicked"></toggle-more>
-
+                <slot></slot>
+            
             </div>
         </div>
     </div>
 </template>
 
 <script>
-import DougaCard from './DougaCard.vue';
-import BaseTitle from '../base/BaseTitle.vue';
 
 export default {
-    components: { DougaCard, BaseTitle },
-    data() {
-        return {
-            title: '動画を視聴する',
-            moreClicked: false,
-            dougaMama: [ 
-                {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
-                },
-                {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
-                },
-                {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
-                },
-                {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
-                },
-                {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
-                },
-                {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
-                },
-            ],
-        }
-    },
-    computed: {
-        welcomeTexts() {
-            return this.$store.getters.welcomeTexts;
-        },
-        shortDougaMamaList() {
-            const mamaList = [];
-            for(let i = 0; i < 4; i++){
-                mamaList.push(this.dougaMama[i]);
-            }
-            return mamaList;
-        }
-    },
-    methods: {
-        toggleMore() {
-            this.moreClicked = !this.moreClicked
-        }
-    }
+    props: ['welcomeTexts']
 }
 </script>
 
 <style scoped>
-.btnMore{
-    width: 13em;
-    height: 1em;
-}
-.viewMore{
-    color: grey;
-    font-size: 1em;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-weight: 400;
-}
-
 .lowerContainer{
     border: solid 1px pink;
-}
-.title{
-    color: grey;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-weight: 600;
-    font-size: 1em;
-}
-.parts03{
-    width: 60%;
-    margin-top: -3em;
 }
 
 .containerMobile{
