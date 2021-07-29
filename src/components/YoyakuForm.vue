@@ -1,85 +1,81 @@
 <template>
+
 <div class="contact">
-    <base-title :title="'ご予約フォーム'" class="mb-4"></base-title>
+    <base-title :title="'ご予約フォーム'" class="q-mb-md"></base-title>
 
     <form @submit.prevent="submitForm">
-            <form-slot :label="'お名前'">
-                <template v-slot:required><span style="color: red" v-if="!name.isValid">（必須）</span></template>
-                <input 
-                type="text" 
-                class="form-control"
-                :class="{'field-error': name.isValid===false}"
-                v-model.trim="name.value" 
-                @focus="nameValidation(null)" 
-                @blur="validateName"
-                >
-                <div v-if="name.isValid === false" class="error-state mt-1">{{ name.errMsg }}</div>
-            </form-slot>
+        <form-slot :label="'お名前'">
+            <template v-slot:required><span style="color: red" v-if="!name.isValid">（必須）</span></template>
+            <input 
+            type="text" 
+            class="form-control"
+            :class="{'field-error': name.isValid===false}"
+            v-model.trim="name.value" 
+            @focus="nameValidation(null)" 
+            @blur="validateName"
+            >
+            <div v-if="name.isValid === false" class="error-state mt-1">{{ name.errMsg }}</div>
+        </form-slot>
 
-            <form-slot :label="'電話番号'">
-                <template v-slot:required><span style="color: red" v-if="!phone.isValid">（必須）</span></template>
-                <input 
-                type="phone" 
-                class="form-control"
-                :class="{'field-error': phone.isValid===false}"
-                v-model.trim="phone.value" 
-                @focus="phoneValidation(null)" 
-                @blur="validatePhone"
-                >
-                <div v-if="phone.isValid === false" class="error-state mt-1">{{ phone.errMsg }}</div>
-            </form-slot>
+        <form-slot :label="'電話番号'">
+            <template v-slot:required><span style="color: red" v-if="!phone.isValid">（必須）</span></template>
+            <input 
+            type="phone" 
+            class="form-control"
+            :class="{'field-error': phone.isValid===false}"
+            v-model.trim="phone.value" 
+            @focus="phoneValidation(null)" 
+            @blur="validatePhone"
+            >
+            <div v-if="phone.isValid === false" class="error-state mt-1">{{ phone.errMsg }}</div>
+        </form-slot>
 
-            <form-slot :label="'メールアドレス'">
-                <template v-slot:required><span style="color: red" v-if="!email.isValid">（必須）</span></template>
-                <input 
-                type="email" 
-                class="form-control" 
-                :class="{'field-error': email.isValid===false}"
-                v-model.trim="email.value" 
-                @focus="emailValidation(null)"
-                @blur="validateEmail"
-                >
-                <div v-if="email.isValid === false" class="error-state mt-1">{{ email.errMsg }}</div>
-            </form-slot>
+        <form-slot :label="'メールアドレス'">
+            <template v-slot:required><span style="color: red" v-if="!email.isValid">（必須）</span></template>
+            <input 
+            type="email" 
+            class="form-control" 
+            :class="{'field-error': email.isValid===false}"
+            v-model.trim="email.value" 
+            @focus="emailValidation(null)"
+            @blur="validateEmail"
+            >
+            <div v-if="email.isValid === false" class="error-state mt-1">{{ email.errMsg }}</div>
+        </form-slot>
 
-            <form-slot :label="'ご希望の日時'">
-                <template v-slot:required><span style="color: red" v-if="!apoIsValid">（必須）</span></template>
-                
-                <contact-row :title="'第一希望'"></contact-row>
-
-                <contact-row :title="'第二希望'"></contact-row>
-
-                <contact-row :title="'第三希望'"></contact-row>
-                
-                <div v-if="apoIsValid === false" class="error-state mt-1">{{ apoErrorMsg }}</div>
-            </form-slot>
-
-            <form-slot :label="'その他ご質問等'" style="border-bottom: solid 1px grey">
-                <template v-slot:required></template>
-                <textarea 
-                class="form-control textarea" 
-                rows="3" 
-                v-model.trim="question" 
-                ></textarea>
-            </form-slot>
+        <form-slot :label="'ご希望の日時'">
+            <template v-slot:required><span style="color: red" v-if="!dateIsValid">（必須）</span></template>
             
-            <div class="container">
-                <div class="row my-4">
-                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5 ms-5">
-                        <div class="d-flex align-items-center badge rounded-pill py-2">
-                            <div class="mx-auto warn">ご注意ください！</div>
-                        </div>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 ms-auto">
-                        <div class="row warning" style="color: red">{{ warn1 }}</div>
-                        <div class="row warning">{{ warn2 }}</div>
+            <contact-row></contact-row>
+
+        </form-slot>
+
+        <form-slot :label="'その他ご質問等'" style="border-bottom: solid 1px grey">
+            <template v-slot:required></template>
+            <textarea 
+            class="form-control textarea" 
+            rows="3" 
+            v-model.trim="question" 
+            ></textarea>
+        </form-slot>
+        
+        <div class="container">
+            <div class="row my-4">
+                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5 ms-5">
+                    <div class="d-flex align-items-center badge rounded-pill py-2">
+                        <div class="mx-auto warn">ご注意ください！</div>
                     </div>
                 </div>
             </div>
+            <div class="row">
+                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 ms-auto">
+                    <div class="row warning" style="color: red">{{ warn1 }}</div>
+                    <div class="row warning">{{ warn2 }}</div>
+                </div>
+            </div>
+        </div>
 
-            <btn-send></btn-send>
+        <btn-send></btn-send>
 
     </form>
 </div>
@@ -92,7 +88,7 @@ import FormSlot from './base/FormSlot.vue';
 import ContactRow from './yoyaku-contact-row/ContactRow.vue';
 
 export default {
-    components: { FormSlot, BtnSend, ContactRow},
+    components: { FormSlot, BtnSend, ContactRow },
 
     computed: {
         warn1(){
@@ -133,6 +129,33 @@ export default {
                 return this.$store.getters['yoyakuInfo/getQuestion'];
             }
         },
+        date1: {
+            set(value) {
+                this.$store.commit('yoyakuInfo/setDate1', value);
+            },
+            get() {
+                return this.$store.getters['yoyakuInfo/getDate1'];
+            }
+        },
+        date2: {
+            set(value) {
+                this.$store.commit('yoyakuInfo/setDate2', value);
+            },
+            get() {
+                return this.$store.getters['yoyakuInfo/getDate2'];
+            }
+        },
+        date3: {
+            set(value) {
+                this.$store.commit('yoyakuInfo/setDate3', value);
+            },
+            get() {
+                return this.$store.getters['yoyakuInfo/getDate3'];
+            }
+        },
+        dateIsValid(){
+            return this.$store.getters['yoyakuInfo/getDateIsValid'];
+        }
 
     },
     
@@ -158,15 +181,15 @@ export default {
         emailValidation(val) {
             this.$store.commit('yoyakuInfo/emailValidation', val);
         },
+        validateDate(){
+            this.$store.dispatch('yoyakuInfo/validateDate');
+        },
 
         submitForm() {
-            if(this.nameIsValid && this.phoneIsValid && this.emailIsValid){
+            if(this.name.isValid && this.phone.isValid && this.email.isValid && this.date1){
                 try{
-                    /*some action*/
+                    /*form all fields as an object, ready to send*/
                     alert('success');
-                    this.name = ''; this.phone = ''; this.email = '';
-                    this.question = '';
-                    console.log(this.apo);
                 }
                 catch{
                     /*some action*/
@@ -176,7 +199,7 @@ export default {
                 this.validateName();
                 this.validateEmail();
                 this.validatePhone();
-                this.validateApo();
+                this.validateDate();
             }
         }
     },
@@ -184,6 +207,7 @@ export default {
 </script>
 
 <style scoped>
+
 .field-error{
     border: solid 2px red;
 }
