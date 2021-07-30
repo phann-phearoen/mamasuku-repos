@@ -19,7 +19,11 @@
 <script>
 
 export default {
-    props: ['welcomeTexts']
+    computed: {
+        welcomeTexts() {
+            return this.$store.getters.welcomeTexts;
+        },
+    }
 }
 </script>
 

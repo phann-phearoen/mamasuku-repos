@@ -28,6 +28,3 @@ export default {
     components: { Top, Douga, Soudan, ToiAwase, },
 }
 </script>
-<style scoped>
-
-</style>

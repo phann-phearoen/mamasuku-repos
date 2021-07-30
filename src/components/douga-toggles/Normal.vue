@@ -15,7 +15,11 @@
 <script>
 
 export default {
-    props: ['welcomeTexts']
+    computed: {
+        welcomeTexts() {
+            return this.$store.getters.welcomeTexts;
+        },
+    }
 }
 </script>
 
@@ -42,9 +46,10 @@ export default {
     top: 30%;
     position: absolute;
     width: 60%;
-    font-size: 1em;
+    font-size: 1.3vw;
     color: grey;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     font-weight: 600;
 }
+
 </style>

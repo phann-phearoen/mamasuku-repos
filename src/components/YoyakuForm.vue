@@ -72,11 +72,12 @@
 
         <form-slot :label="'その他ご質問等'" style="border-bottom: solid 1px grey">
             <template v-slot:required></template>
-            <textarea 
-            class="form-control textarea" 
-            rows="3" 
+            <q-input 
+            class="q-ml-md"
+            type="textarea"
+            outlined
             v-model.trim="question" 
-            ></textarea>
+            ></q-input>
         </form-slot>
         
         <div class="container">

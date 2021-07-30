@@ -47,54 +47,22 @@ export default {
   components: { BaseCard },
   data() {
     return {
-        moreClicked:false,
-        title: '在宅で働いているママへ相談する',
-        soudanMama: [
-            { 
-                src: require('@/assets/soudan-mama.png'),
-                name: 'R.H さん', 
-                description: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト'
-            },
-            { 
-                src: require('@/assets/soudan-mama.png'),
-                name: 'R.H さん', 
-                description: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト'
-            },
-            { 
-                src: require('@/assets/soudan-mama.png'),
-                name: 'R.H さん', 
-                description: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト'
-            },
-            { 
-                src: require('@/assets/soudan-mama.png'),
-                name: 'R.H さん', 
-                description: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト'
-            },
-            { 
-                src: require('@/assets/soudan-mama.png'),
-                name: 'R.H さん', 
-                description: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト'
-            },
-            { 
-                src: require('@/assets/soudan-mama.png'),
-                name: 'R.H さん', 
-                description: 'テキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト'
-            },
-        ],
+      moreClicked:false,
+      title: '在宅で働いているママへ相談する',
     }
   },
   computed: {
+    soudanMama() {
+      return this.$store.getters['soudanInfo/soudanMama'];
+    },
     shortSoudanMamaList() {
-            const mamaList = [];
-            for(let i = 0; i < 3; i++){
-                mamaList.push(this.soudanMama[i]);
-            }
-            return mamaList;
-        }
+      return this.$store.getters['soudanInfo/shortSoudanMamaList'];
+    }
   },
   methods: {
     toggleMore() {
-      this.moreClicked = !this.moreClicked
+      this.moreClicked = !this.moreClicked;
+      console.log(this.soudanMama);
     },
   },
   
