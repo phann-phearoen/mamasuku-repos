@@ -12,7 +12,6 @@
         no-error-icon 
         bottom-slots 
         :error="date1.day.isValid===false"
-        @focus="validateDay"
         label="年月日"
         >
           <template v-slot:append>
@@ -104,17 +103,22 @@
                   </q-date>
               </q-popup-proxy>
               </q-icon>
+
           </template>
         </q-input>
       
       </div>
       <div class="col-lg-2 col-md-3">
 
-        <q-input outlined v-model="date2.timeStart" mask="time" :rules="['time']" no-error-icon label="始時間">
+        <q-input outlined 
+        v-model="date2.timeStart.value" mask="time" :rules="['time']" 
+        no-error-icon label="始時間"
+        @focus="validateTimeStart2"
+        >
           <template v-slot:append>
             <q-icon name="access_time" class="cursor-pointer">
               <q-popup-proxy transition-show="scale" transition-hide="scale">
-                <q-time v-model="date2.timeStart" >
+                <q-time v-model="date2.timeStart.value" >
                   <div class="row items-center justify-end">
                     <q-btn v-close-popup label="Close" color="primary" flat />
                   </div>
@@ -130,11 +134,16 @@
       </div>
       <div class="col-lg-2 col-md-3 q-ml-xs">
 
-        <q-input outlined v-model="date2.timeEnd" mask="time" :rules="['time']" no-error-icon label="終時間">
+        <q-input outlined 
+        v-model="date2.timeEnd.value" mask="time" :rules="['time']" 
+        no-error-icon label="終時間"
+        :error="date2.timeEnd.isValid===false"
+        @focus="validateTimeEnd2"
+        >
           <template v-slot:append>
             <q-icon name="access_time" class="cursor-pointer">
               <q-popup-proxy transition-show="scale" transition-hide="scale">
-                <q-time v-model="date2.timeEnd">
+                <q-time v-model="date2.timeEnd.value">
                   <div class="row items-center justify-end">
                     <q-btn v-close-popup label="Close" color="primary" flat />
                   </div>
@@ -173,11 +182,16 @@
       </div>
       <div class="col-lg-2 col-md-3">
 
-        <q-input outlined v-model="date3.timeStart" mask="time" :rules="['time']" no-error-icon label="始時間">
+        <q-input outlined 
+        v-model="date3.timeStart.value" mask="time" :rules="['time']" 
+        no-error-icon label="始時間"
+        :error="date3.timeStart.isValid===false"
+        @focus="validateTimeStart3"
+        >
           <template v-slot:append>
             <q-icon name="access_time" class="cursor-pointer">
               <q-popup-proxy transition-show="scale" transition-hide="scale">
-                <q-time v-model="date3.timeStart" >
+                <q-time v-model="date3.timeStart.value" >
                   <div class="row items-center justify-end">
                     <q-btn v-close-popup label="Close" color="primary" flat />
                   </div>
@@ -193,11 +207,16 @@
       </div>
       <div class="col-lg-2 col-md-3 q-ml-xs">
 
-        <q-input outlined v-model="date3.timeEnd" mask="time" :rules="['time']" no-error-icon label="終時間">
+        <q-input outlined 
+        v-model="date3.timeEnd.value" mask="time" :rules="['time']" 
+        no-error-icon label="終時間"
+        :error="date3.timeEnd.isValid===false"
+        @focus="validateTimeEnd3"
+        >
           <template v-slot:append>
             <q-icon name="access_time" class="cursor-pointer">
               <q-popup-proxy transition-show="scale" transition-hide="scale">
-                <q-time v-model="date3.timeEnd">
+                <q-time v-model="date3.timeEnd.value">
                   <div class="row items-center justify-end">
                     <q-btn v-close-popup label="Close" color="primary" flat />
                   </div>
@@ -252,16 +271,41 @@ export default {
       this.$store.commit('yoyakuInfo/validateDay');
     },
     validateTimeStart() {
-      this.$store.commit('yoyakuInfo/validateTimeStart');
+      if(this.date1.timeEnd.value !== ''){
+        this.validateTimeEnd();
+      }
+      else{
+        this.$store.commit('yoyakuInfo/validateTimeStart');
+      }
     },
     validateTimeEnd() {
       this.$store.commit('yoyakuInfo/validateTimeEnd');
+    },
+
+    validateTimeStart2() {
+      if(this.date2.timeEnd.value !== ''){
+        this.validateTimeEnd2();
+      }
+    },
+    validateTimeEnd2() {
+      this.$store.commit('yoyakuInfo/validateTimeEnd2');
+    },
+    validateTimeStart3() {
+      if(this.date3.timeEnd.value !== ''){
+        this.validateTimeEnd3();
+      }
+    },
+    validateTimeEnd3() {
+      this.$store.commit('yoyakuInfo/validateTimeEnd3');
     },
   }
 }
 </script>
 
 <style scoped>
+.q-time:deep().q-time__header{
+    background-color: #eb7fa2;
+}
 .q-time{
     width: 100px;
 }
@@ -278,13 +322,24 @@ export default {
     width: 20px;
 }
 
-.q-date{
-  width: 100px;
+.q-date:deep().q-date__header{
+    background-color: #eb7fa2;
 }
 .q-date:deep().q-date__navigation{
-    margin-left: 1em;
-    padding-right: 1em;
-    width: 95px; 
+    width: 100%;
+    margin: 0;
+    padding: 0;
+}
+.q-date:deep().q-date__arrow{
+    display: inline-block;
+    width: fit-content;
+    margin: 0;
+    padding: 0;
+}
+.q-date:deep() .relative-position.overflow-hidden.flex{
+    width: fit-content;
+    margin: 0;
+    padding: 0px;
 }
 .wave{
   margin-left: auto;
