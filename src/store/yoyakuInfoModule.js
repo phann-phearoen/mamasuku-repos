@@ -15,9 +15,14 @@ export default {
                 timeStart: { value: '', isValid: null}, 
                 timeEnd: { value: '', isValid: null}
             },
-            date2: {day: '', timeStart: '', timeEnd: ''},
-            date3: {day: '', timeStart: '', timeEnd: ''},
-            
+            date2: {day: '', 
+                timeStart: {value: '', isValid: null}, 
+                timeEnd: {value: '', isValid: null},
+            },
+            date3: {day: '', 
+                timeStart: {value: '', isValid: null}, 
+                timeEnd: {value: '', isValid: null},
+            },   
             question: '',
         }
     },
@@ -90,9 +95,30 @@ export default {
             state.date1.timeStart.value ? state.date1.timeStart.isValid = true : state.date1.timeStart.isValid = false;
         },
         validateTimeEnd(state) {
-            state.date1.timeEnd.value ? state.date1.timeEnd.isValid = true : state.date1.timeEnd.isValid = false;
-        }
+            if(state.date1.timeEnd.value !== '' && state.date1.timeEnd.value > state.date1.timeStart.value){
+                state.date1.timeEnd.isValid = true;
+            }
+            else{
+                state.date1.timeEnd.isValid = false;
+            }
+        },
         
+        validateTimeEnd2(state) {
+            if(state.date2.timeEnd.value !== '' && state.date2.timeEnd.value > state.date2.timeStart.value){
+                state.date2.timeEnd.isValid = true;
+            }
+            else{
+                state.date2.timeEnd.isValid = false;
+            }
+        },
+        validateTimeEnd3(state) {
+            if(state.date3.timeEnd.value !== '' && state.date3.timeEnd.value > state.date3.timeStart.value){
+                state.date3.timeEnd.isValid = true;
+            }
+            else{
+                state.date3.timeEnd.isValid = false;
+            }
+        }
     },
     actions:{
         validateDate(context,) {
