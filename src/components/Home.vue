@@ -26,9 +26,5 @@ import ToiAwase from './ToiAwase.vue';
 
 export default {
     components: { Top, Douga, Soudan, ToiAwase, },
-
 }
 </script>
-<style scoped>
-
-</style>

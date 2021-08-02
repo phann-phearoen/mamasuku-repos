@@ -2,19 +2,19 @@
     <div class="container-fluid px-0 my-5">
         <div class="row">
             <div class="col-12 px-0">
-                <normal :welcomeTexts="welcomeTexts" v-if="screenMode === 'normal'">
+                <normal v-if="screenMode === 'normal'">
                     <div class="row"><base-title :title="title"></base-title></div>
-                    <douga-grid :dougaMama="dougaMama" ></douga-grid>
+                    <douga-grid ></douga-grid>
                 </normal>
 
-                <tablet :welcomeTexts="welcomeTexts" v-else-if="screenMode === 'tablet'">
+                <tablet v-else-if="screenMode === 'tablet'">
                     <div class="row"><base-title :title="title"></base-title></div>
-                    <douga-grid :dougaMama="dougaMama" ></douga-grid>
+                    <douga-grid ></douga-grid>
                 </tablet>
 
-                <mobile :welcomeTexts="welcomeTexts" v-else>
+                <mobile v-else>
                     <div class="row"><base-title :title="title"></base-title></div>
-                    <douga-grid :dougaMama="dougaMama" ></douga-grid>
+                    <douga-grid ></douga-grid>
                 </mobile>
             </div>
         </div>
@@ -38,59 +38,8 @@ export default {
             screenMode: null,
             screenWidth: 0,
             title: '動画を視聴する',
-            dougaMama: [ 
-                {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
-                },
-                {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
-                },
-                {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
-                },
-                {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
-                },
-                {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
-                },
-                {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
-                },
-            ],
         }
     },
-    
-    computed: {
-        welcomeTexts() {
-            return this.$store.getters.welcomeTexts;
-        },
-        shortDougaMamaList() {
-            const mamaList = [];
-            for(let i = 0; i < 4; i++){
-                mamaList.push(this.dougaMama[i]);
-            }
-            return mamaList;
-        },
-     },
     methods: {
         handleResize() {
             this.screenWidth = window.innerWidth;
@@ -121,6 +70,3 @@ export default {
     },
 }
 </script>
-
-<style scoped>
-</style>

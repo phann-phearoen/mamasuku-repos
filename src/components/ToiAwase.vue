@@ -6,71 +6,67 @@
             <div class="row">
 
                 <form class="form" @submit.prevent="sendEmail" :class="{'form-mobile': screenMode === 'mobile'}">
-                    <div class="mb-3">
-                        <label class="label" for="name">お名前</label><span style="color: red" v-if="name === ''">（必須）</span>
-                        
-                        <div class="q-ml-sm">
-                            <q-input
-                                id="name"
-                                name="user_name"
-                                outlined
-                                v-model.trim="name"
-                                no-error-icon
-                                bottom-slots
-                                @keyup="validateName"
-                                @blur="validateName"
-                                :error="!nameIsValid"
-                            >
-                                <template v-slot:error>
-                                    お名前を入力してください！
-                                </template>
-                            </q-input>
-                        </div>
-                        
+                  <div>
+                    <label class="q-ml-md label" for="name">お名前</label><span style="color: red" v-if="name === ''">（必須）</span>
+                    
+                    <div class="q-ml-lg q-mb-md">
+                        <q-input
+                            id="name"
+                            name="user_name"
+                            outlined
+                            v-model.trim="name"
+                            no-error-icon
+                            bottom-slots
+                            @keyup="validateName"
+                            @blur="validateName"
+                            :error="!nameIsValid"
+                        >
+                            <template v-slot:error>
+                                お名前を入力してください！
+                            </template>
+                        </q-input>
                     </div>
+                  </div> 
 
-                    <div class="mb-3">
-                        <label class="label" for="email">アドレス</label><span style="color: red" v-if="email === ''">（必須）</span>
+                    <label class="q-ml-md label" for="email">アドレス</label><span style="color: red" v-if="email === ''">（必須）</span>
 
-                        <div class="q-ml-sm">
-                            <q-input
-                                id="email"
-                                name="user_mail"
-                                outlined
-                                v-model.trim="email"
-                                no-error-icon
-                                bottom-slots
-                                @keyup="validateEmail"
-                                @blur="validateEmail"
-                                :error="!emailIsValid"
-                            >
-                                <template v-slot:error>
-                                    正しいアドレスを入力してください！
-                                </template>
-                            </q-input>
-                        </div>
+                    <div class="q-ml-lg q-mb-md">
+                        <q-input
+                            id="email"
+                            name="user_mail"
+                            outlined
+                            v-model.trim="email"
+                            no-error-icon
+                            bottom-slots
+                            @keyup="validateEmail"
+                            @blur="validateEmail"
+                            :error="!emailIsValid"
+                        >
+                            <template v-slot:error>
+                                正しいアドレスを入力してください！
+                            </template>
+                        </q-input>
                     </div>
                         
-                    <div class="form-group from-control">
-                        <label class="label" for="message">お問い合わせ内容</label><span style="color: red" v-if="message === ''">（必須）</span>
-                        <div class="q-ml-sm">
-                            <q-input
-                                type="textarea"
-                                name="message"
-                                id="message"
-                                outlined
-                                v-model.trim="message"
-                                no-error-icon
-                                bottom-slots
-                                @keyup="validateMessage"
-                                @blur="validateMessage"
-                                :error="!messageIsValid"
-                            >
-                                <template v-slot:error>
-                                    お問い合わせの内容を入力してください！
-                                </template>
-                            </q-input>
-                        </div>
+                    <label class="q-ml-md label" for="message">お問い合わせ内容</label><span style="color: red" v-if="message === ''">（必須）</span>
+                    <div class="q-ml-lg q-ml-sm">
+                        <q-input
+                            type="textarea"
+                            name="message"
+                            id="message"
+                            outlined
+                            v-model.trim="message"
+                            no-error-icon
+                            bottom-slots
+                            @keyup="validateMessage"
+                            @blur="validateMessage"
+                            :error="!messageIsValid"
+                        >
+                            <template v-slot:error>
+                                お問い合わせの内容を入力してください！
+                            </template>
+                        </q-input>
+                    
                     </div>
 
                     <btn-send></btn-send>
@@ -127,6 +123,7 @@ export default {
             emailjs.sendForm('service_fGmail', 'template_lo25zih', e.target, 'user_elZx1Ntipum7lqX2uA316')
                 .then((result) => {
                     console.log('SUCCESS!', result.status, result.text);
+                    alert('Your mail has been sent!');
                 }, (error) => {
                     console.log('FAILED...', error);
             });
@@ -145,13 +142,22 @@ export default {
     unmounted() {
         window.removeEventListener('resize', this.handleResize);
     },
+    watch: {
+        screenWidth(val){
+        if(val > 960){
+            this.screenMode = 'normal';
+        }
+        else if(val > 500){
+            this.screenMode = 'tablet';
+        }
+        else
+            this.screenMode = 'mobile';
+        }
+    },
 }
 </script>
 
 <style scoped lang="scss">
-.q-field__append.q-field__marginal.row.no-wrap.items-center.q-anchor--skip{
-display: none;
-}
 .text-center{
     color: red;
     font-family: 'M PLUS Rounded 1c', sans-serif;
@@ -203,7 +209,7 @@ display: none;
     font-size: .8em;
 }
 .form-mobile{
-    width:80%;
+    width: 85%;
     margin: 0 auto;
 }
 

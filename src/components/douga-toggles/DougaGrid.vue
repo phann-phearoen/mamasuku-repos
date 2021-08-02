@@ -25,13 +25,15 @@
 import DougaCard from './DougaCard.vue';
 export default {
     components: { DougaCard, },
-    props: ['dougaMama',],
     data() {
         return{
             moreClicked: false,
         }
     },
     computed: {
+        dougaMama() {
+            return this.$store.getters['dougaInfo/dougaMama'];
+        },
         shortDougaMamaList() {
             const mamaList = [];
             for(let i = 0; i < 4; i++){

@@ -16,7 +16,6 @@
 <script>
 export default {
     props: ['moreClicked'],
-    //inject: ['screenMode'],
     data() {
         return {
             screenMode: null,
