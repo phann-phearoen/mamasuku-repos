@@ -18,13 +18,13 @@
             v-scroll-spy-active="{selector: 'li.nav-item', class: 'custom-active'}" 
             v-scroll-spy-link>
             <li class="nav-item me-4">
-              <a class="nav-link" href="#douga"><img src="./assets/icon01.png" class="img mx-2" alt="icon01">学べる動画一覧</a>
+              <router-link class="nav-link" to="/vue-pages/home#douga"><img src="./assets/icon01.png" class="img mx-2" alt="icon01">学べる動画一覧</router-link>
             </li>
             <li class="nav-item me-4">
-              <a class="nav-link" href="#soudan"><img src="./assets/icon02.png" class="img mx-2" alt="icon02">在宅で働くママに相談する</a>
+              <router-link class="nav-link" to="/vue-pages/home#soudan"><img src="./assets/icon02.png" class="img mx-2" alt="icon02">在宅で働くママに相談する</router-link>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#toi-awase"><img src="./assets/icon03.png" class="img mx-2" alt="icon03">お問い合わせ</a>
+              <router-link class="nav-link" to="/vue-pages/home#inquiry"><img src="./assets/icon03.png" class="img mx-2" alt="icon03">お問い合わせ</router-link>
             </li>
           </ul>
         </div>
@@ -44,27 +44,37 @@ import TheFooter from './components/TheFooter.vue';
 
 export default {
   components: { TheFooter, },
-
-  computed: {
-    screenMode(){
-      return this.$store.getters['screenModes/getScreenMode'];
-    },
+  data() {
+    return {
+      screenMode: null,
+      screenWidth: 0,
+    }
   },
-
-  beforeCreate() {
-    this.$store.commit('screenModes/setScreenMode', window.innerWidth);
+  methods: {
+      handleResize() {
+          this.screenWidth = window.innerWidth;
+      }
+    },
+    
+  watch: {
+    screenWidth(val){
+    if(val > 960){
+        this.screenMode = 'normal';
+    }
+    else if(val > 500){
+        this.screenMode = 'tablet';
+    }
+    else
+        this.screenMode = 'mobile';
+    }
   },
 
   created() {
-    window.addEventListener('resize', this.handleResize);
+      window.addEventListener('resize', this.handleResize);
+      this.handleResize();
   },
   unmounted() {
-    window.removeEventListener('resize', this.handleResize);
-  },
-  methods: {
-    handleResize() {
-      this.$store.commit('screenModes/setScreenMode', window.innerWidth);
-    },
+      window.removeEventListener('resize', this.handleResize);
   },
 }
 </script>
@@ -75,6 +85,7 @@ font-weight: 600;
 }
 .root{
   margin-bottom: 190px;
+  margin-right: 0;
 }
 @media (max-width: 100vw) {
   .navbar-collapse

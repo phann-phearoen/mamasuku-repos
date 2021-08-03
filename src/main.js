@@ -13,6 +13,9 @@ import YoyakuForm from './components/YoyakuForm.vue';
 import Home from './components/Home.vue';
 import BtnToggleMore from './components/base/BtnToggleMore.vue';
 import BtnSend from './components/base/BtnSend.vue';
+import Douga from './components/Douga.vue';
+import Soudan from './components/Soudan.vue';
+import ToiAwase from './components/ToiAwase.vue';
 
 const router = createRouter({
     history: createWebHistory(),
@@ -21,6 +24,9 @@ const router = createRouter({
         { path: '/vue-pages/', redirect: '/vue-pages/home'},
         { path: '/vue-pages/home', component: Home },
         { path: '/vue-pages/contact', component: YoyakuForm },
+        { path: '/vue-pages/home/douga', component: Douga},
+        { path: '/vue-pages/home/soudan', component: Soudan },
+        { path: '/vue-pages/home/inquiry', component: ToiAwase }
 
     ],
     scrollBehavior(to, from, savedPosition) {

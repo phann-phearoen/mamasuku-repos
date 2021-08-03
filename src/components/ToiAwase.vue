@@ -1,78 +1,77 @@
 <template>
-<div class="container-fluid px-0 my-5">
-    <div class="row root">
-        <div class="col-12 mb-5 mt-5">
+<div class="container-fluid mx-0 my-5">
+    <div class="row">
+        <div class="mb-5 mt-5">
             <base-title :title="title" class="my-3"></base-title>
-            <div class="row">
+            
+            <form class="form" @submit.prevent="sendEmail" :class="{'form-mobile': screenMode === 'mobile'}">
+                <div>
+                <label class="ms-4 label" for="name">お名前</label><span style="color: red" v-if="name === ''">（必須）</span>
+                
+                <div class="ms-4 q-mb-md">
+                    <q-input
+                        id="name"
+                        name="user_name"
+                        outlined
+                        v-model.trim="name"
+                        no-error-icon
+                        bottom-slots
+                        @keyup="validateName"
+                        @blur="validateName"
+                        :error="!nameIsValid"
+                    >
+                        <template v-slot:error>
+                            お名前を入力してください！
+                        </template>
+                    </q-input>
+                </div>
+                </div> 
 
-                <form class="form" @submit.prevent="sendEmail" :class="{'form-mobile': screenMode === 'mobile'}">
-                  <div>
-                    <label class="q-ml-md label" for="name">お名前</label><span style="color: red" v-if="name === ''">（必須）</span>
+                <label class="ms-4 label" for="email">アドレス</label><span style="color: red" v-if="email === ''">（必須）</span>
+
+                <div class="ms-4 q-mb-md">
+                    <q-input
+                        id="email"
+                        name="user_mail"
+                        outlined
+                        v-model.trim="email"
+                        no-error-icon
+                        bottom-slots
+                        @keyup="validateEmail"
+                        @blur="validateEmail"
+                        :error="!emailIsValid"
+                    >
+                        <template v-slot:error>
+                            正しいアドレスを入力してください！
+                        </template>
+                    </q-input>
+                </div>
                     
-                    <div class="q-ml-lg q-mb-md">
-                        <q-input
-                            id="name"
-                            name="user_name"
-                            outlined
-                            v-model.trim="name"
-                            no-error-icon
-                            bottom-slots
-                            @keyup="validateName"
-                            @blur="validateName"
-                            :error="!nameIsValid"
-                        >
-                            <template v-slot:error>
-                                お名前を入力してください！
-                            </template>
-                        </q-input>
-                    </div>
-                  </div> 
+                <label class="ms-4 label" for="message">お問い合わせ内容</label><span style="color: red" v-if="message === ''">（必須）</span>
+                <div class="ms-4 q-ml-sm">
+                    <q-input
+                        type="textarea"
+                        name="message"
+                        id="message"
+                        outlined
+                        v-model.trim="message"
+                        no-error-icon
+                        bottom-slots
+                        @keyup="validateMessage"
+                        @blur="validateMessage"
+                        :error="!messageIsValid"
+                    >
+                        <template v-slot:error>
+                            お問い合わせの内容を入力してください！
+                        </template>
+                    </q-input>
+                
+                </div>
 
-                    <label class="q-ml-md label" for="email">アドレス</label><span style="color: red" v-if="email === ''">（必須）</span>
+                <btn-send></btn-send>
 
-                    <div class="q-ml-lg q-mb-md">
-                        <q-input
-                            id="email"
-                            name="user_mail"
-                            outlined
-                            v-model.trim="email"
-                            no-error-icon
-                            bottom-slots
-                            @keyup="validateEmail"
-                            @blur="validateEmail"
-                            :error="!emailIsValid"
-                        >
-                            <template v-slot:error>
-                                正しいアドレスを入力してください！
-                            </template>
-                        </q-input>
-                    </div>
-                        
-                    <label class="q-ml-md label" for="message">お問い合わせ内容</label><span style="color: red" v-if="message === ''">（必須）</span>
-                    <div class="q-ml-lg q-ml-sm">
-                        <q-input
-                            type="textarea"
-                            name="message"
-                            id="message"
-                            outlined
-                            v-model.trim="message"
-                            no-error-icon
-                            bottom-slots
-                            @keyup="validateMessage"
-                            @blur="validateMessage"
-                            :error="!messageIsValid"
-                        >
-                            <template v-slot:error>
-                                お問い合わせの内容を入力してください！
-                            </template>
-                        </q-input>
-                    
-                    </div>
-
-                    <btn-send></btn-send>
-
-                </form>
-            </div> 
+            </form>
+            
         </div>
     </div>
 </div>
@@ -157,7 +156,7 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style>
 .text-center{
     color: red;
     font-family: 'M PLUS Rounded 1c', sans-serif;
@@ -192,14 +191,6 @@ export default {
 .form{
     width: 50%;
     margin: 0 auto;
-}
-
-.field{
-    height: 1.5em;
-    border-radius: 2px;
-}
-.textarea{
-    border-radius: 2px;
 }
 
 .button-mobile{
