@@ -1,13 +1,11 @@
 import { createStore } from "vuex";
 import dougaInfo from "./dougaModule";
 import yoyakuInfo from "./yoyakuInfoModule";
-import screenModes from "./screenModes";
 import soudanInfo from "./soudanInfoModule";
 const store = createStore({
     modules: { 
         dougaInfo,
         yoyakuInfo,
-        screenModes,
         soudanInfo,
     },
     state() {
