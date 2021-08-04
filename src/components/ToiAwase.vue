@@ -119,14 +119,21 @@ export default {
         },
 
         sendEmail (e) {
-            emailjs.sendForm('service_fGmail', 'template_lo25zih', e.target, 'user_elZx1Ntipum7lqX2uA316')
-                .then((result) => {
-                    console.log('SUCCESS!', result.status, result.text);
-                    alert('Your mail has been sent!');
-                }, (error) => {
-                    console.log('FAILED...', error);
-            });
-            e.target.reset();
+            if(this.nameIsValid === true && this.emailIsValid === true && this.messageIsValid === true){
+                emailjs.sendForm('service_fGmail', 'template_lo25zih', e.target, 'user_elZx1Ntipum7lqX2uA316')
+                    .then((result) => {
+                        console.log('SUCCESS!', result.status, result.text);
+                        alert('Your mail has been sent!');
+                    }, (error) => {
+                        console.log('FAILED...', error);
+                });
+                e.target.reset();
+            }
+            else{
+                this.validateName();
+                this.validateEmail();
+                this.validateMessage();
+            }
         },
 
         handleResize() {
@@ -157,12 +164,6 @@ export default {
 </script>
 
 <style>
-.text-center{
-    color: red;
-    font-family: 'M PLUS Rounded 1c', sans-serif;
-    font-weight: 300;
-}
-
 .btnMore{
     width: 20em;
     height: 1.9em;
