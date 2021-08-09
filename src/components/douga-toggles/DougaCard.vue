@@ -5,7 +5,15 @@
         <div class="text-h6" :class="{'text-h6-mobile': screenWidth < 500 }">{{ title }}</div>
       </q-card-section>
 
-      <q-video :src="clip" alt="" />
+   <div class="q-video">
+      <iframe
+        :src="clip"
+        frameborder="0"
+        allowfullscreen
+      />
+    </div>
+
+      <!-- <q-video :src="clip" alt="" /> -->
 
       <q-card-section class="q-pt-none" :class="{'des-mobile': screenWidth < 500}">
         {{ description }}
@@ -16,25 +24,44 @@
 
 <script>
 export default {
-    props: ['title', 'clip', 'description'],
+    props: ['clip', 'id'],
     data() {
         return {
         screenMode: null,
         screenWidth: 0,
+        title: '',
+        description: ''
         }
     },
+    beforeCreate() {
+      const ytApiKey = "AIzaSyDTIaZPJJjMWiJ5a81Ze50vLcpLVwYJaYU";
+      fetch("https://www.googleapis.com/youtube/v3/videos?part=snippet&id=" + this.id + "&fields=items(id%2Csnippet)" + "&key=" + ytApiKey)
+      .then(
+        (response) => {
+          if(response.ok) {
+            return response.json();
+          }
+        }
+      ).then(
+        (data) => {
+          this.title = data.items[0].snippet.title;
+          this.description = data.items[0].snippet.description;
+        }).catch((error) => {
+          console.log(error);
+      });
+    },
     created() {
-        window.addEventListener('resize', this.handleResize);
-        this.handleResize();
+      window.addEventListener('resize', this.handleResize);
+      this.handleResize();
     },
     unmounted() {
-        window.removeEventListener('resize', this.handleResize);
+      window.removeEventListener('resize', this.handleResize);
     },
     methods: {
-        handleResize() {
-            this.screenWidth = window.innerWidth;
-        }    
-    },
+      handleResize() {
+          this.screenWidth = window.innerWidth;
+      },
+    }
 }
 </script>
 

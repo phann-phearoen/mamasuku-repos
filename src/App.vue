@@ -1,5 +1,5 @@
 <template>
-<div class="root">
+<div class="root" :class="{'root-mobile':screenMode === 'mobile'}">
   <nav class="navbar navbar-expand-md navbar-light bg-white fixed-top">
       <div class="container-fluid">
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#theNavbar" aria-controls="theNavbar" aria-expanded="false" aria-label="Toggle navigation">

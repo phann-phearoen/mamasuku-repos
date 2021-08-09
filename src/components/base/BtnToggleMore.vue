@@ -6,7 +6,7 @@
              @click="toggleMore" v-if="moreClicked === false"/>
 
             <q-btn type="submit" unelevated rounded class="items-center" :class="{'button-mobile': screenMode === 'mobile',
-            'button-tablet': screenMode === 'tablet', 'button-normal': screenMode === 'normal'}" label="表示を減らす" 
+            'button-tablet': screenMode === 'tablet', 'button-normal': screenMode === 'normal'}" label="閉じる" 
             @click="toggleMore" v-else/>
         </div>
         
