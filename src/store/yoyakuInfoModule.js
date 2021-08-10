@@ -66,7 +66,7 @@ export default {
         },
 
         validatePhone(state) {
-            if(state.phone.value.match(/^\d{10}$/))
+            if(state.phone.value.match(/^0\d{1,4}-\d{1,4}-\d{3,4}$/))
                 state.phone.isValid = true;
             else {
                 state.phone.isValid = false;
