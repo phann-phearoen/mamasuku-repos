@@ -56,7 +56,7 @@
       <div class="col column justify-center">
         <div class="row wave">～</div>
       </div>
-      <div class="col-lg-2 col-md-3 q-ml-xs">
+      <div class="col-lg-2 col-md-3">
 
         <q-input outlined 
         v-model="date1.timeEnd.value" 
@@ -132,7 +132,7 @@
       <div class="col column justify-center">
         <div class="row wave">～</div>
       </div>
-      <div class="col-lg-2 col-md-3 q-ml-xs">
+      <div class="col-lg-2 col-md-3">
 
         <q-input outlined 
         v-model="date2.timeEnd.value" mask="time" :rules="['time']" 
@@ -205,7 +205,7 @@
       <div class="col column justify-center">
         <div class="row wave">～</div>
       </div>
-      <div class="col-lg-2 col-md-3 q-ml-xs">
+      <div class="col-lg-2 col-md-3">
 
         <q-input outlined 
         v-model="date3.timeEnd.value" mask="time" :rules="['time']" 
