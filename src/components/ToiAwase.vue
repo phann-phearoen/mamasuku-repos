@@ -21,7 +21,7 @@
                         :error="!nameIsValid"
                     >
                         <template v-slot:error>
-                            お名前を入力してください！
+                            お名前を入力してください。
                         </template>
                     </q-input>
                 </div>
@@ -42,7 +42,7 @@
                         :error="!emailIsValid"
                     >
                         <template v-slot:error>
-                            正しいアドレスを入力してください！
+                            正しいアドレスを入力してください。
                         </template>
                     </q-input>
                 </div>
@@ -62,7 +62,7 @@
                         :error="!messageIsValid"
                     >
                         <template v-slot:error>
-                            お問い合わせの内容を入力してください！
+                            お問い合わせの内容を入力してください。
                         </template>
                     </q-input>
                 
