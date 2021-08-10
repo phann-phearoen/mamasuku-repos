@@ -18,7 +18,7 @@
                 :error="!name.isValid"
             >
                 <template v-slot:error>
-                    お名前を入力してください！
+                    お名前を入力してください。
                 </template>
             </q-input>
         
@@ -38,7 +38,7 @@
                 :error="!phone.isValid"
             >
                 <template v-slot:error>
-                    正しい番号を入力してください！
+                    正しい番号を入力してください。
                 </template>
             </q-input>
         
@@ -57,7 +57,7 @@
                 :error="!email.isValid"
             >
                 <template v-slot:error>
-                    正しいアドレスを入力してください！
+                    正しいアドレスを入力してください。
                 </template>
             </q-input>
 
