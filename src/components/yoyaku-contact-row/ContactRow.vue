@@ -37,7 +37,7 @@
         no-error-icon 
         :error="date1.timeStart.isValid===false"
         @focus="validateTimeStart"
-        label="始時間"
+        label="開始時刻"
         >
           <template v-slot:append>
             <q-icon name="access_time" class="cursor-pointer">
@@ -56,7 +56,7 @@
       <div class="col column justify-center">
         <div class="row wave">～</div>
       </div>
-      <div class="col-lg-2 col-md-3 q-ml-xs">
+      <div class="col-lg-2 col-md-3">
 
         <q-input outlined 
         v-model="date1.timeEnd.value" 
@@ -65,7 +65,7 @@
         no-error-icon 
         :error="date1.timeEnd.isValid===false"
         @focus="validateTimeEnd"
-        label="終時間"
+        label="終了時刻"
         >
           <template v-slot:append>
             <q-icon name="access_time" class="cursor-pointer">
@@ -112,7 +112,7 @@
 
         <q-input outlined 
         v-model="date2.timeStart.value" mask="time" :rules="['time']" 
-        no-error-icon label="始時間"
+        no-error-icon label="開始時刻"
         @focus="validateTimeStart2"
         >
           <template v-slot:append>
@@ -132,11 +132,11 @@
       <div class="col column justify-center">
         <div class="row wave">～</div>
       </div>
-      <div class="col-lg-2 col-md-3 q-ml-xs">
+      <div class="col-lg-2 col-md-3">
 
         <q-input outlined 
         v-model="date2.timeEnd.value" mask="time" :rules="['time']" 
-        no-error-icon label="終時間"
+        no-error-icon label="終了時刻"
         :error="date2.timeEnd.isValid===false"
         @focus="validateTimeEnd2"
         >
@@ -184,7 +184,7 @@
 
         <q-input outlined 
         v-model="date3.timeStart.value" mask="time" :rules="['time']" 
-        no-error-icon label="始時間"
+        no-error-icon label="開始時刻"
         :error="date3.timeStart.isValid===false"
         @focus="validateTimeStart3"
         >
@@ -205,11 +205,11 @@
       <div class="col column justify-center">
         <div class="row wave">～</div>
       </div>
-      <div class="col-lg-2 col-md-3 q-ml-xs">
+      <div class="col-lg-2 col-md-3">
 
         <q-input outlined 
         v-model="date3.timeEnd.value" mask="time" :rules="['time']" 
-        no-error-icon label="終時間"
+        no-error-icon label="終了時刻"
         :error="date3.timeEnd.isValid===false"
         @focus="validateTimeEnd3"
         >

@@ -4,40 +4,24 @@ export default {
         return {
             dougaMama: [ 
                 {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
+                    id: '4XWf4r418aY',
+                    clip: 'https://www.youtube.com/embed/4XWf4r418aY?rel=0',
                 },
                 {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
+                    id: 'qfhuzJoaaCQ', 
+                    clip: 'https://www.youtube.com/embed/qfhuzJoaaCQ?rel=0',
                 },
                 {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
+                    id: 'Zw_mjGm1XmA', 
+                    clip: 'https://www.youtube.com/embed/Zw_mjGm1XmA?rel=0',
                 },
                 {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
+                    id: 'BsxLVxlLoCA', 
+                    clip: 'https://www.youtube.com/embed/BsxLVxlLoCA?rel=0',
                 },
                 {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
-                },
-                {  
-                    title: 'タイトルタイトルタイトルタイトル', 
-                    clip: 'https://www.youtube.com/embed/k3_tw44QsZQ?rel=0',
-                    description: `テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。
-                    テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト。`
+                    id: '2iaDXJrbsEk', 
+                    clip: 'https://www.youtube.com/embed/2iaDXJrbsEk?rel=0',
                 },
             ],
         }

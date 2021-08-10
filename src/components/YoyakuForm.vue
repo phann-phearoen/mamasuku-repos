@@ -7,7 +7,7 @@
         <form-slot :label="'お名前'">
             <template v-slot:required><span style="color: red" v-if="!name.isValid">（必須）</span></template>
             
-            <q-input class="q-ml-md"
+            <q-input :class="[{'ml-mobile':screenMode==='mobile'}, 'ml']"
                 outlined
                 v-model.trim="name.value"
                 no-error-icon
@@ -18,7 +18,7 @@
                 :error="!name.isValid"
             >
                 <template v-slot:error>
-                    お名前を入力してください！
+                    お名前を入力してください。
                 </template>
             </q-input>
         
@@ -27,7 +27,7 @@
         <form-slot :label="'電話番号'">
             <template v-slot:required><span style="color: red" v-if="!phone.isValid">（必須）</span></template>
             
-            <q-input class="q-ml-md"
+            <q-input :class="[{'ml-mobile':screenMode==='mobile'}, 'ml']"
                 outlined
                 no-error-icon
                 bottom-slots
@@ -38,7 +38,7 @@
                 :error="!phone.isValid"
             >
                 <template v-slot:error>
-                    正しい番号を入力してください！
+                    正しい番号を入力してください。
                 </template>
             </q-input>
         
@@ -47,7 +47,7 @@
         <form-slot :label="'メールアドレス'">
             <template v-slot:required><span style="color: red" v-if="!email.isValid">（必須）</span></template>
             
-            <q-input class="q-ml-md"
+            <q-input :class="[{'ml-mobile':screenMode==='mobile'}, 'ml']"
                 outlined
                 no-error-icon
                 bottom-slots
@@ -57,7 +57,7 @@
                 :error="!email.isValid"
             >
                 <template v-slot:error>
-                    正しいアドレスを入力してください！
+                    正しいアドレスを入力してください。
                 </template>
             </q-input>
 
@@ -73,7 +73,7 @@
         <form-slot :label="'その他ご質問等'" style="border-bottom: solid 1px grey">
             <template v-slot:required></template>
             <q-input 
-            class="q-ml-md"
+            :class="[{'ml-mobile':screenMode==='mobile'}, 'ml']"
             type="textarea"
             outlined
             v-model.trim="question" 
@@ -110,7 +110,12 @@ import ContactRow from './yoyaku-contact-row/ContactRow.vue';
 
 export default {
     components: { FormSlot, BtnSend, ContactRow },
-
+    data() {
+        return {
+            screenMode: null,
+            screenWidth: 0,
+        }
+    },
     computed: {
         warn1(){
             return this.$store.getters['yoyakuInfo/formwarn1'];
@@ -228,12 +233,41 @@ export default {
                 this.validatePhone();
                 this.validateDate();
             }
+        },
+        
+        handleResize() {
+            this.screenWidth = window.innerWidth;
+        },
+    },
+    created() {
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize();
+    },
+    unmounted() {
+        window.removeEventListener('resize', this.handleResize);
+    },
+    watch: {
+        screenWidth(val){
+        if(val > 960){
+            this.screenMode = 'normal';
+        }
+        else if(val > 500){
+            this.screenMode = 'tablet';
+        }
+        else
+            this.screenMode = 'mobile';
         }
     },
 }
 </script>
 
 <style scoped>
+.ml{
+    margin-left: 8px;
+}
+.ml-mobile{
+    margin-left: 0px
+}
 
 .field-error{
     border: solid 2px red;

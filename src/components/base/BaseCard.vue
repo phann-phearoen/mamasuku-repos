@@ -12,7 +12,11 @@
             </q-card-section>
 
             <q-card-section class="q-pt-none description" :class="{'description-mobile': screenWidth < 500}">
-                {{ description }}
+                <ul>
+                    <li  v-for="line in description" :key="line" class="des">
+                        {{ line }}
+                    </li>
+                </ul>
             </q-card-section>
 
             <router-link class="column items-center link" to="/vue-pages/contact">
@@ -48,6 +52,10 @@ export default {
 </script>
 
 <style scoped>
+.des{
+    list-style-type: none;
+    margin-left: -2em;
+}
 .link{
     text-decoration: none;
 }

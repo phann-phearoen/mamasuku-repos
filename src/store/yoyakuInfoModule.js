@@ -5,7 +5,9 @@ export default {
             formwarn1: 'フォームからのお申し込みだけでは、ご予約は成立しておりません。',
             formwarn2: `弊社スタッフより日時の調整やご確認のために、必ずメールまたはお電話をさせていただきます。
                 最終的にこちらより確定メールを送らせていただいてから成立となります。
-                万が一 24 時間以上経っても連絡がない場合はテキストテキストテキストテキストテキストテキスト。`,
+                3日以上経過しても連絡がない場合、何らかのトラブルにより
+                こちらにメールが届いていない可能性がございます。
+                その際は、お手数をおかけしますが再度ご連絡いただけますと幸いです。`,
             name: { value: '', isValid: 'pending', errMsg: '' },
             phone: { value: '', isValid: 'pending', errMsg: '' },
             email: { value: '', isValid: 'pending', errMsg: '' },
@@ -64,7 +66,7 @@ export default {
         },
 
         validatePhone(state) {
-            if(state.phone.value.match(/^\d{10}$/))
+            if(state.phone.value.match(/^0\d{1,4}-\d{1,4}-\d{3,4}$/))
                 state.phone.isValid = true;
             else {
                 state.phone.isValid = false;

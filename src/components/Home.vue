@@ -4,7 +4,7 @@
     <top></top>
   </div>
 
-  <div v-scroll-spy="{allowNoActive: true, offset: 50, time: 200, steps: 30}">
+  <div v-scroll-spy="{allowNoActive: true, offset: 130, time: 200, steps: 30}">
     <div id="douga">
         <douga></douga>
     </div>

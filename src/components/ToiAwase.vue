@@ -1,7 +1,7 @@
 <template>
-<div class="container-fluid mx-0 my-5">
+<div class="container-fluid mx-0">
     <div class="row">
-        <div class="mb-5 mt-5">
+        <div class="mt-5">
             <base-title :title="title" class="my-3"></base-title>
             
             <form class="form" @submit.prevent="sendEmail" :class="{'form-mobile': screenMode === 'mobile'}">
@@ -21,7 +21,7 @@
                         :error="!nameIsValid"
                     >
                         <template v-slot:error>
-                            お名前を入力してください！
+                            お名前を入力してください。
                         </template>
                     </q-input>
                 </div>
@@ -42,7 +42,7 @@
                         :error="!emailIsValid"
                     >
                         <template v-slot:error>
-                            正しいアドレスを入力してください！
+                            正しいアドレスを入力してください。
                         </template>
                     </q-input>
                 </div>
@@ -62,7 +62,7 @@
                         :error="!messageIsValid"
                     >
                         <template v-slot:error>
-                            お問い合わせの内容を入力してください！
+                            お問い合わせの内容を入力してください。
                         </template>
                     </q-input>
                 
