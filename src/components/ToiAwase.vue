@@ -1,7 +1,7 @@
 <template>
-<div class="container-fluid mx-0 my-5">
+<div class="container-fluid mx-0">
     <div class="row">
-        <div class="mb-5 mt-5">
+        <div class="mt-5">
             <base-title :title="title" class="my-3"></base-title>
             
             <form class="form" @submit.prevent="sendEmail" :class="{'form-mobile': screenMode === 'mobile'}">
