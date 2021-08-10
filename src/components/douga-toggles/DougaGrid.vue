@@ -3,16 +3,18 @@
         <douga-card class="col-lg-6 col-md-6 col-sm-6 col-xs-12"
         v-for="(mama, index) in dougaMama"
         :key="index"
-        :id="mama.id"
+        :title="mama.title"
         :clip="mama.clip"
+        :description="mama.description"
         ></douga-card>
     </div>
     <div class="row clipGrid" v-else>
         <douga-card class="col-lg-6 col-md-6 col-sm-6 col-xs-12"
         v-for="(mama, index) in shortDougaMamaList"
         :key="index"
-        :id="mama.id"
+        :title="mama.title"
         :clip="mama.clip"
+        :description="mama.description"
         ></douga-card>
     </div>
     <toggle-more @toggle-more="toggleMore" :moreClicked="moreClicked"></toggle-more>

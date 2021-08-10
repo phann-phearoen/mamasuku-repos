@@ -37,7 +37,7 @@
         no-error-icon 
         :error="date1.timeStart.isValid===false"
         @focus="validateTimeStart"
-        label="開始時刻"
+        label="始時間"
         >
           <template v-slot:append>
             <q-icon name="access_time" class="cursor-pointer">
@@ -65,7 +65,7 @@
         no-error-icon 
         :error="date1.timeEnd.isValid===false"
         @focus="validateTimeEnd"
-        label="終了時刻"
+        label="終時間"
         >
           <template v-slot:append>
             <q-icon name="access_time" class="cursor-pointer">
@@ -112,7 +112,7 @@
 
         <q-input outlined 
         v-model="date2.timeStart.value" mask="time" :rules="['time']" 
-        no-error-icon label="開始時刻"
+        no-error-icon label="始時間"
         @focus="validateTimeStart2"
         >
           <template v-slot:append>
@@ -136,7 +136,7 @@
 
         <q-input outlined 
         v-model="date2.timeEnd.value" mask="time" :rules="['time']" 
-        no-error-icon label="終了時刻"
+        no-error-icon label="終時間"
         :error="date2.timeEnd.isValid===false"
         @focus="validateTimeEnd2"
         >
@@ -184,7 +184,7 @@
 
         <q-input outlined 
         v-model="date3.timeStart.value" mask="time" :rules="['time']" 
-        no-error-icon label="開始時刻"
+        no-error-icon label="始時間"
         :error="date3.timeStart.isValid===false"
         @focus="validateTimeStart3"
         >
@@ -209,7 +209,7 @@
 
         <q-input outlined 
         v-model="date3.timeEnd.value" mask="time" :rules="['time']" 
-        no-error-icon label="終了時刻"
+        no-error-icon label="終時間"
         :error="date3.timeEnd.isValid===false"
         @focus="validateTimeEnd3"
         >

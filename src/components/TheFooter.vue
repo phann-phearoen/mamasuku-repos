@@ -25,7 +25,7 @@
           </div>
           
           <div class="text-center p-3 text-light copyright" >
-            Copyright © 2016 - 2021 WANNAGROW Inc. All Rights Reserved
+            Copyright © 2016 - 2020 WANNAGROW Inc. All Rights Reserved
           </div> 
 
       </footer>
