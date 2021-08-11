@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid px-0 my-5">
+    <div class="container-fluid my-5">
         <div class="row">
             <div class="col-12 px-0">
                 <normal v-if="screenMode === 'normal'">

@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid px-0 my-5">
+    <div class="container-fluid my-5">
         <div class="column items-center">
             <q-btn type="submit" unelevated rounded 
                 class="items-center" 

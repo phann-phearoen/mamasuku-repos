@@ -1,5 +1,5 @@
 <template>
-<div class="container-fluid px-0">
+<div class="container-fluid">
     <div class="row">
         <div class="col-12 inner px-0">
             <img src="../assets/TOP.jpg" class="img-fluid" alt="TOP">

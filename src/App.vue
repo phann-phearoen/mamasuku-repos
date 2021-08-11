@@ -7,7 +7,9 @@
         </button>
 
       
-        <router-link class="navbar-brand" to="/" :class="{'ml': screenMode === 'normal'}">
+        <router-link class="navbar-brand" to="/" 
+        :style="{ marginLeft: marginLeft + 'em'}"
+        >
           <img class="img-fluid logo" 
           :class="{'logo-mobile': screenMode === 'mobile'}" 
           src="./assets/logo.png" alt="logo"
@@ -30,11 +32,12 @@
         </div>
 
       </div>
-  </nav>
+  </nav> 
   
   <router-view></router-view>
-  
+
   <the-footer></the-footer>
+
 </div>
 
 </template>
@@ -48,6 +51,7 @@ export default {
     return {
       screenMode: null,
       screenWidth: 0,
+      marginLeft: '',
     }
   },
   methods: {
@@ -66,7 +70,15 @@ export default {
     }
     else
         this.screenMode = 'mobile';
-    }
+
+    if(val > 1025)
+      this.marginLeft = 9;
+    else if(val > 768) 
+      this.marginLeft = 3;
+    else
+      this.marginLeft = 0;
+    },
+    
   },
 
   created() {
@@ -80,12 +92,13 @@ export default {
 </script>
 
 <style scoped>
+
 .custom-active{
 font-weight: 600;
 }
 .root{
   margin-bottom: 190px;
-  margin-right: 0;
+  min-width: 100vw;
 }
 @media (max-width: 100vw) {
   .navbar-collapse
@@ -102,9 +115,15 @@ font-weight: 600;
 .mr{
   margin-right: 9em;
 }
-.ml{ 
+/* .ml{ 
   margin-left: 9em;
 }
+.ml-ipad{
+  margin-left: 0;
+}
+.ml-ipadpro{
+  margin-left: 5em;
+} */
 .nav-link{
   font-size: 1em;
   font-family: 'M PLUS Rounded 1c', sans-serif;
