@@ -30,12 +30,12 @@ const router = createRouter({
 
     ],
     scrollBehavior(to, from, savedPosition) {
-        console.log(to, from);
-        if(savedPosition) {
-            return savedPosition;
+        if (savedPosition) {
+          return savedPosition
+        } else {
+          return { top: 0 }
         }
-        return { left: 0, top: 0}
-    }
+    },
 });
 
 const app = createApp(App).use(Quasar, quasarUserOptions);
