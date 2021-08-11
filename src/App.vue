@@ -7,13 +7,13 @@
         </button>
 
       
-        <router-link class="navbar-brand" to="/" 
+        <a class="navbar-brand"
         :style="{ marginLeft: marginLeft + 'em'}"
         >
           <img class="img-fluid logo" 
           :class="{'logo-mobile': screenMode === 'mobile'}" 
           src="./assets/logo.png" alt="logo"
-        ></router-link>
+        ></a>
       
         <div class="collapse navbar-collapse" id="theNavbar">
           <ul class="navbar-nav ms-auto mt-4" :class="{mr: screenMode === 'normal'}" 
