@@ -163,10 +163,6 @@ export default {
 </script>
 
 <style>
-.test{
-    height: 15px;
-    background-color: grey;
-}
 
 .btnMore{
     width: 20em;
