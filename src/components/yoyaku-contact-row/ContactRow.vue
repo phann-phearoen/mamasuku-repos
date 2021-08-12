@@ -19,7 +19,7 @@
               <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
                   <q-date v-model="date1.day.value">
                   <div class="row items-center justify-end">
-                      <q-btn v-close-popup label="Close" color="primary" flat />
+                      <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
                   </q-date>
               </q-popup-proxy>
@@ -44,7 +44,7 @@
               <q-popup-proxy transition-show="scale" transition-hide="scale">
                 <q-time v-model="date1.timeStart.value" >
                   <div class="row items-center justify-end">
-                    <q-btn v-close-popup label="Close" color="primary" flat />
+                    <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
                 </q-time>
               </q-popup-proxy>
@@ -72,7 +72,7 @@
               <q-popup-proxy transition-show="scale" transition-hide="scale">
                 <q-time v-model="date1.timeEnd.value">
                   <div class="row items-center justify-end">
-                    <q-btn v-close-popup label="Close" color="primary" flat />
+                    <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
                 </q-time>
               </q-popup-proxy>
@@ -98,7 +98,7 @@
               <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
                   <q-date v-model="date2.day">
                   <div class="row items-center justify-end">
-                      <q-btn v-close-popup label="Close" color="primary" flat />
+                      <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
                   </q-date>
               </q-popup-proxy>
@@ -120,7 +120,7 @@
               <q-popup-proxy transition-show="scale" transition-hide="scale">
                 <q-time v-model="date2.timeStart.value" >
                   <div class="row items-center justify-end">
-                    <q-btn v-close-popup label="Close" color="primary" flat />
+                    <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
                 </q-time>
               </q-popup-proxy>
@@ -145,7 +145,7 @@
               <q-popup-proxy transition-show="scale" transition-hide="scale">
                 <q-time v-model="date2.timeEnd.value">
                   <div class="row items-center justify-end">
-                    <q-btn v-close-popup label="Close" color="primary" flat />
+                    <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
                 </q-time>
               </q-popup-proxy>
@@ -171,7 +171,7 @@
               <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
                   <q-date v-model="date3.day">
                   <div class="row items-center justify-end">
-                      <q-btn v-close-popup label="Close" color="primary" flat />
+                      <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
                   </q-date>
               </q-popup-proxy>
@@ -193,7 +193,7 @@
               <q-popup-proxy transition-show="scale" transition-hide="scale">
                 <q-time v-model="date3.timeStart.value" >
                   <div class="row items-center justify-end">
-                    <q-btn v-close-popup label="Close" color="primary" flat />
+                    <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
                 </q-time>
               </q-popup-proxy>
@@ -218,7 +218,7 @@
               <q-popup-proxy transition-show="scale" transition-hide="scale">
                 <q-time v-model="date3.timeEnd.value">
                   <div class="row items-center justify-end">
-                    <q-btn v-close-popup label="Close" color="primary" flat />
+                    <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
                 </q-time>
               </q-popup-proxy>
