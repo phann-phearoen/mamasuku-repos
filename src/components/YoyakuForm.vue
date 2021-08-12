@@ -89,7 +89,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 ms-auto">
+                    <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 mx-auto">
                         <div class="row warning" style="color: red">{{ warn1 }}</div>
                         <div class="row warning">{{ warn2 }}</div>
                     </div>
