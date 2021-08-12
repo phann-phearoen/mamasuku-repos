@@ -6,6 +6,7 @@ import App from './App.vue'
 import store from './store/index';
 import { Quasar } from 'quasar';
 import quasarUserOptions from './quasar-user-options';
+import langJa from 'quasar/lang/ja'
 
 import BaseTitle from './components/base/BaseTitle.vue';
 import TheFooter from './components/TheFooter.vue';
@@ -38,7 +39,9 @@ const router = createRouter({
     },
 });
 
-const app = createApp(App).use(Quasar, quasarUserOptions);
+const app = createApp(App).use(Quasar, {
+  lang: langJa
+}, quasarUserOptions);
 
 app.component('base-title', BaseTitle);
 app.component('the-footer', TheFooter);
