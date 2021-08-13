@@ -60,7 +60,7 @@ export default {
     color: grey;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     font-weight: 600;
-    font-size: 1em;
+    font-size: .89em;
 }
 .parts03-mobile{
     width: 300px;

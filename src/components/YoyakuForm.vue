@@ -1,104 +1,106 @@
 <template>
 
 <div class="contact">
-    <base-title :title="'ご予約フォーム'" class="q-mb-md"></base-title>
-
-    <form @submit.prevent="submitForm">
-        <form-slot :label="'お名前'">
-            <template v-slot:required><span style="color: red" v-if="!name.isValid">（必須）</span></template>
+    <div class="container">
+        <base-title :title="'ご予約フォーム'" class="q-mb-md"></base-title>
+    </div>
+        <form @submit.prevent="submitForm">
+            <form-slot :label="'お名前'">
+                <template v-slot:required><span style="color: red" v-if="!name.isValid">（必須）</span></template>
+                
+                <q-input :class="[{'ml-mobile':screenMode==='mobile'}, 'ml']"
+                    outlined
+                    v-model.trim="name.value"
+                    no-error-icon
+                    bottom-slots
+                    @focus="nameValidation('pending')"
+                    @keyup="validateName"
+                    @blur="validateName"
+                    :error="!name.isValid"
+                >
+                    <template v-slot:error>
+                        お名前を入力してください。
+                    </template>
+                </q-input>
             
-            <q-input :class="[{'ml-mobile':screenMode==='mobile'}, 'ml']"
+            </form-slot>
+
+            <form-slot :label="'電話番号'">
+                <template v-slot:required><span style="color: red" v-if="!phone.isValid">（必須）</span></template>
+                
+                <q-input :class="[{'ml-mobile':screenMode==='mobile'}, 'ml']"
+                    outlined
+                    no-error-icon
+                    bottom-slots
+                    v-model.trim="phone.value" 
+                    @focus="phoneValidation('pending')" 
+                    @keyup="validatePhone"
+                    @blur="validatePhone"
+                    :error="!phone.isValid"
+                >
+                    <template v-slot:error>
+                        正しい番号を入力してください。
+                    </template>
+                </q-input>
+            
+            </form-slot>
+
+            <form-slot :label="'メールアドレス'">
+                <template v-slot:required><span style="color: red" v-if="!email.isValid">（必須）</span></template>
+                
+                <q-input :class="[{'ml-mobile':screenMode==='mobile'}, 'ml']"
+                    outlined
+                    no-error-icon
+                    bottom-slots
+                    v-model.trim="email.value" 
+                    @focus="emailValidation('pending')"
+                    @blur="validateEmail"
+                    :error="!email.isValid"
+                >
+                    <template v-slot:error>
+                        正しいアドレスを入力してください。
+                    </template>
+                </q-input>
+
+            </form-slot>
+
+            <form-slot :label="'ご希望の日時'">
+                <template v-slot:required><span style="color: red" v-if="!dateIsValid">（必須）</span></template>
+                
+                <contact-row></contact-row>
+
+            </form-slot>
+
+            <form-slot :label="'その他ご質問等'" style="border-bottom: solid 1px grey">
+                <template v-slot:required></template>
+                <q-input 
+                :class="[{'ml-mobile':screenMode==='mobile'}, 'ml']"
+                type="textarea"
                 outlined
-                v-model.trim="name.value"
-                no-error-icon
-                bottom-slots
-                @focus="nameValidation('pending')"
-                @keyup="validateName"
-                @blur="validateName"
-                :error="!name.isValid"
-            >
-                <template v-slot:error>
-                    お名前を入力してください。
-                </template>
-            </q-input>
-        
-        </form-slot>
-
-        <form-slot :label="'電話番号'">
-            <template v-slot:required><span style="color: red" v-if="!phone.isValid">（必須）</span></template>
-            
-            <q-input :class="[{'ml-mobile':screenMode==='mobile'}, 'ml']"
-                outlined
-                no-error-icon
-                bottom-slots
-                v-model.trim="phone.value" 
-                @focus="phoneValidation('pending')" 
-                @keyup="validatePhone"
-                @blur="validatePhone"
-                :error="!phone.isValid"
-            >
-                <template v-slot:error>
-                    正しい番号を入力してください。
-                </template>
-            </q-input>
-        
-        </form-slot>
-
-        <form-slot :label="'メールアドレス'">
-            <template v-slot:required><span style="color: red" v-if="!email.isValid">（必須）</span></template>
-            
-            <q-input :class="[{'ml-mobile':screenMode==='mobile'}, 'ml']"
-                outlined
-                no-error-icon
-                bottom-slots
-                v-model.trim="email.value" 
-                @focus="emailValidation('pending')"
-                @blur="validateEmail"
-                :error="!email.isValid"
-            >
-                <template v-slot:error>
-                    正しいアドレスを入力してください。
-                </template>
-            </q-input>
-
-        </form-slot>
-
-        <form-slot :label="'ご希望の日時'">
-            <template v-slot:required><span style="color: red" v-if="!dateIsValid">（必須）</span></template>
-            
-            <contact-row></contact-row>
-
-        </form-slot>
-
-        <form-slot :label="'その他ご質問等'" style="border-bottom: solid 1px grey">
-            <template v-slot:required></template>
-            <q-input 
-            :class="[{'ml-mobile':screenMode==='mobile'}, 'ml']"
-            type="textarea"
-            outlined
-            v-model.trim="question" 
-            ></q-input>
-        </form-slot>
-        
-        <div class="container">
-            <div class="row my-4">
-                <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5 ms-5">
-                    <div class="d-flex align-items-center badge rounded-pill py-2">
-                        <div class="mx-auto warn">ご注意ください！</div>
+                v-model.trim="question" 
+                ></q-input>
+            </form-slot>
+            <div class="container">
+                <div class="row my-4">
+                    <div class="col-lg-3 col-md-3 col-sm-4 col-xs-5 ms-5">
+                        <div class="d-flex align-items-center badge rounded-pill py-2">
+                            <div class="mx-auto warn">ご注意ください！</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 mx-auto">
+                        <div class="row warning" style="color: red">{{ warn1 }}</div>
+                        <div class="row warning">{{ warn2 }}</div>
                     </div>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-lg-11 col-md-11 col-sm-11 col-xs-11 ms-auto">
-                    <div class="row warning" style="color: red">{{ warn1 }}</div>
-                    <div class="row warning">{{ warn2 }}</div>
-                </div>
+
+            <div class="container">
+                <btn-send></btn-send>
             </div>
-        </div>
 
-        <btn-send></btn-send>
-
-    </form>
+        </form>
 </div>
     
 </template>

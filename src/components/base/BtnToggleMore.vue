@@ -1,5 +1,5 @@
 <template>
-    <div class="container-fluid px-0 my-5">
+    <div class="container-fluid px-0 my-4">
         <div class="column items-center">
             <q-btn type="submit" unelevated rounded class="items-center" :class="{'button-mobile': screenMode === 'mobile',
             'button-tablet': screenMode === 'tablet', 'button-normal': screenMode === 'normal'}" label="もっと見る" 

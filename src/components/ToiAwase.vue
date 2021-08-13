@@ -1,11 +1,13 @@
 <template>
-<div class="container-fluid mx-0">
+<div class="container-fluid">
     <div class="row">
         <div class="mt-5">
-            <base-title :title="title" class="my-3"></base-title>
+            <div class="container">
+                <base-title :title="title" class="my-3"></base-title>
+            </div>
             
             <form class="form" @submit.prevent="sendEmail" :class="{'form-mobile': screenMode === 'mobile'}">
-                <div>
+                
                 <label class="ms-4 label" for="name">お名前</label><span style="color: red" v-if="name === ''">（必須）</span>
                 
                 <div class="ms-4 q-mb-md">
@@ -25,8 +27,7 @@
                         </template>
                     </q-input>
                 </div>
-                </div> 
-
+                
                 <label class="ms-4 label" for="email">アドレス</label><span style="color: red" v-if="email === ''">（必須）</span>
 
                 <div class="ms-4 q-mb-md">
@@ -80,13 +81,11 @@
 
 <script>
 import emailjs from 'emailjs-com';
-import BtnSend from './base/BtnSend.vue';
 
 import{ init } from 'emailjs-com';
 init("user_elZx1Ntipum7lqX2uA316");
 
 export default {
-  components: { BtnSend },
     data() {
         return {
             title: 'お問い合わせ',
@@ -164,6 +163,7 @@ export default {
 </script>
 
 <style>
+
 .btnMore{
     width: 20em;
     height: 1.9em;

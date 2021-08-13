@@ -1,6 +1,6 @@
 <template>
-  <div class="container-fluid px-0">
-    <div class="row footer">
+  <div class="container-fluid">
+    <div class="footer">
       <footer>
           <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12 ms-auto">
 
