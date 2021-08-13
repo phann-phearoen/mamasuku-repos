@@ -3,10 +3,9 @@
         <div class="row">
             <div class="wrapper">
                 <img class="img-fluid img-fluidNormal" src="../../assets/parts01.png" alt="part01">
-                <p class="plus-text">{{ welcomeTexts }}</p>
+                <p class="plus-text" :style="{ top: top + 'vw'}">{{ welcomeTexts }}</p>
             </div>
         </div>
-
         <slot></slot>
         
     </div>
@@ -19,7 +18,41 @@ export default {
         welcomeTexts() {
             return this.$store.getters.welcomeTexts;
         },
-    }
+    },
+    data() {
+        return {
+            screenWidth: 0,
+            top: 0,
+        }
+    },
+    methods: {
+        handleResize() {
+            this.screenWidth = window.innerWidth;
+        },
+        toggleMore() {
+            this.moreClicked = !this.moreClicked
+        },
+     },
+    watch: {
+        screenWidth(val){
+            if(val > 1600)
+                this.top = 10.5;
+            else if(val > 1400)
+                this.top = 9.5;
+            else if(val > 1200)
+                this.top = 8.5;
+            else
+                this.top = 7;
+        }
+    },
+
+    created() {
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize();
+    },
+    unmounted() {
+        window.removeEventListener('resize', this.handleResize);
+    },
 }
 </script>
 
@@ -43,7 +76,6 @@ export default {
 }
 .plus-text{
     left: 12vw;
-    top: 8vw;
     position: absolute;
     width: 60%;
     font-size: 1.3vw;

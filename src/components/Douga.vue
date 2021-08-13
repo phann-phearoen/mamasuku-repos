@@ -2,6 +2,7 @@
     <div class="container-fluid my-5">
         <div class="row">
             <div class="col-12 px-0">
+
                 <normal v-if="screenMode === 'normal'">
                     <div class="row"><base-title :title="title"></base-title></div>
                     <douga-grid ></douga-grid>
@@ -50,14 +51,12 @@ export default {
      },
     watch: {
         screenWidth(val){
-        if(val > 960){
-            this.screenMode = 'normal';
-        }
-        else if(val > 500){
-            this.screenMode = 'tablet';
-        }
-        else
-            this.screenMode = 'mobile';
+            if(val < 500)
+                this.screenMode = 'mobile';
+            else if(val < 960)
+                this.screenMode = 'tablet';
+            else
+                this.screenMode = 'normal';
         }
     },
 
