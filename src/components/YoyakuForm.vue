@@ -13,6 +13,7 @@
                     v-model.trim="name.value"
                     no-error-icon
                     bottom-slots
+                    label="お名前を入力してください"
                     @focus="nameValidation('pending')"
                     @keyup="validateName"
                     @blur="validateName"
@@ -33,6 +34,7 @@
                     no-error-icon
                     bottom-slots
                     v-model.trim="phone.value" 
+                    label="電話番号を入力してください ( 例 : 070-1234-5678)"
                     @focus="phoneValidation('pending')" 
                     @keyup="validatePhone"
                     @blur="validatePhone"
@@ -53,6 +55,7 @@
                     no-error-icon
                     bottom-slots
                     v-model.trim="email.value" 
+                    label="メールアドレスを入力してください"
                     @focus="emailValidation('pending')"
                     @blur="validateEmail"
                     :error="!email.isValid"
@@ -75,6 +78,7 @@
                 <template v-slot:required></template>
                 <q-input 
                 :class="[{'ml-mobile':screenMode==='mobile'}, 'ml']"
+                label="その他ご質問等を入力してください"
                 type="textarea"
                 outlined
                 v-model.trim="question" 
