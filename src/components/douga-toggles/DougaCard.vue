@@ -1,21 +1,17 @@
 <template>
   <div class="q-pa-md">
     <q-card class="my-card">
-      <q-card-section>
+      <q-card-section style="height: 90px">
         <div class="text-h6" :class="{'text-h6-mobile': screenWidth < 500 }">{{ title }}</div>
       </q-card-section>
 
-      <div class="q-video">
+      <div class="q-video"> 
         <iframe
           :src="clip"
           frameborder="0"
           allowfullscreen
         />
       </div>
-
-      <q-card-section class="q-pt-none" :class="{'des-mobile': screenWidth < 500}">
-        {{ description }}
-      </q-card-section>
     </q-card>
   </div>
 </template>
@@ -28,7 +24,6 @@ export default {
         screenMode: null,
         screenWidth: 0,
         title: '',
-        description: ''
         }
     },
     beforeCreate() {
@@ -43,7 +38,6 @@ export default {
       ).then(
         (data) => {
           this.title = data.items[0].snippet.title;
-          this.description = data.items[0].snippet.description;
         }).catch((error) => {
           console.log(error);
       });
