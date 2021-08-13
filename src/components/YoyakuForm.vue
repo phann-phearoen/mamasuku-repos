@@ -32,7 +32,7 @@
                     outlined
                     no-error-icon
                     bottom-slots
-                    v-model.trim="phone.value"
+                    v-model.trim="phone.value" 
                     label="例：070-1234-5678"
                     @focus="phoneValidation('pending')" 
                     @keyup="validatePhone"
