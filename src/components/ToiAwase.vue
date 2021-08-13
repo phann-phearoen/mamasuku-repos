@@ -63,7 +63,7 @@
                         :error="!messageIsValid"
                     >
                         <template v-slot:error>
-                            お問い合わせの内容を入力してください。
+                            お問い合わせ内容を入力してください。
                         </template>
                     </q-input>
                 
