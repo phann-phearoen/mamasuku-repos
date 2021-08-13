@@ -42,8 +42,8 @@ export default {
     height: auto;
 }
 .plus-text{
-    left: 19%;
-    top: 30%;
+    left: 12vw;
+    top: 8vw;
     position: absolute;
     width: 60%;
     font-size: 1.3vw;
