@@ -9,6 +9,7 @@
                 <template v-slot:required><span style="color: red" v-if="!name.isValid">（必須）</span></template>
                 
                 <q-input :class="[{'ml-mobile':screenMode==='mobile'}, 'ml']"
+                    name="user_name"
                     outlined
                     v-model.trim="name.value"
                     no-error-icon
@@ -30,6 +31,7 @@
                 <template v-slot:required><span style="color: red" v-if="!phone.isValid">（必須）</span></template>
                 
                 <q-input :class="[{'ml-mobile':screenMode==='mobile'}, 'ml']"
+                    name="user_phone"
                     outlined
                     no-error-icon
                     bottom-slots
@@ -51,6 +53,7 @@
                 <template v-slot:required><span style="color: red" v-if="!email.isValid">（必須）</span></template>
                 
                 <q-input :class="[{'ml-mobile':screenMode==='mobile'}, 'ml']"
+                    name="user_mail"
                     outlined
                     no-error-icon
                     bottom-slots
@@ -77,6 +80,7 @@
             <form-slot :label="'その他ご質問等'" style="border-bottom: solid 1px grey">
                 <template v-slot:required></template>
                 <q-input 
+                name="inquiry"
                 :class="[{'ml-mobile':screenMode==='mobile'}, 'ml']"
                 label="その他ご質問等を入力してください"
                 type="textarea"
@@ -113,6 +117,10 @@
 import BtnSend from './base/BtnSend.vue';
 import FormSlot from './base/FormSlot.vue';
 import ContactRow from './yoyaku-contact-row/ContactRow.vue';
+
+import emailjs from 'emailjs-com';
+import{ init } from 'emailjs-com';
+init("user_ffqgAlHexE8z9VT8h4DXL");
 
 export default {
     components: { FormSlot, BtnSend, ContactRow },
@@ -223,15 +231,19 @@ export default {
         setDateValidation() {
             this.$store.commit('yoyakuInfo/setDateIsValid');
         },
-        submitForm() {
+        submitForm(e) {
             if(this.name.isValid===true && this.phone.isValid===true && this.email.isValid===true && this.date1){
-                try{
-                    /*form all fields as an object, ready to send*/
-                    alert('success');
-                }
-                catch{
-                    /*some action*/
-                }
+                
+                emailjs.sendForm('service-mamasuku', 'template-yoyaku', e.target, 'user_ffqgAlHexE8z9VT8h4DXL')
+                    .then((result) => {
+                        console.log('SUCCESS!', result.status, result.text);
+                        alert('Your mail has been sent!');
+                    }, (error) => {
+                        console.log('FAILED...', error);
+                });
+                
+                e.target.reset();
+                
             }
             else{
                 this.validateName();
