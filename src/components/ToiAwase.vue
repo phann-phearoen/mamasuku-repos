@@ -119,7 +119,7 @@ export default {
 
         sendEmail (e) {
             if(this.nameIsValid === true && this.emailIsValid === true && this.messageIsValid === true){
-                emailjs.sendForm('service_fGmail', 'template_lo25zih', e.target, 'user_elZx1Ntipum7lqX2uA316')
+                emailjs.sendForm('service-mamasuku', 'template-toiawase', e.target, 'user_elZx1Ntipum7lqX2uA316')
                     .then((result) => {
                         console.log('SUCCESS!', result.status, result.text);
                         alert('Your mail has been sent!');
