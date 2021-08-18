@@ -83,7 +83,7 @@
 import emailjs from 'emailjs-com';
 
 import{ init } from 'emailjs-com';
-init("user_elZx1Ntipum7lqX2uA316");
+init("user_VtX1Olx5DpcWVsjca1cFM");
 
 export default {
     data() {
@@ -119,7 +119,7 @@ export default {
 
         sendEmail (e) {
             if(this.nameIsValid === true && this.emailIsValid === true && this.messageIsValid === true){
-                emailjs.sendForm('service_fGmail', 'template_lo25zih', e.target, 'user_elZx1Ntipum7lqX2uA316')
+                emailjs.sendForm('service-mamasuku', 'template-toiawase', e.target, 'user_VtX1Olx5DpcWVsjca1cFM')
                     .then((result) => {
                         console.log('SUCCESS!', result.status, result.text);
                         alert('Your mail has been sent!');

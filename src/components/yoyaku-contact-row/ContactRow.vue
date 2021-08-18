@@ -7,6 +7,7 @@
       <div class="col-lg-3 col-md-4">
 
         <q-input outlined 
+        name="date1"
         v-model="date1.day.value" mask="date" 
         :rules="['date']" 
         no-error-icon 
@@ -17,7 +18,7 @@
           <template v-slot:append>
               <q-icon name="event" class="cursor-pointer">
               <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-                  <q-date v-model="date1.day.value">
+                  <q-date v-model="date1.day.value" name="date1">
                   <div class="row items-center justify-end">
                       <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
@@ -31,6 +32,7 @@
       <div class="col-lg-2 col-md-3">
 
         <q-input outlined 
+        name="time_start1"
         v-model="date1.timeStart.value" 
         mask="time" 
         :rules="['time']" 
@@ -42,7 +44,7 @@
           <template v-slot:append>
             <q-icon name="access_time" class="cursor-pointer">
               <q-popup-proxy transition-show="scale" transition-hide="scale">
-                <q-time v-model="date1.timeStart.value" >
+                <q-time v-model="date1.timeStart.value" name="time_start1">
                   <div class="row items-center justify-end">
                     <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
@@ -59,6 +61,7 @@
       <div class="col-lg-2 col-md-3">
 
         <q-input outlined 
+        name="time_end1"
         v-model="date1.timeEnd.value" 
         mask="time" 
         :rules="['time']" 
@@ -70,7 +73,7 @@
           <template v-slot:append>
             <q-icon name="access_time" class="cursor-pointer">
               <q-popup-proxy transition-show="scale" transition-hide="scale">
-                <q-time v-model="date1.timeEnd.value">
+                <q-time v-model="date1.timeEnd.value" name="time_end1">
                   <div class="row items-center justify-end">
                     <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
@@ -92,11 +95,15 @@
       </div>
       <div class="col-lg-3 col-md-4">
 
-        <q-input outlined v-model="date2.day" mask="date" :rules="['date']" no-error-icon bottom-slots label="年月日">
+        <q-input outlined 
+        name="date2"
+        v-model="date2.day" 
+        mask="date" :rules="['date']" 
+        no-error-icon bottom-slots label="年月日">
           <template v-slot:append>
               <q-icon name="event" class="cursor-pointer">
               <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-                  <q-date v-model="date2.day">
+                  <q-date v-model="date2.day" name="date2">
                   <div class="row items-center justify-end">
                       <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
@@ -111,6 +118,7 @@
       <div class="col-lg-2 col-md-3">
 
         <q-input outlined 
+        name="time_start2"
         v-model="date2.timeStart.value" mask="time" :rules="['time']" 
         no-error-icon label="開始時刻"
         @focus="validateTimeStart2"
@@ -118,7 +126,7 @@
           <template v-slot:append>
             <q-icon name="access_time" class="cursor-pointer">
               <q-popup-proxy transition-show="scale" transition-hide="scale">
-                <q-time v-model="date2.timeStart.value" >
+                <q-time v-model="date2.timeStart.value" name="time_start2">
                   <div class="row items-center justify-end">
                     <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
@@ -135,6 +143,7 @@
       <div class="col-lg-2 col-md-3">
 
         <q-input outlined 
+        name="time_end2"
         v-model="date2.timeEnd.value" mask="time" :rules="['time']" 
         no-error-icon label="終了時刻"
         :error="date2.timeEnd.isValid===false"
@@ -143,7 +152,7 @@
           <template v-slot:append>
             <q-icon name="access_time" class="cursor-pointer">
               <q-popup-proxy transition-show="scale" transition-hide="scale">
-                <q-time v-model="date2.timeEnd.value">
+                <q-time v-model="date2.timeEnd.value" name="time_end2">
                   <div class="row items-center justify-end">
                     <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
@@ -165,11 +174,15 @@
       </div>
       <div class="col-lg-3 col-md-4">
 
-        <q-input outlined v-model="date3.day" mask="date" :rules="['date']" no-error-icon bottom-slots label="年月日">
+        <q-input outlined 
+        name="date3"
+        v-model="date3.day" 
+        mask="date" :rules="['date']" 
+        no-error-icon bottom-slots label="年月日">
           <template v-slot:append>
               <q-icon name="event" class="cursor-pointer">
               <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-                  <q-date v-model="date3.day">
+                  <q-date v-model="date3.day" name="date3">
                   <div class="row items-center justify-end">
                       <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
@@ -183,6 +196,7 @@
       <div class="col-lg-2 col-md-3">
 
         <q-input outlined 
+        name="time_start3"
         v-model="date3.timeStart.value" mask="time" :rules="['time']" 
         no-error-icon label="開始時刻"
         :error="date3.timeStart.isValid===false"
@@ -191,7 +205,7 @@
           <template v-slot:append>
             <q-icon name="access_time" class="cursor-pointer">
               <q-popup-proxy transition-show="scale" transition-hide="scale">
-                <q-time v-model="date3.timeStart.value" >
+                <q-time v-model="date3.timeStart.value" name="time_start3">
                   <div class="row items-center justify-end">
                     <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
@@ -208,6 +222,7 @@
       <div class="col-lg-2 col-md-3">
 
         <q-input outlined 
+        name="time_end3"
         v-model="date3.timeEnd.value" mask="time" :rules="['time']" 
         no-error-icon label="終了時刻"
         :error="date3.timeEnd.isValid===false"
@@ -216,7 +231,7 @@
           <template v-slot:append>
             <q-icon name="access_time" class="cursor-pointer">
               <q-popup-proxy transition-show="scale" transition-hide="scale">
-                <q-time v-model="date3.timeEnd.value">
+                <q-time v-model="date3.timeEnd.value" name="time_end3">
                   <div class="row items-center justify-end">
                     <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
