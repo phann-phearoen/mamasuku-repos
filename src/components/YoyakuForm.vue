@@ -120,7 +120,7 @@ import ContactRow from './yoyaku-contact-row/ContactRow.vue';
 
 import emailjs from 'emailjs-com';
 import{ init } from 'emailjs-com';
-init("user_ffqgAlHexE8z9VT8h4DXL");
+init("user_VtX1Olx5DpcWVsjca1cFM");
 
 export default {
     components: { FormSlot, BtnSend, ContactRow },
@@ -234,7 +234,7 @@ export default {
         submitForm(e) {
             if(this.name.isValid===true && this.phone.isValid===true && this.email.isValid===true && this.date1){
                 
-                emailjs.sendForm('service-mamasuku', 'template-yoyaku', e.target, 'user_ffqgAlHexE8z9VT8h4DXL')
+                emailjs.sendForm('service-mamasuku', 'template-yoyaku', e.target, 'user_VtX1Olx5DpcWVsjca1cFM')
                     .then((result) => {
                         console.log('SUCCESS!', result.status, result.text);
                         alert('Your mail has been sent!');
