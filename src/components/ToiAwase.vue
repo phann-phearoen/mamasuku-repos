@@ -1,4 +1,20 @@
 <template>
+<q-dialog v-model="alert">
+      <q-card style="width: 300px">
+        <q-card-section>
+          <div class="text-h6 alert">アラート</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none alert">
+          メールを送信しました
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat label="閉じる" color="primary" v-close-popup />
+        </q-card-actions>
+      </q-card>
+</q-dialog>
+
 <div class="container-fluid">
     <div class="row">
         <div class="mt-5">
@@ -94,6 +110,7 @@ export default {
             message: '', messageIsValid: 'pending',
             screenMode: null,
             screenWidth: 0,
+            alert: false,
         }
     },
     
@@ -122,7 +139,7 @@ export default {
                 emailjs.sendForm('service-mamasuku', 'template-toiawase', e.target, 'user_VtX1Olx5DpcWVsjca1cFM')
                     .then((result) => {
                         console.log('SUCCESS!', result.status, result.text);
-                        alert('Your mail has been sent!');
+                        this.alert = true;
                     }, (error) => {
                         console.log('FAILED...', error);
                 });
@@ -163,7 +180,13 @@ export default {
 </script>
 
 <style>
-
+.alert{
+    font-family: 'M PLUS Rounded 1c', sans-serif;
+    color: grey;
+}
+.q-card__actions{
+    width: 300px;
+}
 .btnMore{
     width: 20em;
     height: 1.9em;
