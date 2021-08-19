@@ -1,11 +1,7 @@
 <template>
 <q-dialog v-model="alert">
       <q-card style="width: 300px">
-        <q-card-section>
-          <div class="text-h6 alert">アラート</div>
-        </q-card-section>
-
-        <q-card-section class="q-pt-none alert">
+        <q-card-section class="q-pt-none alert q-mt-md" >
           メールを送信しました
         </q-card-section>
 
