@@ -29,7 +29,7 @@
         </q-input>
         
       </div>
-      <div class="col-lg-2 col-md-3">
+      <div class="col-lg-3 col-md-4">
 
         <q-input outlined 
         name="time_start1"
@@ -58,7 +58,7 @@
       <div class="col column justify-center">
         <div class="row wave">～</div>
       </div>
-      <div class="col-lg-2 col-md-3">
+      <div class="col-lg-3 col-md-4">
 
         <q-input outlined 
         name="time_end1"
@@ -84,9 +84,7 @@
         </q-input>
 
       </div>
-      <div class="col-lg-2 col-md-3 column justify-center">
-          の間に開始
-      </div>
+      
   </div>
 
   <div class="row ms-auto">
@@ -115,7 +113,7 @@
         </q-input>
       
       </div>
-      <div class="col-lg-2 col-md-3">
+      <div class="col-lg-3 col-md-4">
 
         <q-input outlined 
         name="time_start2"
@@ -140,7 +138,7 @@
       <div class="col column justify-center">
         <div class="row wave">～</div>
       </div>
-      <div class="col-lg-2 col-md-3">
+      <div class="col-lg-3 col-md-4">
 
         <q-input outlined 
         name="time_end2"
@@ -163,9 +161,7 @@
         </q-input>
 
       </div>
-      <div class="col-lg-2 col-md-3 column justify-center">
-          の間に開始
-      </div>
+      
   </div>
 
   <div class="row ms-auto">
@@ -193,7 +189,7 @@
         </q-input>
     
       </div>
-      <div class="col-lg-2 col-md-3">
+      <div class="col-lg-3 col-md-4">
 
         <q-input outlined 
         name="time_start3"
@@ -219,7 +215,7 @@
       <div class="col column justify-center">
         <div class="row wave">～</div>
       </div>
-      <div class="col-lg-2 col-md-3">
+      <div class="col-lg-3 col-md-4">
 
         <q-input outlined 
         name="time_end3"
@@ -242,9 +238,7 @@
         </q-input>
 
       </div>
-      <div class="col-lg-2 col-md-3 column justify-center">
-          の間に開始
-      </div>
+      
   </div>
 </div>
 </template>
