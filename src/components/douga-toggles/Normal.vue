@@ -36,13 +36,13 @@ export default {
     watch: {
         screenWidth(val){
             if(val > 1600)
-                this.top = 10.5;
+                this.top = 9.8;
             else if(val > 1400)
-                this.top = 9.5;
+                this.top = 8.8;
             else if(val > 1200)
-                this.top = 8.5;
+                this.top = 7.8;
             else
-                this.top = 7;
+                this.top = 6.8;
         }
     },
 
@@ -79,6 +79,7 @@ export default {
     position: absolute;
     width: 60%;
     font-size: 1.3vw;
+    line-height: 200%;
     color: grey;
     font-family: 'M PLUS Rounded 1c', sans-serif;
     font-weight: 600;

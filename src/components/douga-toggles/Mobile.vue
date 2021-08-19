@@ -50,7 +50,7 @@ export default {
 }
 .plus-textMobile{
     left: 10%;
-    top: 37%;
+    top: 30%;
     position: absolute;
     width: 80%;
     font-size: .7em;
