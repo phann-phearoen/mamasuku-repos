@@ -84,7 +84,6 @@
         </q-input>
 
       </div>
-      
   </div>
 
   <div class="row ms-auto">
@@ -232,7 +231,7 @@
                     <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
                 </q-time>
-              </q-popup-proxy>
+            </q-popup-proxy>
             </q-icon>
           </template>
         </q-input>
