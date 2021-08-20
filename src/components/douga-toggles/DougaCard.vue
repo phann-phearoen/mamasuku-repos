@@ -5,7 +5,7 @@
         <div class="text-h6" :class="{'text-h6-mobile': screenWidth < 500 }">{{ title }}</div>
       </q-card-section>
 
-      <div class="q-video"> 
+      <div class="q-video" :style="{height: height + 'px'}"> 
         <iframe
           :src="clip"
           frameborder="0"
@@ -21,7 +21,7 @@ export default {
     props: ['clip', 'id'],
     data() {
         return {
-        screenMode: null,
+        height: 0,
         screenWidth: 0,
         title: '',
         }
@@ -54,10 +54,26 @@ export default {
             this.screenWidth = window.innerWidth;
         }    
     },
+    watch: {
+      screenWidth(val) {
+        if(val > 1600)
+          this.height = 300
+        else if(val > 1400)
+          this.height = 260
+        else if(val > 1200)
+          this.height = 200
+        else
+          this.height = null
+      }
+    }
 }
 </script>
 
 <style scoped>
+.h-xl{
+  height: 300px;
+}
+
 .text-h6{
    color: #eb7fa2;
    font-family: 'M PLUS Rounded 1c', sans-serif;
