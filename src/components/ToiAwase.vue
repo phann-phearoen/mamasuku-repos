@@ -6,7 +6,7 @@
         </q-card-section>
 
         <q-card-actions align="right">
-          <q-btn flat label="閉じる" color="primary" v-close-popup />
+          <q-btn flat label="閉じる" color="primary" v-close-popup @click="toTop"/>
         </q-card-actions>
       </q-card>
 </q-dialog>
@@ -133,11 +133,11 @@ export default {
         sendEmail (e) {
             if(this.nameIsValid === true && this.emailIsValid === true && this.messageIsValid === true){
                 emailjs.sendForm('service-mamasuku', 'template-toiawase', e.target, 'user_VtX1Olx5DpcWVsjca1cFM')
-                    .then((result) => {
-                        console.log('SUCCESS!', result.status, result.text);
-                        this.alert = true;
-                    }, (error) => {
-                        console.log('FAILED...', error);
+                .then((result) => {
+                    console.log('SUCCESS!', result.status, result.text);
+                    this.alert = true;
+                }, (error) => {
+                    console.log('FAILED...', error);
                 });
                 e.target.reset();
             }
@@ -147,7 +147,9 @@ export default {
                 this.validateMessage();
             }
         },
-
+        toTop() {
+            this.$router.push('/');
+        },
         handleResize() {
             this.screenWidth = window.innerWidth;
         }   

@@ -6,7 +6,7 @@
         </q-card-section>
 
         <q-card-actions align="right">
-          <q-btn flat label="閉じる" color="primary" v-close-popup />
+          <q-btn flat label="閉じる" color="primary" v-close-popup @click="toTop"/>
         </q-card-actions>
       </q-card>
 </q-dialog>
@@ -264,7 +264,9 @@ export default {
                 this.validateDate();
             }
         },
-        
+        toTop() {
+            this.$router.push('/');
+        },
         handleResize() {
             this.screenWidth = window.innerWidth;
         },
