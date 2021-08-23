@@ -1,22 +1,20 @@
 <template>
   <div class="root">
-    <div>
-      <top></top>
+
+    <top></top>
+
+    <div id="douga">
+      <douga></douga>
     </div>
 
-    <div
-      v-scroll-spy="{ allowNoActive: true, offset: 130, time: 200, steps: 30 }"
-    >
-      <div id="douga">
-        <douga></douga>
-      </div>
-      <div id="soudan">
-        <soudan></soudan>
-      </div>
-      <div id="toi-awase">
-        <toi-awase></toi-awase>
-      </div>
+    <div v-scroll-spy="{ allowNoActive: true, offset: 130, time: 200, steps: 30 }">
+
+      <soudan></soudan>
+    
+      <toi-awase></toi-awase>
+
     </div>
+
   </div>
 </template>
 
