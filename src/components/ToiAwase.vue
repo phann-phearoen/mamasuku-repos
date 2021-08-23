@@ -1,4 +1,5 @@
 <template>
+
 <q-dialog v-model="alert">
       <q-card style="width: 300px" >
         <q-card-section class="q-pt-none alert q-mt-md">
@@ -148,7 +149,9 @@ export default {
             }
         },
         toTop() {
-            this.$router.push('/');
+            setTimeout(() => {
+                window.scrollTo({ top: 0, behavior: 'smooth'})
+            }, 5);
         },
         handleResize() {
             this.screenWidth = window.innerWidth;
