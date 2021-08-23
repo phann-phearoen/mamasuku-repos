@@ -5,7 +5,7 @@
         <q-img :src="src" style="width: 50%" ratio="1" class="q-mt-md" />
       </div>
 
-      <q-card-section>
+      <q-card-section class="column items-center">
         <div class="text-h6 name" :class="{ 'name-mobile': screenWidth < 500 }">
           {{ name }}
         </div>
