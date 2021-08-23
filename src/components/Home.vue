@@ -1,32 +1,33 @@
 <template>
-<div class="root">
-   <div>
-    <top></top>
-  </div>
+  <div class="root">
+    <div>
+      <top></top>
+    </div>
 
-  <div v-scroll-spy="{allowNoActive: true, offset: 130, time: 200, steps: 30}">
-    <div id="douga">
+    <div
+      v-scroll-spy="{ allowNoActive: true, offset: 130, time: 200, steps: 30 }"
+    >
+      <div id="douga">
         <douga></douga>
-    </div>
-    <div id="soudan">
+      </div>
+      <div id="soudan">
         <soudan></soudan>
-    </div>
-    <div id="toi-awase">
+      </div>
+      <div id="toi-awase">
         <toi-awase></toi-awase>
+      </div>
     </div>
-  </div>  
-</div>  
+  </div>
 </template>
 
 <script>
-import Top from './Top.vue';
-import Douga from './Douga.vue';
-import Soudan from './Soudan.vue';
-import ToiAwase from './ToiAwase.vue';
+import Top from "./Top.vue";
+import Douga from "./Douga.vue";
+import Soudan from "./Soudan.vue";
+import ToiAwase from "./ToiAwase.vue";
 
 export default {
-    components: { Top, Douga, Soudan, ToiAwase },
-}
+  components: { Top, Douga, Soudan, ToiAwase },
+};
 </script>
-<style scoped>
-</style>
+<style scoped></style>

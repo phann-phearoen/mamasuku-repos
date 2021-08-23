@@ -38,16 +38,17 @@
             v-scroll-spy-link
           >
             <li class="nav-item me-4">
-              <router-link
+              <div
                 class="nav-link"
-                to="/vue-pages/home#douga"
-                @click="$scrollToTop"
-                ><img
+                style="cursor: pointer"
+                @click="goToDougaTitle"
+              >
+                <img
                   src="./assets/icon01.png"
                   class="img mx-2"
                   alt="icon01"
-                />学べる動画一覧</router-link
-              >
+                />学べる動画一覧
+              </div>
             </li>
             <li class="nav-item me-4">
               <router-link
@@ -99,6 +100,12 @@ export default {
   methods: {
     handleResize() {
       this.screenWidth = window.innerWidth;
+    },
+    goToDougaTitle() {
+      let obj = document.getElementById("douga-start");
+      if (obj?.offsetTop) {
+        window.scrollTo({ top: obj.offsetTop - 150, behavior: "smooth" });
+      }
     },
   },
 
