@@ -265,9 +265,7 @@ export default {
             }
         },
         toTop() {
-            setTimeout(() => {
-                window.scrollTo({ top: 0, left: 0, behavior: 'instant'});
-            }, 5);
+            this.$router.push('/');
         },
         handleResize() {
             this.screenWidth = window.innerWidth;
