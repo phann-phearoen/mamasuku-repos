@@ -38,22 +38,24 @@
             v-scroll-spy-link
           >
             <li class="nav-item me-4">
-              <router-link
+              <div
                 class="nav-link"
-                to="/vue-pages/home#douga"
-                @click="$scrollToTop"
-                ><img
+                style="cursor: pointer"
+                @mousedown="goToDouga"
+                @mouseup="goToDougaTitle"
+              >
+                <img
                   src="./assets/icon01.png"
                   class="img mx-2"
                   alt="icon01"
-                />学べる動画一覧</router-link
-              >
+                />学べる動画一覧
+              </div>
             </li>
             <li class="nav-item me-4">
               <router-link
                 class="nav-link"
                 to="/vue-pages/home#soudan"
-                @click="$scrollToTop"
+                
                 ><img
                   src="./assets/icon02.png"
                   class="img mx-2"
@@ -65,7 +67,7 @@
               <router-link
                 class="nav-link"
                 to="/vue-pages/home#inquiry"
-                @click="$scrollToTop"
+                
                 ><img
                   src="./assets/icon03.png"
                   class="img mx-2"
@@ -99,6 +101,32 @@ export default {
   methods: {
     handleResize() {
       this.screenWidth = window.innerWidth;
+    },
+    goToDouga() {
+      let getRoute = this.$router.currentRoute;
+      let route = getRoute._rawValue.fullPath;
+      if(route === '/vue-pages/home' || 
+        route === '/vue-pages/home#douga' || 
+        route === '/vue-pages/home#soudan' ||
+        route === '/vue-pages/home#inquiry')
+        return;
+      else
+        this.$router.push('/vue-pages/home#douga');
+    },
+    goToDougaTitle() {
+      let obj = document.getElementById("douga-start");
+      let os = 0;
+      if(this.screenMode === 'normal')
+        os = 115;
+      else if(this.screenMode === 'tablet')
+        os = 100;
+      else
+        os = 190;
+
+      if (obj?.offsetTop) {
+        window.scrollTo({ top: obj.offsetTop - os, behavior: "smooth" });
+      }
+      
     },
   },
 

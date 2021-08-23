@@ -9,14 +9,26 @@
                 <a href="https://wannagrow.co.jp" >運営会社</a>
               </li>
 
-              <ul class="list-unstyled" v-scroll-spy-active v-scroll-spy-link>
-                <li class="mb-2">
+              <div class="mb-2"
+                style="cursor: pointer"
+                @mousedown="goToDouga"
+                @mouseup="goToDougaTitle"
+                >
                 <a href="#!" >学べる動画一覧</a>
-                </li>
-                <li class="mb-2">
+              </div>
+              
+              <ul class="list-unstyled" 
+              v-scroll-spy-active="{
+                selector: 'li.nav-item',
+                class: 'custom-active',
+              }" 
+              v-scroll-spy-link>
+
+                <li class="nav-item mb-2">
                   <a href="#!" >在宅で働くママに相当する</a>
                 </li>
-                <li>
+
+                <li class="nav-item">
                   <a href="#!" >お問い合わせ</a>
                 </li>
               </ul>
@@ -34,6 +46,40 @@
     
     
 </template>
+
+<script>
+export default {
+
+  methods: {
+    goToDouga() {
+      let getRoute = this.$router.currentRoute;
+      let route = getRoute._rawValue.fullPath;
+      if(route === '/vue-pages/home' || 
+        route === '/vue-pages/home#douga' || 
+        route === '/vue-pages/home#soudan' ||
+        route === '/vue-pages/home#inquiry')
+        return;
+      else
+        this.$router.push('/vue-pages/home#douga');
+    },
+    goToDougaTitle() {
+      let obj = document.getElementById("douga-start");
+      let os = 0;
+      if(this.screenMode === 'normal')
+        os = 115;
+      else if(this.screenMode === 'tablet')
+        os = 100;
+      else
+        os = 190;
+
+      if (obj?.offsetTop) {
+        window.scrollTo({ top: obj.offsetTop - os, behavior: "smooth" });
+      }
+      
+    },
+  }
+}
+</script>
 
 <style scoped>
 

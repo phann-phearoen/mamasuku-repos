@@ -1,20 +1,17 @@
 module.exports = {
-    publicPath: '/vue-pages/',
+  publicPath: "/",
 
-    pluginOptions: {
-      quasar: {
-        importStrategy: 'kebab',
-        rtlSupport: true
-      },
-      i18n: {
-        locale: 'ja',
-        fallbackLocale: 'en',
-        localeDir: 'assets/locales',
-        enableInSFC: true
-      }
+  pluginOptions: {
+    quasar: {
+      importStrategy: "kebab",
+      rtlSupport: true,
     },
-
-    transpileDependencies: [
-      'quasar'
-    ]
-}
+    i18n: {
+      locale: "ja",
+      fallbackLocale: "en",
+      localeDir: "assets/locales",
+      enableInSFC: true,
+    },
+  },
+  transpileDependencies: ["quasar"],
+};
