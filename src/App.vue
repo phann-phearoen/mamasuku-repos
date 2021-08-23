@@ -41,7 +41,8 @@
               <div
                 class="nav-link"
                 style="cursor: pointer"
-                @click="goToDougaTitle"
+                @mousedown="goToDouga"
+                @mouseup="goToDougaTitle"
               >
                 <img
                   src="./assets/icon01.png"
@@ -54,7 +55,7 @@
               <router-link
                 class="nav-link"
                 to="/vue-pages/home#soudan"
-                @click="$scrollToTop"
+                
                 ><img
                   src="./assets/icon02.png"
                   class="img mx-2"
@@ -66,7 +67,7 @@
               <router-link
                 class="nav-link"
                 to="/vue-pages/home#inquiry"
-                @click="$scrollToTop"
+                
                 ><img
                   src="./assets/icon03.png"
                   class="img mx-2"
@@ -101,11 +102,31 @@ export default {
     handleResize() {
       this.screenWidth = window.innerWidth;
     },
+    goToDouga() {
+      let getRoute = this.$router.currentRoute;
+      let route = getRoute._rawValue.fullPath;
+      if(route === '/vue-pages/home' || 
+        route === '/vue-pages/home#douga' || 
+        route === '/vue-pages/home#soudan' ||
+        route === '/vue-pages/home#inquiry')
+        return;
+      else
+        this.$router.push('/vue-pages/home#douga');
+    },
     goToDougaTitle() {
       let obj = document.getElementById("douga-start");
+      let os = 0;
+      if(this.screenMode === 'normal')
+        os = 115;
+      else if(this.screenMode === 'tablet')
+        os = 100;
+      else
+        os = 190;
+
       if (obj?.offsetTop) {
-        window.scrollTo({ top: obj.offsetTop - 150, behavior: "smooth" });
+        window.scrollTo({ top: obj.offsetTop - os, behavior: "smooth" });
       }
+      
     },
   },
 
