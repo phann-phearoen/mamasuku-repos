@@ -1,8 +1,8 @@
 <template>
   <div class="root">
-
-    <top></top>
-
+    <div id="top">
+      <top></top>
+    </div>
     <div id="douga">
       <douga></douga>
     </div>
