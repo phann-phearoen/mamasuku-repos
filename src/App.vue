@@ -105,7 +105,10 @@ export default {
     goToDouga() {
       let getRoute = this.$router.currentRoute;
       let route = getRoute._rawValue.fullPath;
-      if(route === '/vue-pages/home#douga')
+      if(route === '/vue-pages/home' || 
+        route === '/vue-pages/home#douga' || 
+        route === '/vue-pages/home#soudan' ||
+        route === '/vue-pages/home#inquiry')
         return;
       else
         this.$router.push('/vue-pages/home#douga');

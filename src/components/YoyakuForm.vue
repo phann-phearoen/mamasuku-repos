@@ -1,7 +1,4 @@
 <template>
-<div class="container" style="margin-top: 100px">
-    <q-btn label="toTop" @click="toTop"></q-btn>
-</div>
 <q-dialog v-model="alert">
       <q-card style="width: 300px">
         <q-card-section class="q-pt-none alert q-mt-md" >
@@ -268,14 +265,9 @@ export default {
             }
         },
         toTop() {
-            this.$router.replace('/');
-            //let obj = document.getElementById('top');
-            // setTimeout(() => {
-            //     window.scrollTo({ top: 0, left: 0, behavior: "instant"})
-            // }, 5);
-            // if (obj?.offsetTop) {
-            //     window.scrollTo({ top: obj.offsetTop, behavior: "smooth" });
-            // }
+            setTimeout(() => {
+                window.scrollTo({ top: 0, left: 0, behavior: 'instant'});
+            }, 5);
         },
         handleResize() {
             this.screenWidth = window.innerWidth;
