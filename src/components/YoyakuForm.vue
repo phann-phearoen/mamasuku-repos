@@ -84,7 +84,7 @@
             <form-slot :label="'ご希望の日時'">
                 <template v-slot:required><span style="color: red" v-if="!dateIsValid">（必須）</span></template>
                 
-                <contact-row></contact-row>
+                <contact-row :reset="reset"></contact-row>
 
             </form-slot>
 
@@ -140,6 +140,7 @@ export default {
             screenMode: null,
             screenWidth: 0,
             alert: false,
+            reset: false
         }
     },
     computed: {
@@ -252,10 +253,9 @@ export default {
                         this.alert = true;
                     }, (error) => {
                         console.log('FAILED...', error);
+                        this.reset = false;
                 });
-                
                 e.target.reset();
-                
             }
             else{
                 this.validateName();
@@ -265,8 +265,12 @@ export default {
             }
         },
         toTop() {
+            this.$router.replace('/vue-pages/home');
+            this.reset = true;
             setTimeout(() => {
-                window.scrollTo({ top: 0, left: 0, behavior: 'instant'});
+                
+                window.scrollTo({ top: 0.0001, behavior: 'instant'})
+                
             }, 5);
         },
         handleResize() {
@@ -281,6 +285,14 @@ export default {
         window.removeEventListener('resize', this.handleResize);
     },
     watch: {
+        reset(val) {
+            if(val === true) {
+                this.name.value = '';
+                this.phone.value = '';
+                this.email.value = '';
+                this.question = '';
+            }
+        },
         screenWidth(val){
         if(val > 960){
             this.screenMode = 'normal';
