@@ -245,6 +245,7 @@
 <script>
 
 export default {
+  props: ['reset'],
   computed: {
     date1: {
       set(value) {
@@ -306,6 +307,21 @@ export default {
     validateTimeEnd3() {
       this.$store.commit('yoyakuInfo/validateTimeEnd3');
     },
+  },
+  watch: {
+    reset(val) {
+      if(val === true) {
+        this.date1.day.value = '';
+        this.date1.timeStart.value = '';
+        this.date1.timeEnd.value = '';
+        this.date2.day = '';
+        this.date2.timeStart.value = '';
+        this.date2.timeEnd.value = '';
+        this.date3.day = '';
+        this.date3.timeStart.value = '';
+        this.date3.timeEnd.value = '';
+      }
+    }
   }
 }
 </script>
