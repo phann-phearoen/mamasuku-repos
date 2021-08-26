@@ -18,7 +18,7 @@
           <template v-slot:append>
               <q-icon name="event" class="cursor-pointer">
               <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-                  <q-date v-model="date1.day.value" name="date1">
+                  <q-date v-model="date1.day.value" name="date1" :options="optionsFn">
                   <div class="row items-center justify-end">
                       <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
@@ -100,7 +100,7 @@
           <template v-slot:append>
               <q-icon name="event" class="cursor-pointer">
               <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-                  <q-date v-model="date2.day" name="date2">
+                  <q-date v-model="date2.day" name="date2" :options="optionsFn">
                   <div class="row items-center justify-end">
                       <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
@@ -177,7 +177,7 @@
           <template v-slot:append>
               <q-icon name="event" class="cursor-pointer">
               <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-                  <q-date v-model="date3.day" name="date3">
+                  <q-date v-model="date3.day" name="date3" :options="optionsFn">
                   <div class="row items-center justify-end">
                       <q-btn v-close-popup label="閉じる" color="primary" flat />
                   </div>
@@ -243,6 +243,7 @@
 </template>
 
 <script>
+import { date } from 'quasar';
 
 export default {
   props: ['reset'],
@@ -276,6 +277,10 @@ export default {
     },
   },
   methods: {
+    optionsFn(d) {
+      return d >= date.formatDate(Date.now(), 'YYYY/MM/DD')
+    },
+    
     validateDay() {
       this.$store.commit('yoyakuInfo/validateDay');
     },

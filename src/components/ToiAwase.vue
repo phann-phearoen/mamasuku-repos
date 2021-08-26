@@ -30,7 +30,7 @@
                         v-model.trim="name"
                         no-error-icon
                         bottom-slots
-                        @keyup="validateName"
+                        @focus="nameValidation('pending')"
                         @blur="validateName"
                         :error="!nameIsValid"
                     >
@@ -50,6 +50,7 @@
                         v-model.trim="email"
                         no-error-icon
                         bottom-slots
+                        @focus="emailValidation('pending')"
                         @keyup="validateEmail"
                         @blur="validateEmail"
                         :error="!emailIsValid"
@@ -70,7 +71,7 @@
                         v-model.trim="message"
                         no-error-icon
                         bottom-slots
-                        @keyup="validateMessage"
+                        @focus="messageValidation('pending')"
                         @blur="validateMessage"
                         :error="!messageIsValid"
                     >
@@ -111,6 +112,15 @@ export default {
     },
     
     methods: {
+        nameValidation(val) {
+            this.nameIsValid = val;
+        },
+        emailValidation(val) {
+            this.emailIsValid = val;
+        },
+        messageValidation(val) {
+            this.messageIsValid = val;
+        },
         validateName(){
             if(this.name !== '')
                 this.nameIsValid = true;

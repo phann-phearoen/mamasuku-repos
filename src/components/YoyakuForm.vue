@@ -21,13 +21,13 @@
                 
                 <q-input :class="[{'ml-mobile':screenMode==='mobile'}, 'ml']"
                     name="user_name"
+                    type="text"
                     outlined
                     v-model.trim="name.value"
                     no-error-icon
                     bottom-slots
                     label="お名前を入力してください"
                     @focus="nameValidation('pending')"
-                    @keyup="validateName"
                     @blur="validateName"
                     :error="!name.isValid"
                 >
@@ -35,7 +35,7 @@
                         お名前を入力してください。
                     </template>
                 </q-input>
-            
+
             </form-slot>
 
             <form-slot :label="'電話番号'">
@@ -71,6 +71,7 @@
                     v-model.trim="email.value" 
                     label="メールアドレスを入力してください"
                     @focus="emailValidation('pending')"
+                    @keyup="validateEmail"
                     @blur="validateEmail"
                     :error="!email.isValid"
                 >
