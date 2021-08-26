@@ -8,9 +8,9 @@ export default {
                 3日以上経過しても連絡がない場合、何らかのトラブルにより
                 こちらにメールが届いていない可能性がございます。
                 その際は、お手数をおかけしますが再度ご連絡いただけますと幸いです。`,
-            name: { value: '', isValid: 'pending', errMsg: '' },
-            phone: { value: '', isValid: 'pending', errMsg: '' },
-            email: { value: '', isValid: 'pending', errMsg: '' },
+            name: { value: '', isValid: 'pending' },
+            phone: { value: '', isValid: 'pending' },
+            email: { value: '', isValid: 'pending' },
 
             date1: {
                 day: { value: '', isValid: null}, 
@@ -58,7 +58,6 @@ export default {
             }
             else{
                 state.name.isValid = false;
-                state.name.errMsg = 'お名前を入力してください！';
             }
         },
         nameValidation(state, val) {
@@ -70,7 +69,6 @@ export default {
                 state.phone.isValid = true;
             else {
                 state.phone.isValid = false;
-                state.phone.errMsg = '正しい番号を入力してください！'
             }
         },
         phoneValidation(state, val) {
@@ -82,7 +80,6 @@ export default {
                 state.email.isValid = true;
             else{
                 state.email.isValid = false;
-                state.email.errMsg = '正しいメールアドレスを入力してください！'; 
             }
         },
         emailValidation(state, val) {
